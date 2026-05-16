@@ -10,14 +10,14 @@ namespace GameLogic
     /// Instead of destroying them right away.
     /// </summary>
     struct DestroyedTag : IComponentData { }
-    
+
     struct NewlySpawnedTag : IComponentData { }
-    
+
     struct DestructionAreaTag : IComponentData { }
-    
+
     struct IndestructibleTag : IComponentData { }
 
     struct InvisibilityTag : IComponentData { }
-    
+
     struct SpawnPointTag : IComponentData { }
 }

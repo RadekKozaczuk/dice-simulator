@@ -4,7 +4,6 @@ using Core;
 using JetBrains.Annotations;
 using Presentation.Config;
 using Presentation.Controllers;
-using Presentation.Popups;
 using Presentation.Services;
 using Presentation.Views;
 using UnityEngine;
@@ -48,7 +47,7 @@ namespace Presentation.ViewModels
 
             // load level data
             GetLevelSceneReferenceHolders();
-            
+
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
 
             InfoView ballsLeft = UISceneReferenceHolder.BallsLeft;
@@ -65,7 +64,7 @@ namespace Presentation.ViewModels
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
             UISceneReferenceHolder.BallsLeft.gameObject.SetActive(false);
             UISceneReferenceHolder.Score.gameObject.SetActive(false);
-            
+
             PresentationData.Balls.Clear();
             PresentationData.Bricks.Clear();
         }

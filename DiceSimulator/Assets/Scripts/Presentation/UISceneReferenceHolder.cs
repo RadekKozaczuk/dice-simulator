@@ -27,7 +27,7 @@ namespace Presentation
 
         [SerializeField]
         InfoView _ballsLeft;
-        
+
         [SerializeField]
         InfoView _score;
 

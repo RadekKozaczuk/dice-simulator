@@ -7,7 +7,7 @@ namespace GameLogic.Services
     static class IdCounterService
     {
         internal static int NextId(BrickType type) => _counters[(int)type]++;
-        
+
         static readonly int[] _counters = new int[Enum.GetNames(typeof(BrickType)).Length];
     }
 }

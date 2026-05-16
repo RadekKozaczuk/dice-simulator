@@ -37,10 +37,10 @@ namespace GameLogic.Systems
         internal void SpawnBalls(ref SystemState state, float2 mousePosition)
         {
             Entity singleton = SystemAPI.GetSingletonEntity<SpawnPointTag>();
-            RefRO<LocalTransform> spawn = SystemAPI.GetComponentRO<LocalTransform>(singleton); 
+            RefRO<LocalTransform> spawn = SystemAPI.GetComponentRO<LocalTransform>(singleton);
 
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            var prefabs = SystemAPI.GetSingleton<PrefabsComponent>();
+            PrefabsComponent prefabs = SystemAPI.GetSingleton<PrefabsComponent>();
             float3 position = spawn.ValueRO.Position;
 
             // calculate shot direction

@@ -24,7 +24,7 @@ namespace Core.Services
         static BootSceneStartService()
         {
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-            EditorSceneManager.sceneOpened += (scene, _) =>
+            EditorSceneManager.sceneOpened += static (scene, _) =>
             {
                 if (!scene.name.Contains("BootScene"))
                     return;
@@ -42,12 +42,8 @@ namespace Core.Services
 
             // AssetDatabase may not be read at the moment when InitializeOnLoad is called
             // but, it should on domain reload
-            var entryScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/BootScene.unity");
-            if (entryScene == null)
-            {
-                
-            }
-            else
+            SceneAsset? entryScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/BootScene.unity");
+            if (entryScene)
             {
                 EditorSceneManager.playModeStartScene = entryScene;
                 Scene scene = SceneManager.GetActiveScene();

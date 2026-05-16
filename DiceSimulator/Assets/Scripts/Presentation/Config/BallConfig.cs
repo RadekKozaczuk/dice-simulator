@@ -15,7 +15,7 @@ namespace Presentation.Config
 
         [SerializeField]
         internal float MaxRotationSpeed = 150f;
-        
+
         [SerializeField]
         internal float YOffset = 0.5f;
     }

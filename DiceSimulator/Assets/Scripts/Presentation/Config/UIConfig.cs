@@ -13,7 +13,7 @@ namespace Presentation.Config
 
         [SerializeField]
         internal LeaderBoardElementView LeaderBoardElementView;
-        
+
         [SerializeField]
         internal HpView HpLabel;
     }

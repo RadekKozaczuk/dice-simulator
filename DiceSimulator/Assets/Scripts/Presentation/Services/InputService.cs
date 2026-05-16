@@ -24,7 +24,7 @@ namespace Presentation.Services
         {
             // MainMenu bindings
             InputActionMap mainMenu = _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap);
-            mainMenu.FindAction(Quit).performed += _ =>
+            mainMenu.FindAction(Quit).performed += static _ =>
             {
                 // if there is a popup - close it
                 // otherwise quit the game
@@ -44,21 +44,21 @@ namespace Presentation.Services
 
             // Gameplay bindings
             InputActionMap gameplay = _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap);
-            gameplay.FindAction(Quit).performed += _ => PopupService.ShowPopup(PopupType.QuitGame);
+            gameplay.FindAction(Quit).performed += static _ => PopupService.ShowPopup(PopupType.QuitGame);
 
             _mousePositionAction = gameplay.FindAction(MousePosition);
 
             _shotAction = gameplay.FindAction(Shot);
-            _shotAction.performed += _ => GameLogicViewModel.MouseClickPosition = _mousePositionAction.ReadValue<Vector2>();
-            
+            _shotAction.performed += static _ => GameLogicViewModel.MouseClickPosition = _mousePositionAction.ReadValue<Vector2>();
+
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);
-            popup.FindAction(Quit).performed += _ =>
+            popup.FindAction(Quit).performed += static _ =>
             {
-                if (PopupService.CurrentPopup == null)
-                    PopupService.ShowPopup(PopupType.QuitGame);
-                else
+                if (PopupService.CurrentPopup)
                     PopupService.CloseCurrentPopup();
+                else
+                    PopupService.ShowPopup(PopupType.QuitGame);
             };
 
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();

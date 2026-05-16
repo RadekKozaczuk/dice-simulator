@@ -37,7 +37,7 @@ namespace GameLogic.Systems
             _ballLookup.Update(ref state);
             _destructionAreaLookup.Update(ref state);
 
-            var simulation = SystemAPI.GetSingleton<SimulationSingleton>();
+            SimulationSingleton simulation = SystemAPI.GetSingleton<SimulationSingleton>();
 
             // for destruction, we want to use a dedicated command buffer
             // this system runs at the end of the SimulationSystemGroup

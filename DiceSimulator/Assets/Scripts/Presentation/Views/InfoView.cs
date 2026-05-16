@@ -8,7 +8,7 @@ namespace Presentation.Views
     {
         [SerializeField]
         RectTransform _rect;
-        
+
         [SerializeField]
         TMP_Text _infoText;
 
@@ -31,10 +31,10 @@ namespace Presentation.Views
         {
             _initialText = initialText;
             SetValue(0);
-            
+
             int width = PresentationSceneReferenceHolder.GameplayCamera.pixelWidth;
             int height = PresentationSceneReferenceHolder.GameplayCamera.pixelHeight;
-            float ratio =  (float)width / height;
+            float ratio = (float)width / height;
 
             // distance in 16:9
             float ratioRatio = ratio / 1.777f; // 0.75
@@ -59,11 +59,11 @@ namespace Presentation.Views
                     newMinX = minX - offsetHalf;
                 else
                     newMinX = minX + offsetHalf;
-                
+
                 _rect.anchorMin = new Vector2(newMinX, _originalAnchorMin.y);
                 _rect.anchorMax = new Vector2(newMinX + newDistance, _originalAnchorMax.y);
             }
-            
+
             // the UI was designed with 16:9 in mind hence the 1.777
             // everything outside of that has to be readjusted horizontally
         }

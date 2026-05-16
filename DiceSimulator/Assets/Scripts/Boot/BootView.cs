@@ -44,15 +44,16 @@ namespace Boot
 
             // injection must be done in awake because fields cannot be injected into in the same method they are used in
             // start will be at least 1 frame later than Awake.
-            ArchitectureService.Initialize(SignalProcessorPrecalculatedArrays.SignalCount,
-                                           SignalProcessorPrecalculatedArrays.SignalNames,
-                                           SignalProcessorPrecalculatedArrays.SignalQueues,
-                                           _configs);
+            ArchitectureService.Initialize(
+                SignalProcessorPrecalculatedArrays.SignalCount,
+                SignalProcessorPrecalculatedArrays.SignalNames,
+                SignalProcessorPrecalculatedArrays.SignalQueues,
+                _configs);
         }
 
         void Start()
         {
-            SceneManager.sceneLoaded += (scene, _) =>
+            SceneManager.sceneLoaded += static (scene, _) =>
             {
                 if (scene.buildIndex == (int)Level.CoreScene)
                 {
@@ -91,17 +92,17 @@ namespace Boot
         }
 
         static GameStateMachine<GameState> CreateStateMachine() =>
-            new(new List<(GameState from, GameState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)> 
+            new(new List<(GameState from, GameState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)>
                 {
                     (GameState.Boot,
                      GameState.MainMenu,
-                     () => (new[] { (int)Level.MainMenuScene, (int)Level.CoreScene, (int)Level.UIScene}, null)),
+                     static () => (new[] { (int)Level.MainMenuScene, (int)Level.CoreScene, (int)Level.UIScene }, null)),
                     (GameState.MainMenu,
                      GameState.Gameplay,
-                     () => (new[] { (int)Level.LevelScene}, new[] { (int)Level.MainMenuScene})),
+                     static () => (new[] { (int)Level.LevelScene }, new[] { (int)Level.MainMenuScene })),
                     (GameState.Gameplay,
                      GameState.MainMenu,
-                     () => (new[] { (int)Level.MainMenuScene}, ScenesToUnloadFromGameplayToMainMenu()))
+                     static () => (new[] { (int)Level.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
                 },
                 new (GameState, Action?, Action?)[]
                 {

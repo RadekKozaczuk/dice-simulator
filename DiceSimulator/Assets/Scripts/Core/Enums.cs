@@ -32,6 +32,7 @@ namespace Core
     public enum PopupType
     {
         QuitGame,
+
         /// <summary>
         /// Settings accessible from the main menu.
         /// </summary>
@@ -44,7 +45,7 @@ namespace Core
     /// </summary>
     public enum CollisionEntityType
     {
-        Undefined = int.MinValue, 
+        Undefined = int.MinValue,
         Ball = 0,
         Brick = 1,
         DestructionArea = 2

@@ -73,7 +73,6 @@ namespace Core.DependencyInjector
                     if (_dynamicInstances.TryGetValue(info.FieldType, out DynamicInstanceDto dynamicInstance))
                         // field is static therefore we pass null as the instance
                         info.SetValue(null, dynamicInstance.Instance);
-
         }
 
         // ReSharper disable once InvalidXmlDocComment
@@ -140,9 +139,9 @@ namespace Core.DependencyInjector
                         if (!field.FieldType.IsSubclassOf(typeof(TScriptableObject)) || field.FieldType.Name[^6..] != "Config")
                             continue;
 
-                        TScriptableObject config = findConfig.Invoke(field.FieldType) ??
-                                                   throw new Exception($"No Config found for the field named: '{field.Name}', " +
-                                                                       $"of type: {field.FieldType}, located in: {type.Name}");
+                        TScriptableObject config = findConfig.Invoke(field.FieldType)
+                            ?? throw new Exception($"No Config found for the field named: '{field.Name}', "
+                                + $"of type: {field.FieldType}, located in: {type.Name}");
 
                         field.SetValue(type, config);
                     }
@@ -152,7 +151,8 @@ namespace Core.DependencyInjector
                         continue;
 
                     // todo: in the future, make suffix "Service" a requirement
-                    if (type.IsStatic() && (type.Namespace.EndsWith("Services") || type.Name.EndsWith("Service")))
+                    if (type.IsStatic()
+                        && (type.Namespace.EndsWith("Services", StringComparison.Ordinal) || type.Name.EndsWith("Service", StringComparison.Ordinal)))
                         Services.SignalService.AddReactiveService(type);
                 }
         }
@@ -173,9 +173,9 @@ namespace Core.DependencyInjector
                     if (IgnoreCheck(type))
                         continue;
 
-                    bool isControllerOrViewModel = type.Namespace!.EndsWith("Controllers")
-                                                   || type.Namespace.EndsWith("ViewModels")
-                                                   || type.Name.EndsWith("Controller");
+                    bool isControllerOrViewModel = type.Namespace!.EndsWith("Controllers", StringComparison.Ordinal)
+                        || type.Namespace.EndsWith("ViewModels", StringComparison.Ordinal)
+                        || type.Name.EndsWith("Controller", StringComparison.Ordinal);
 
                     // ReSharper disable once MergeIntoPattern
                     bool isStatic = type.IsAbstract && type.IsSealed;
@@ -207,7 +207,7 @@ namespace Core.DependencyInjector
                     }
                 }
 
-            // iterate over injectable fields whose type is an interface 
+            // iterate over injectable fields whose type is an interface
             foreach (Type type in awaitingStaticInstances)
             {
                 // must be one
@@ -239,20 +239,17 @@ namespace Core.DependencyInjector
                 return true;
 
             // ignore dtos
-            if (type.Name.EndsWith("Dto"))
+            if (type.Name.EndsWith("Dto", StringComparison.Ordinal))
                 return true;
 
             bool isSo = type.IsSubclassOf(typeof(TScriptableObject));
 
             // ignore configs
-            if (isSo && type.Name.EndsWith("Config"))
+            if (isSo && type.Name.EndsWith("Config", StringComparison.Ordinal))
                 return true;
 
             // ignore data
-            if (isSo && type.Name.EndsWith("Data"))
-                return true;
-
-            return false;
+            return isSo && type.Name.EndsWith("Data", StringComparison.Ordinal);
         }
 
         /// <summary>
@@ -301,15 +298,11 @@ namespace Core.DependencyInjector
 
             // check if the class is a dynamic dependency
             if (_dynamicInstances.TryGetValue(type, out DynamicInstanceDto _))
-            {
-                
-            }
-            else
-            {
-                // must be in static 
-                StaticInstanceDto staticInstance = _staticInstances.Find(si => si.Type == type);
-                staticInstance.DynamicDependencies.Add(fieldInfo);
-            }
+                return;
+
+            // must be in static
+            StaticInstanceDto staticInstance = _staticInstances.Find(si => si.Type == type);
+            staticInstance.DynamicDependencies.Add(fieldInfo);
         }
     }
 }

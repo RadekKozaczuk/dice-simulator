@@ -12,7 +12,7 @@ namespace GameLogic.ViewModels
     public class GameLogicViewModel
     {
         static readonly PlayerConfig _config;
-        
+
         /// <summary>
         /// This value is a pixel coordinate where (0, 0) is the lower-left corner
         /// and, (1920, 1080) (depending on the resolution), is the upper right corner.

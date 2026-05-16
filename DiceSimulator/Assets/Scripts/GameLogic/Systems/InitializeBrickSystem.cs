@@ -36,7 +36,7 @@ namespace GameLogic.Systems
                 float rotation = brick.ValueRO.Rotation;
                 float scale = brick.ValueRO.Scale;
                 ecb.RemoveComponent<NewlySpawnedTag>(entity);
-                
+
                 if (!state.EntityManager.HasComponent<InvisibilityTag>(entity))
                     Signals.BrickSpawned(brick.ValueRO.Id, brick.ValueRO.Type, pos.xz, rotation, scale, brick.ValueRO.Hp);
             }

@@ -1,4 +1,1861 @@
+# Disable analysis for 3rd party code
+[Assets/3rdParty/**/*.cs]
+dotnet_diagnostic.*.severity = none
+dotnet_analyzer_diagnostic.severity = none
+
+[Packages/**/*.cs]
+dotnet_diagnostic.*.severity = none
+dotnet_analyzer_diagnostic.severity = none
+
+# Disable (or sadly just suppress) custom analyzers for anything but our code
 [*]
 dotnet_analyzer_diagnostic.category-RAD.severity = none
 [Assets/Scripts/**.cs]
 dotnet_analyzer_diagnostic.category-RAD.severity = error
+
+#### C# Coding Conventions ####
+
+# var preferences
+csharp_style_var_elsewhere = false:error
+csharp_style_var_for_built_in_types = false:error
+csharp_style_var_when_type_is_apparent = true:error
+
+# Omit suggesting explicit accessibility (IDE0040: Add accessibility modifiers)
+dotnet_style_require_accessibility_modifiers = omit_if_default
+
+
+#######################################################################################################
+#######################################################################################################
+#### Rider Specific (https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html) ####
+
+##############################################################################
+### EditorConfig properties for C#: Blank Lines ==============================
+
+csharp_blank_lines_around_invocable = 1
+csharp_remove_blank_lines_near_braces_in_code = true
+
+##############################################################################
+### EditorConfig properties for C#: Blank Lines ==============================
+### https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_BlankLinesPageScheme.html
+
+# these values means MINIMAL amount of lines allowed
+csharp_blank_lines_around_region = 1
+csharp_blank_lines_inside_region = 0
+csharp_blank_lines_before_single_line_comment = 0
+csharp_keep_blank_lines_in_declarations = 1
+csharp_remove_blank_lines_near_braces_in_declarations = true
+csharp_blank_lines_after_start_comment = 0
+csharp_blank_lines_between_using_groups = 0
+csharp_blank_lines_after_using_list = 1
+csharp_blank_lines_around_namespace = 0
+csharp_blank_lines_inside_namespace = 0
+csharp_blank_lines_after_file_scoped_namespace_directive = 1
+csharp_blank_lines_around_type = 1
+csharp_blank_lines_around_single_line_type = 1
+csharp_blank_lines_inside_type = 0
+
+# around fild with a comment or declated over a multiple line, comments below the line of code in question counts as well
+csharp_blank_lines_around_field = 1
+csharp_blank_lines_around_single_line_field = 0
+csharp_blank_lines_around_property = 0
+csharp_blank_lines_around_single_line_property = 0
+csharp_blank_lines_around_auto_property = 1
+csharp_blank_lines_around_single_line_auto_property = 0
+csharp_blank_lines_around_accessor = 0
+csharp_blank_lines_around_single_line_accessor = 0
+csharp_blank_lines_around_single_line_invocable = 1
+csharp_keep_blank_lines_in_code = 1
+csharp_blank_lines_around_local_method = 1
+csharp_blank_lines_around_single_line_local_method = 1
+csharp_blank_lines_before_control_transfer_statements = 0
+csharp_blank_lines_after_control_transfer_statements = 1
+csharp_blank_lines_before_block_statements = 0 # this must be 0 as it forces new line above every for-loop block
+csharp_blank_lines_after_block_statements = 1
+csharp_blank_lines_before_multiline_statements = 0
+csharp_blank_lines_after_multiline_statements = 0
+csharp_blank_lines_around_block_case_section = 0
+csharp_blank_lines_around_multiline_case_section = 0
+csharp_blank_lines_before_case = 0
+csharp_blank_lines_after_case = 0
+
+
+##############################################################################
+### EditorConfig properties for C#: Braces Layout ==============================
+### https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_BracesPageSchema.html
+csharp_type_declaration_braces = next_line
+csharp_brace_style = next_line
+csharp_indent_inside_namespace = true
+csharp_invocable_declaration_braces = next_line
+csharp_anonymous_method_declaration_braces = next_line
+csharp_accessor_owner_declaration_braces = next_line
+csharp_accessor_declaration_braces = next_line
+csharp_case_block_braces = next_line
+csharp_initializer_braces = next_line
+csharp_use_continuous_indent_inside_initializer_braces = true
+csharp_other_braces = next_line
+csharp_allow_comment_after_lbrace = false
+csharp_empty_block_style = together_same_line
+
+
+###############################################################################
+### EditorConfig properties for C#: Syntax Style ==============================
+### https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_CSharpCodeStylePageImplSchema.html
+csharp_for_built_in_types = use_explicit_type
+csharp_for_simple_types = use_var_when_evident
+csharp_for_other_types = use_var_when_evident
+csharp_use_roslyn_logic_for_evident_types = true
+csharp_prefer_separate_deconstructed_variables_declaration = false
+csharp_prefer_explicit_discard_declaration = false
+csharp_instance_members_qualify_members = none
+csharp_instance_members_qualify_declared_in = this_class
+csharp_static_members_qualify_with = current_type
+csharp_static_members_qualify_members = none
+csharp_builtin_type_reference_style = use_keyword
+csharp_builtin_type_reference_for_member_access_style = use_keyword
+csharp_builtin_type_apply_to_native_integer = true
+# this, if true, will convert this List<int> list; into System.Collections.Generic.List<int> list;
+csharp_prefer_qualified_reference = false
+# this will move usings into namespace if allowed
+csharp_add_imports_to_deepest_scope = false
+dotnet_sort_system_directives_first = true
+# no idea what it does
+csharp_qualified_using_at_nested_scope = true
+csharp_allow_alias = true
+csharp_can_use_global_alias = true
+csharp_default_private_modifier = implicit
+csharp_default_internal_modifier = implicit
+csharp_modifiers_order = public, protected, internal, private, file, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, volatile, async, required, partial
+csharp_arguments_skip_single = true
+csharp_arguments_literal = positional
+csharp_arguments_string_literal = positional
+csharp_arguments_named = positional
+csharp_arguments_anonymous_function = positional
+csharp_arguments_other = positional
+csharp_parentheses_redundancy_style = always
+csharp_parentheses_non_obvious_operations = none
+csharp_parentheses_group_non_obvious_operations = none
+csharp_parentheses_same_type_operations = true
+csharp_braces_for_ifelse = not_required
+csharp_braces_for_for = not_required
+csharp_braces_for_foreach = not_required
+csharp_braces_for_while = not_required
+csharp_braces_for_dowhile = not_required
+csharp_braces_for_using = not_required
+csharp_braces_for_lock = not_required
+csharp_braces_for_fixed = not_required
+csharp_braces_redundant = true
+csharp_method_or_operator_body = expression_body
+csharp_local_function_body = expression_body
+csharp_constructor_or_destructor_body = expression_body
+csharp_accessor_owner_body = expression_body
+csharp_namespace_body = block_scoped
+csharp_use_heuristics_for_body_style = true
+csharp_force_attribute_style = separate
+csharp_trailing_comma_in_multiline_lists = false
+csharp_trailing_comma_in_singleline_lists = false
+csharp_object_creation_when_type_evident = target_typed
+csharp_object_creation_when_type_not_evident = explicitly_typed
+csharp_default_value_when_type_evident = default_literal
+csharp_default_value_when_type_not_evident = default_literal
+csharp_null_checking_pattern_style = not_null_pattern
+
+
+###############################################################################
+### EditorConfig properties for C#: Tabs, Indents, Alignment ==============================
+### https://www.jetbrains.com/help/resharper/EditorConfig_CSHARP_CSharpIndentStylePageSchema.html 
+csharp_indent_style = space
+csharp_indent_size = 4
+csharp_tab_width = 4
+csharp_continuous_indent_multiplier = 1
+
+## Nested statements
+csharp_indent_nested_usings_stmt = true
+csharp_indent_nested_fixed_stmt = true
+csharp_indent_nested_lock_stmt = true
+csharp_indent_nested_for_stmt = true
+csharp_indent_nested_foreach_stmt = true
+csharp_indent_nested_while_stmt = true
+
+## Parenthesis﻿
+# no idea what it does
+csharp_use_continuous_indent_inside_parens = true
+csharp_indent_method_decl_pars = inside
+csharp_indent_primary_constructor_decl_pars = inside
+csharp_indent_invocation_pars = inside
+csharp_indent_statement_pars = inside
+csharp_indent_typeparam_angles = inside
+csharp_indent_typearg_angles = inside
+csharp_indent_pars = inside
+
+## Preprocessor directives
+csharp_indent_preprocessor_if = no_indent
+csharp_indent_preprocessor_region = no_indent
+csharp_indent_preprocessor_other = no_indent
+
+## Other indents
+csharp_indent_switch_labels = true
+csharp_outdent_statement_labels = true
+csharp_indent_type_constraints = true
+csharp_stick_comment = false
+
+# no idea what it does
+csharp_place_comments_at_first_column = false
+
+# no idea what it does
+csharp_use_indent_from_previous_element = false
+csharp_indent_braces_inside_statement_conditions = true
+
+## Align multiline constructs
+csharp_alignment_tab_fill_style = use_spaces
+
+# no idea what it does
+csharp_allow_far_alignment = false
+
+# false because sometimes method may be pretty long, true would move parameters right below "("
+#public delegate void ChangeState(GameState requested, int[]? additionalScenesToLoad = null,
+#    int[]? additionalScenesToUnload = null, (StateTransitionParameter key, object value)[]? parameters = null,
+#    int[]? scenesToSynchronize = null);
+csharp_align_multiline_parameter = false
+
+csharp_align_multiline_extends_list = true
+csharp_align_linq_query = true
+
+# this sometimes looks weird when set to true
+csharp_align_multiline_binary_expressions_chain = false
+csharp_outdent_binary_ops = false
+
+# this looks weird for both but true overall looks better
+# true produces for example this:
+#questText = await db.GetLocalizedStringAsync("GameUI", 
+#                        "game.quest.open.chest")
+#                    .Task;
+# when false would do this:
+#UIData.ActiveInventoryFull = _elementsViews
+#    .SubArray(0, Constants.ActiveSkillsNumber)
+#    .All(s => s);
+csharp_align_multiline_calls_chain = true #RADEK
+
+csharp_outdent_dots = false
+
+# false because true may sometimes push the parenthesis too far right
+#ecb.SetComponent(player, new LocalTransform
+#{ <-- when false         { <-- when true
+#    Position = new float3(SpawnPointsService.SpawnPoint, 0), <-- when false
+csharp_align_multiline_array_and_object_initializer = false
+
+csharp_align_multiline_switch_expression = false
+csharp_align_multiline_property_pattern = false
+csharp_align_multiline_list_pattern = true
+csharp_align_multiline_binary_patterns = true
+csharp_outdent_binary_pattern_ops = true
+
+# false because setting it to true may sometimes push the parenthesis too far right
+# SceneManager.sceneLoaded += (scene, _) =>
+# { <-- when false            { <-- when true
+csharp_indent_anonymous_method_block = false
+
+# false becasue sometimes we want to put the first parameter below
+# 1 => Unity.Physics.SphereCollider.Create(
+#     new SphereGeometry
+#     {
+csharp_align_first_arg_by_paren = false
+
+csharp_align_multiline_argument = false
+csharp_align_tuple_components = true
+
+# false because tenary if-else statements sometimes does not look very good
+#int actualNpcCount = type == CharacterType.Wizard 
+#                         ? math.max(0, npcCount - playerCount)
+#                         : npcCount;
+csharp_align_multiline_expression = false
+
+csharp_align_multiline_statement_conditions = true
+csharp_align_multiline_for_stmt = true
+csharp_align_multiple_declaration = true
+csharp_align_multline_type_parameter_list = true
+csharp_align_multline_type_parameter_constrains = true
+csharp_outdent_commas = true
+csharp_align_multiline_comments = true
+csharp_indent_raw_literal_string = align
+
+## Align similar code in columns
+# for example:
+# int i   = 5;
+# int abc = 6;
+csharp_int_align_fix_in_adjacent = false
+csharp_int_align = false
+csharp_int_align_fields = false
+csharp_int_align_properties = false
+csharp_int_align_methods = false
+csharp_int_align_parameters = false
+csharp_int_align_variables = false
+csharp_int_align_assignments = false
+csharp_int_align_property_patterns = false
+csharp_int_align_nested_ternary = false
+csharp_int_align_invocations = false
+csharp_int_align_binary_expressions = false
+csharp_int_align_comments = true
+csharp_int_align_switch_sections = false
+csharp_int_align_switch_expressions = false
+
+
+###############################################################################
+### EditorConfig properties for C#: Line Breaks ==============================
+# https://www.jetbrains.com/help/rider/EditorConfig_CSHARP_LineBreaksPageSchema.html
+csharp_keep_user_linebreaks = true
+# more generic (some attributes are fallback attributes I guees, or used when more dedicated aren't present)
+csharp_keep_existing_arrangement = false
+csharp_keep_existing_linebreaks = false
+csharp_keep_existing_attribute_arrangement = false
+csharp_keep_existing_declaration_parens_arrangement = true
+csharp_keep_existing_primary_constructor_declaration_parens_arrangement = false
+csharp_max_line_length = 120
+csharp_wrap_before_comma = false
+csharp_wrap_before_eq = true
+csharp_special_else_if_treatment = true
+csharp_insert_final_newline = false
+csharp_max_attribute_length_for_same_line = 5 # I assume this should be set to infinity
+
+csharp_place_type_attribute_on_same_line = never
+csharp_place_method_attribute_on_same_line = never 
+csharp_place_accessorholder_attribute_on_same_line = never
+csharp_place_accessor_attribute_on_same_line = never 
+csharp_place_field_attribute_on_same_line = never
+csharp_place_record_field_attribute_on_same_line = never
+csharp_place_attribute_on_same_line = never
+
+# probably wrap is better as chop may not really scale well for longer methods
+# also it should not be really based on the number of parameters but rather on the number of columns
+csharp_wrap_parameters_style = wrap_if_long
+
+# defacto does not matter as sometimes parameters are very small
+# ideally, should be based on line number not the parameter count
+csharp_max_formal_parameters_on_line = 10
+csharp_wrap_before_declaration_lpar = false
+csharp_wrap_after_declaration_lpar = false
+csharp_wrap_before_declaration_rpar = false
+csharp_place_constructor_initializer_on_same_line = true
+csharp_wrap_primary_constructor_parameters_style = wrap_if_long
+csharp_max_primary_constructor_parameters_on_line = 6
+csharp_keep_existing_primary_constructor_declaration_parens_arrangement = true
+csharp_wrap_before_primary_constructor_declaration_lpar = true
+csharp_wrap_after_primary_constructor_declaration_lpar = false
+csharp_wrap_before_primary_constructor_declaration_rpar = false
+
+# do we really want to keep it?
+csharp_keep_existing_expr_member_arrangement = true
+csharp_place_expr_method_on_single_line = if_owner_is_single_line
+csharp_place_expr_property_on_single_line = if_owner_is_single_line
+csharp_place_expr_accessor_on_single_line = if_owner_is_single_line
+csharp_wrap_before_arrow_with_expressions = false
+csharp_place_type_constraints_on_same_line = true
+csharp_wrap_before_first_type_parameter_constraint = false
+csharp_wrap_multiple_type_parameter_constraints_style = chop_always
+csharp_wrap_before_type_parameter_langle = false
+csharp_wrap_before_extends_colon = false
+csharp_wrap_extends_list_style = wrap_if_long
+csharp_keep_existing_declaration_block_arrangement = false
+csharp_place_abstract_accessorholder_on_single_line = true
+csharp_place_simple_declaration_blocks_on_single_line = true
+csharp_place_simple_accessorholder_on_single_line = true
+csharp_place_accessor_with_attrs_holder_on_single_line = true
+
+csharp_place_simple_accessor_on_single_line = true
+
+csharp_place_simple_method_on_single_line = true
+
+csharp_keep_existing_enum_arrangement = false
+csharp_max_enum_members_on_line = 1
+
+csharp_place_simple_enum_on_single_line = true
+csharp_wrap_enum_declaration = chop_if_long
+csharp_new_line_before_else = true
+csharp_new_line_before_while = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+csharp_wrap_for_stmt_header_style = chop_if_long
+csharp_wrap_multiple_declaration_style = chop_if_long
+csharp_keep_existing_embedded_arrangement = false
+csharp_place_simple_embedded_statement_on_same_line = never
+csharp_place_simple_case_statement_on_same_line = never
+csharp_keep_existing_embedded_block_arrangement = false
+
+csharp_place_simple_embedded_block_on_same_line = false
+
+# probably should be false
+csharp_place_simple_blocks_on_single_line = true
+
+csharp_place_simple_anonymousmethod_on_single_line = true
+
+csharp_keep_existing_switch_expression_arrangement = false
+csharp_place_simple_switch_expression_on_single_line = false
+csharp_wrap_switch_expression = chop_always
+
+csharp_keep_existing_property_patterns_arrangement = false
+csharp_place_simple_property_pattern_on_single_line = true
+csharp_wrap_property_pattern = wrap_if_long
+csharp_keep_existing_list_patterns_arrangement = true
+csharp_place_simple_list_pattern_on_single_line = true
+
+# defacto does not matter as we disable list wrapping highlight anyway
+csharp_wrap_list_pattern = chop_if_long
+
+csharp_keep_existing_initializer_arrangement = false
+csharp_place_simple_initializer_on_single_line = true
+
+# defacto does not matter as there will be lists like f.e. 
+# List<int> batches = new() { 5, 8, 7, 6, 4, 9, 3, 10, 2, 8, 6, 7, 5, 4, 16 };
+# that has 15 elements and still fits perefectly fine in one line
+csharp_max_initializer_elements_on_line = 20
+csharp_wrap_object_and_collection_initializer_style = chop_if_long
+
+# as with lists, defacto it should simply not be under bot controll
+# it cannot be too long as we want arrays like this to exist
+#internal static readonly string[] ConfigPaths =
+#{
+#    "Assets/Settings/Configs/Boot",
+#    "Assets/Settings/Configs/Core",
+#    "Assets/Settings/Configs/DataOriented",
+#    "Assets/Settings/Configs/GameLogic",
+#    "Assets/Settings/Configs/Shared"
+csharp_max_array_initializer_elements_on_line = 20
+csharp_wrap_array_initializer_style = wrap_if_long
+csharp_wrap_arguments_style = wrap_if_long
+
+# defacto does not matter as sometimes parameters are very small and fir perfectly within the declaration
+# ideally, it should be assosiated with line number not argument count
+csharp_max_invocation_arguments_on_line = 20
+csharp_keep_existing_invocation_parens_arrangement = false
+csharp_wrap_before_invocation_lpar = false
+csharp_wrap_after_invocation_lpar = false
+csharp_wrap_before_invocation_rpar = false
+csharp_wrap_after_dot_in_method_calls = false
+csharp_wrap_chained_method_calls = chop_if_long
+csharp_wrap_before_first_method_call = false
+csharp_wrap_after_property_in_chained_method_calls = false
+csharp_wrap_before_binary_opsign = true
+csharp_wrap_chained_binary_expressions = chop_if_long
+csharp_wrap_before_binary_pattern_op = true
+csharp_wrap_chained_binary_patterns = chop_if_long
+csharp_force_chop_compound_if_expression = false
+csharp_force_chop_compound_while_expression = false
+csharp_force_chop_compound_do_expression = false
+csharp_wrap_before_ternary_opsigns = true
+csharp_wrap_ternary_expr_style = chop_if_long
+csharp_nested_ternary_style = expanded
+csharp_wrap_linq_expressions = chop_if_long
+csharp_wrap_before_linq_expression = false
+csharp_place_linq_into_on_new_line = false
+csharp_wrap_verbatim_interpolated_strings = wrap_if_long
+
+#########################################################################
+### Common Practices and Code Improvements ==============================
+### This category groups inspections that hunt for issues that mainly affect code readability.
+
+# Access to a static member of a type via a derived type
+access_to_static_member_via_derived_type_highlighting = error
+
+# Actual number of bytes read by 'Stream.Read()' is ignored
+stream_read_return_value_ignored_highlighting = error
+
+# Add explicit 'return' or 'continue' before local functions
+separate_local_functions_with_jump_statement_highlighting = error
+
+# Annotation duplicate in hierarchy
+annotation_redundancy_in_hierarchy_highlighting = error
+
+# Auto-property can be made get-only (non-private accessibility)
+auto_property_can_be_made_get_only_global_highlighting = error
+
+# Auto-property can be made get-only (private accessibility)
+auto_property_can_be_made_get_only_local_highlighting = error
+
+# Base member has 'params' parameter, but the overrider does not have it
+base_member_has_params_highlighting = error
+
+# Can simplify 'Contains' before 'Add'
+can_simplify_set_adding_with_single_call_highlighting = error
+
+# Cast expression can be replaced with explicit type arguments
+can_replace_cast_with_type_argument_highlighting = error
+
+# Cast expression can be replaced with explicit variable type
+can_replace_cast_with_variable_type_highlighting = error
+
+# Cast expression can be replaced with lambda return type
+can_replace_cast_with_lambda_return_type_highlighting = error
+
+# Cast expression can be replaced with simplified type arguments = error
+can_replace_cast_with_shorter_type_argument_highlighting = error
+
+# Change lock field type to 'System.Threading.Lock'
+change_field_type_to_system_threading_lock_highlighting = error
+
+# Check for reference equality instead
+check_for_reference_equality_instead_1_highlighting = error
+
+# Check for reference equality instead
+check_for_reference_equality_instead_3_highlighting = error
+
+# Check for reference equality instead
+check_for_reference_equality_instead_2_highlighting = error
+
+# Check for reference equality instead
+check_for_reference_equality_instead_4_highlighting = error
+
+# Class can be made sealed (non-inheritable) (non-private accessibility)
+class_can_be_sealed_global_highlighting = error
+
+# Class can be made sealed (non-inheritable) (private accessibility)
+class_can_be_sealed_local_highlighting = error
+
+# Confusing body-like statement
+misleading_body_like_statement_highlighting = error
+
+# Container nullability attribute usage with declaration of non-container type
+container_annotation_redundancy_highlighting = error
+
+# Convert 'if do while' into 'while'
+convert_if_do_to_while_highlighting = error
+
+# Convert 'if' into '||'
+convert_if_to_or_expression_highlighting = error
+
+# Convert local variable or field into constant (non-private accessibility)
+convert_to_constant_global_highlighting = error
+
+# Convert local variable or field into constant (private accessibility)
+convert_to_constant_local_highlighting = error
+
+# Declaration nullability inferred (parameter is inferred to be not null)
+annotate_not_null_parameter_highlighting = error
+
+# Declaration nullability inferred (parameter is inferred to be nullable)
+annotate_can_be_null_parameter_highlighting = error
+
+# Declaration nullability inferred (type member is inferred to be not null)
+annotate_not_null_type_member_highlighting = error
+
+# Declaration nullability inferred (type member is inferred to be nullable)
+annotate_can_be_null_type_member_highlighting = error
+
+# Dictionary item removal can be simplified with single 'Remove'
+can_simplify_dictionary_removing_with_single_call_highlighting = error
+
+# Dictionary lookup can be simplified with 'GetValueOrDefault'
+can_simplify_dictionary_try_get_value_with_get_value_or_default_highlighting = error
+
+# Dictionary lookup can be simplified with 'TryAdd' = error
+can_simplify_dictionary_lookup_with_try_add_highlighting = error
+
+# Dictionary lookup can be simplified with 'TryGetValue'
+can_simplify_dictionary_lookup_with_try_get_value_highlighting = error
+
+# Empty statement is redundant
+empty_statement_highlighting = error
+
+# Extract common property pattern
+extract_common_property_pattern_highlighting = error
+
+# Field can be made readonly (non-private accessibility)
+field_can_be_made_read_only_global_highlighting = error
+
+# Field can be made readonly (private accessibility)
+field_can_be_made_read_only_local_highlighting = error
+
+# Get-only auto-property is never assigned
+unassigned_get_only_auto_property_highlighting = error
+
+# Invert condition
+invert_condition_1_highlighting = error
+
+# Iteration variable can be declared with a more specific type
+more_specific_foreach_variable_type_available_highlighting = error
+
+# Join local variable declaration and assignment
+join_declaration_and_initializer_highlighting = error
+
+# Local function can be made static
+local_function_can_be_made_static_highlighting = error
+
+# Local variable has too wide declaration scope
+too_wide_local_variable_scope_highlighting = error
+
+# Make constructor in abstract class protected
+public_constructor_in_abstract_class_highlighting = error
+
+# Member can be made private (non-private accessibility)
+member_can_be_private_global_highlighting = error
+
+# Member can be made private (private accessibility)
+member_can_be_private_local_highlighting = error
+
+# Member can be made protected (non-private accessibility)
+member_can_be_protected_global_highlighting = error
+
+# Member can be made protected (private accessibility)
+member_can_be_protected_local_highlighting = error
+
+# Member can be made static (shared) (non-private accessibility)
+member_can_be_made_static_global_highlighting = error
+
+# Member can be made static (shared) (private accessibility)
+member_can_be_made_static_local_highlighting = error
+
+# Member or type can be made internal (friend)
+member_can_be_internal_highlighting = error
+
+# Method has async overload
+method_has_async_overload_highlighting = error
+
+# Method has async overload with cancellation support
+method_has_async_overload_with_cancellation_highlighting = error
+
+# Method supports cancellation
+method_supports_cancellation_highlighting = error
+
+# Missing XML comment for private or internal type or member
+internal_or_private_member_not_documented_highlighting = error
+
+# Multiple nullable attributes usage
+multiple_nullable_attributes_usage_highlighting = error
+
+# Nested string interpolation can be inlined
+nested_string_interpolation_highlighting = error
+
+# Nullability attribute usage with declaration of void or value type
+annotation_redundancy_at_value_type_highlighting = error
+
+# Nullability attribute used with declaration that cannot be directly referenced from other code
+not_observable_annotation_redundancy_highlighting = error
+
+# Parameter can be declared with the base type
+# Must be disabled as we sometimes want specifc types f.e.:
+# Function below could take GameObject as a parameter but by narrowing it down to a Camera
+# we sent much more clearer message to the code users
+# void CreateSnapshotCamera(Camera minimapCamera)
+# {
+#     var obj = new GameObject("MinimapSnapshotCamera");
+#     Transform t = minimapCamera.transform;
+#     obj.transform.SetParent(t.parent);
+#     obj.transform.SetPositionAndRotation(t.position, t.rotation);
+#     _snapshotCamera = obj.AddComponent<Camera>();
+# }
+suggest_base_type_for_parameter_highlighting = none
+
+# Parameter of the constructor can be declared with the base type
+suggest_base_type_for_parameter_in_constructor_highlighting = error
+
+# Parameter type can be IEnumerable<T> (non-private accessibility)
+parameter_type_can_be_enumerable_global_highlighting = error
+
+# Parameter type can be IEnumerable<T> (private accessibility)
+parameter_type_can_be_enumerable_local_highlighting = error
+
+# Prefer using concrete value over 'default' or 'new()'
+prefer_concrete_value_over_default_highlighting = error
+
+# Property can be made init-only (non-private accessibility)
+property_can_be_made_init_only_global_highlighting = error
+
+# Property can be made init-only (private accessibility)
+property_can_be_made_init_only_local_highlighting = error
+
+# Put local function after 'return' or 'continue'
+move_local_function_after_jump_statement_highlighting = error
+
+# Redundant 'is'
+redundant_is_before_relational_pattern_highlighting = error
+
+# Remove constructor invocation
+remove_constructor_invocation_highlighting = error
+
+# Remove redundant statement
+remove_redundant_or_statement_false_highlighting = error
+
+# Remove redundant statement
+remove_redundant_or_statement_true_highlighting = error
+
+# Remove ToList()
+remove_to_list_1_highlighting = error
+
+# Remove ToList()
+remove_to_list_2_highlighting = error
+
+# Replace 'async' code with 'Task'-return
+replace_async_with_task_return_highlighting = error
+
+# Replace with FirstOrDefault($args$)
+replace_with_first_or_default_1_highlighting = error
+
+# Replace with FirstOrDefault($args$)
+replace_with_first_or_default_2_highlighting = error
+
+# Replace with FirstOrDefault($args$)
+replace_with_first_or_default_3_highlighting = error
+
+# Replace with FirstOrDefault($args$)
+replace_with_first_or_default_4_highlighting = error
+
+# Replace with LastOrDefault($args$)
+replace_with_last_or_default_1_highlighting = error
+
+# Replace with LastOrDefault($args$)
+replace_with_last_or_default_2_highlighting = error
+
+# Replace with LastOrDefault($args$)
+replace_with_last_or_default_3_highlighting = error
+
+# Replace with LastOrDefault($args$)
+replace_with_last_or_default_4_highlighting = error
+
+# Replace with OfType<T>()
+replace_with_of_type_1_highlighting = error
+
+# Replace with OfType<T>()
+replace_with_of_type_2_highlighting = error
+
+# Replace with OfType<T>()
+replace_with_of_type_3_highlighting = error
+
+# Replace with OfType<T>().Any()
+replace_with_of_type_any_1_highlighting = error
+
+# Replace with OfType<T>().Any() (replace with OfType<T>().Any(..))
+replace_with_of_type_any_2_highlighting = error
+
+# Replace with OfType<T>().Count()
+replace_with_of_type_count_1_highlighting = error
+
+# Replace with OfType<T>().Count() (replace with OfType<T>().Count(..))
+replace_with_of_type_count_2_highlighting = error
+
+# Replace with OfType<T>().First()
+replace_with_of_type_first_1_highlighting = error
+
+# Replace with OfType<T>().First() (replace with OfType<T>().First(..))
+replace_with_of_type_first_2_highlighting = error
+
+# Replace with OfType<T>().FirstOrDefault()
+replace_with_of_type_first_or_default_1_highlighting = error
+
+# Replace with OfType<T>().FirstOrDefault() (replace with OfType<T>().FirstOrDefault(..))
+replace_with_of_type_first_or_default_2_highlighting = error
+
+# Replace with OfType<T>().Last()
+replace_with_of_type_last_1_highlighting = error
+
+# Replace with OfType<T>().Last() (replace with OfType<T>().Last(..))
+replace_with_of_type_last_2_highlighting = error
+
+# Replace with OfType<T>().LastOrDefault()
+resharper_replace_with_of_type_last_or_default_1_highlighting = error
+
+# Replace with OfType<T>().LastOrDefault() (replace with OfType<T>().LastOrDefault(..))
+resharper_replace_with_of_type_last_or_default_2_highlighting = error
+
+# Replace with OfType<T>().LongCount()
+resharper_replace_with_of_type_long_count_highlighting = error
+
+# Replace with OfType<T>().Single()
+resharper_replace_with_of_type_single_1_highlighting = error
+
+# Replace with OfType<T>().Single() (replace with OfType<T>().Single(..))
+resharper_replace_with_of_type_single_2_highlighting = error
+
+# Replace with OfType<T>().SingleOrDefault()
+resharper_replace_with_of_type_single_or_default_1_highlighting = error
+
+# Replace with OfType<T>().SingleOrDefault() (replace with OfType<T>().SingleOrDefault(..))
+resharper_replace_with_of_type_single_or_default_2_highlighting = error
+
+# Replace with OfType<T>().Where() (replace with OfType<T>().Where(..))
+resharper_replace_with_of_type_where_highlighting = error
+
+# Replace with simple assignment
+resharper_replace_with_simple_assignment_true_highlighting = error
+
+# Replace with simple assignment
+resharper_replace_with_simple_assignment_false_highlighting = error
+
+# Replace with single assignment
+resharper_replace_with_single_assignment_false_highlighting = error
+
+# Replace with single assignment
+resharper_replace_with_single_assignment_true_highlighting = error
+
+# Replace with single call to Any(..)
+resharper_replace_with_single_call_to_any_highlighting = error
+
+# Replace with single call to Count(..)
+resharper_replace_with_single_call_to_count_highlighting = error
+
+# Replace with single call to First(..)
+resharper_replace_with_single_call_to_first_highlighting = error
+
+# Replace with single call to FirstOrDefault(..)
+resharper_replace_with_single_call_to_first_or_default_highlighting = error
+
+# Replace with single call to Last(..)
+resharper_replace_with_single_call_to_last_highlighting = error
+
+# Replace with single call to LastOrDefault(..)
+resharper_replace_with_single_call_to_last_or_default_highlighting = error
+
+# Replace with single call to Single(..)
+resharper_replace_with_single_call_to_single_highlighting = error
+
+# Replace with single call to SingleOrDefault(..)
+resharper_replace_with_single_call_to_single_or_default_highlighting = error
+
+# Replace with SingleOrDefault($args$)
+resharper_replace_with_single_or_default_1_highlighting = error
+
+# Replace with SingleOrDefault($args$)
+resharper_replace_with_single_or_default_2_highlighting = error
+
+# Replace with SingleOrDefault($args$)
+resharper_replace_with_single_or_default_3_highlighting = error
+
+# Replace with SingleOrDefault($args$)
+resharper_replace_with_single_or_default_4_highlighting = error
+
+# Return type can be IEnumerable<T> (non-private accessibility)
+resharper_return_type_can_be_enumerable_global_highlighting = error
+
+# Return type can be IEnumerable<T> (private accessibility)
+resharper_return_type_can_be_enumerable_local_highlighting = error
+
+# Simplify conditional ternary expression
+resharper_simplify_conditional_ternary_expression_highlighting = error
+
+# Simplify 'IsInstanceOfType()' invocation
+resharper_can_simplify_is_assignable_from_highlighting = error
+
+# Simplify LINQ expression (use 'All')
+resharper_simplify_linq_expression_use_all_highlighting = error
+
+# Simplify LINQ expression (use 'Any')
+resharper_simplify_linq_expression_use_any_highlighting = error
+
+# Simplify negated pattern
+resharper_double_negation_in_pattern_highlighting = error
+
+# Simplify negated relational pattern
+resharper_negation_of_relational_pattern_highlighting = error
+
+# Simplify negative equality expression
+resharper_negative_equality_expression_highlighting = error
+
+# Specify string comparison explicitly
+resharper_specify_string_comparison_highlighting = error
+
+# Specify string culture explicitly
+resharper_specify_a_culture_in_string_conversion_explicitly_highlighting = error
+
+# String literal can be inlined
+resharper_string_literal_as_interpolation_argument_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, int, string, int) is culture-specific)
+resharper_string_compare_is_culture_specific_4_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, int, string, int, bool) is culture-specific)
+resharper_string_compare_is_culture_specific_5_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, int, string, int, bool) is culture-specific)
+resharper_string_compare_is_culture_specific_6_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, string) is culture-specific)
+resharper_string_compare_is_culture_specific_1_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, string, bool) is culture-specific)
+resharper_string_compare_is_culture_specific_2_highlighting = error
+
+# String.Compare is culture-specific (string.Compare(string, string, bool) is culture-specific)
+resharper_string_compare_is_culture_specific_3_highlighting = error
+
+# String.CompareTo is culture-specific
+resharper_string_compare_to_is_culture_specific_highlighting = error
+
+# String.EndsWith is culture-specific (string.EndsWith(string) is culture-specific)
+resharper_string_ends_with_is_culture_specific_highlighting = error
+
+# String.IndexOf is culture-specific (string.IndexOf(string) is culture-specific)
+resharper_string_index_of_is_culture_specific_1_highlighting = error
+
+# String.IndexOf is culture-specific (string.IndexOf(string, int) is culture-specific)
+resharper_string_index_of_is_culture_specific_2_highlighting = error
+
+# String.IndexOf is culture-specific (string.IndexOf(string, int) is culture-specific)
+resharper_string_index_of_is_culture_specific_3_highlighting = error
+
+# String.LastIndexOf is culture-specific (string.LastIndexOf(string) is culture-specific)
+resharper_string_last_index_of_is_culture_specific_1_highlighting = error
+
+# String.LastIndexOf is culture-specific (string.LastIndexOf(string, int) is culture-specific)
+resharper_string_last_index_of_is_culture_specific_2_highlighting = error
+
+# String.LastIndexOf is culture-specific (string.LastIndexOf(string, int) is culture-specific)
+resharper_string_last_index_of_is_culture_specific_3_highlighting = error
+
+# String.StartsWith is culture-specific (string.StartsWith(string) is culture-specific)
+resharper_string_starts_with_is_culture_specific_highlighting = error
+
+# Struct can be made readonly
+resharper_struct_can_be_made_read_only_highlighting = error
+
+# Struct lacks 'IEquatable' implementation (non-private accessibility)
+resharper_struct_lacks_i_equatable_global_highlighting = error
+
+# Struct lacks 'IEquatable' implementation (private accessibility)
+resharper_struct_lacks_i_equatable_local_highlighting = error
+
+# Struct member can be made readonly
+resharper_struct_member_can_be_made_read_only_highlighting = error
+
+# Struct with default equality members is used for comparison (non-private accessibility)
+resharper_default_struct_equality_is_used_global_highlighting = error
+
+# Struct with default equality members is used for comparison (private accessibility)
+resharper_default_struct_equality_is_used_local_highlighting = error
+
+# try-catch and try-finally statements can be merged
+resharper_try_statements_can_be_merged_highlighting = error
+
+# Type can be made file-local
+resharper_member_can_be_file_local_highlighting = error
+
+# Type parameter could be declared as covariant or contravariant
+resharper_type_parameter_can_be_variant_highlighting = error
+
+# Type with suspicious equality is used in a record (non-private accessibility)
+resharper_type_with_suspicious_equality_is_used_in_record_global_highlighting = error
+
+# Type with suspicious equality is used in a record (private accessibility)
+resharper_type_with_suspicious_equality_is_used_in_record_local_highlighting = error
+
+# Usage of default struct equality
+resharper_usage_of_default_struct_equality_highlighting = error
+
+# Use 'ArgumentNullException.ThrowIfNull'
+resharper_use_throw_if_null_method_highlighting = error
+
+# Use array creation expression
+resharper_use_array_creation_expression_1_highlighting = error
+
+# Use array creation expression
+resharper_use_array_creation_expression_2_highlighting = error
+
+# Use 'Array.Empty<T>()'
+resharper_use_array_empty_method_highlighting = error
+
+# Use cancellation token
+resharper_use_cancellation_token_for_i_async_enumerable_highlighting = error
+
+# Use compiler-supported nullable attributes
+resharper_use_nullable_attributes_supported_by_compiler_highlighting = error
+
+# Use 'EventArgs.Empty'
+resharper_use_event_args_empty_field_highlighting = error
+
+# Use indexed property
+resharper_use_indexed_property_highlighting = error
+
+# Use 'is' operator = error
+resharper_can_simplify_is_instance_of_type_highlighting = error
+
+# Use method Any()
+resharper_use_method_any_0_highlighting = error
+
+# Use method Any()
+resharper_use_method_any_1_highlighting = error
+
+# Use method Any()
+resharper_use_method_any_2_highlighting = error
+
+# Use method Any()
+resharper_use_method_any_3_highlighting = error
+
+# Use method Any()
+resharper_use_method_any_4_highlighting = error
+
+# Use 'String.IsNullOrEmpty'
+resharper_replace_with_string_is_null_or_empty_highlighting = error
+
+# Use 'Type.EmptyTypes'
+resharper_use_empty_types_field_highlighting = error
+
+
+##############################################################
+### Formatting (41 inspections)﻿ ==============================
+# Inspections in this category detect code formatting problems.
+
+# Incorrect blank lines (blank lines are missing elsewhere)
+resharper_missing_blank_lines_highlighting = error
+
+# Incorrect blank lines (blank lines are redundant elsewhere)
+resharper_redundant_blank_lines_highlighting = error
+
+# Incorrect blank lines (incorrect number of blank lines near braces)
+resharper_incorrect_blank_lines_near_braces_highlighting = error
+
+# Incorrect indent (around child statement)
+resharper_bad_child_statement_indent_highlighting = error
+
+# Incorrect indent (around declaration braces)
+resharper_bad_declaration_braces_indent_highlighting = error
+
+# Incorrect indent (around expression braces)
+resharper_bad_expression_braces_indent_highlighting = error
+
+# Incorrect indent (around namespace braces)
+resharper_bad_namespace_braces_indent_highlighting = error
+
+# Incorrect indent (around preprocessor directive)
+resharper_bad_preprocessor_indent_highlighting = error
+
+# Incorrect indent (around statement braces)
+resharper_bad_control_braces_indent_highlighting = error
+
+# Incorrect indent (around switch statement)
+resharper_bad_switch_braces_indent_highlighting = error
+
+# Incorrect indent (incorrect indent size)
+resharper_wrong_indent_size_highlighting = error
+
+# Incorrect indent (indent level is not restored)
+resharper_outdent_is_off_prev_level_highlighting = error
+
+# Incorrect indent (missing indent/outdent elsewhere)
+resharper_missing_indent_highlighting = error
+
+# Incorrect indent (redundant indent/outdent elsewhere)
+#resharper_bad_indent_highlighting = error
+
+# Incorrect indent (tabs/spaces mismatch)
+resharper_tabs_and_spaces_mismatch_highlighting = error
+
+# Incorrect line breaks (around comma in lists)
+# impossible to do as sometimes we want list to be horizontally and sometiems vertically
+# and there is not way to explain the bot the difference
+#resharper_bad_list_line_breaks_highlighting = error
+
+# Incorrect line breaks (around declaration braces)
+resharper_bad_declaration_braces_line_breaks_highlighting = error
+
+# Incorrect line breaks (around empty braces)
+resharper_bad_empty_braces_line_breaks_highlighting = error
+
+# Incorrect line breaks (around expression braces)
+resharper_bad_expression_braces_line_breaks_highlighting = error
+
+# Incorrect line breaks (around LINQ queries)
+resharper_bad_linq_line_breaks_highlighting = error
+
+# Incorrect line breaks (around parenthesis)
+# this must be disabled as it forces first argument to be allign with the Parenthesis﻿
+# and sometimes for better readability first parameter should be put on a different line
+#var tilesPerAdditionalWater = new int2(
+#    _worldConfig.AdditionalOceanChunks * _tilesPerChunk.x,
+#    _worldConfig.AdditionalOceanChunks * _tilesPerChunk.y);
+#resharper_bad_parens_line_breaks_highlighting = error
+
+# Incorrect line breaks (around statement braces)
+resharper_bad_control_braces_line_breaks_highlighting = error
+
+# Incorrect line breaks (line break is missing elsewhere)
+resharper_missing_linebreak_highlighting = error
+
+# Incorrect line breaks (line break is redundant elsewhere)
+resharper_redundant_linebreak_highlighting = error
+
+# Incorrect line breaks (multiple statements on one line)
+resharper_multiple_statements_on_one_line_highlighting = error
+
+# Incorrect line breaks (multiple type members on one line)
+resharper_multiple_type_members_on_one_line_highlighting = error
+
+# Incorrect spacing (around attributes)
+resharper_bad_attribute_brackets_spaces_highlighting = error
+
+# Incorrect spacing (around braces)
+resharper_bad_braces_spaces_highlighting = error
+
+# Incorrect spacing (around colon)
+resharper_bad_colon_spaces_highlighting = error
+
+# Incorrect spacing (around comma)
+resharper_bad_comma_spaces_highlighting = error
+
+# Incorrect spacing (around generic brackets)
+resharper_bad_generic_brackets_spaces_highlighting = error
+
+# Incorrect spacing (around member access symbols)
+resharper_bad_member_access_spaces_highlighting = error
+
+# Incorrect spacing (around operator symbols)
+resharper_bad_symbol_spaces_highlighting = error
+
+# Incorrect spacing (around parenthesis)
+resharper_bad_parens_spaces_highlighting = error
+
+# Incorrect spacing (around semicolon)
+resharper_bad_semicolon_spaces_highlighting = error
+
+# Incorrect spacing (around square brackets within a statement)
+resharper_bad_square_brackets_spaces_highlighting = error
+
+# Incorrect spacing (between keyword and parenthesis)
+resharper_bad_spaces_after_keyword_highlighting = error
+
+# Incorrect spacing (multiple spaces are prohibited)
+resharper_multiple_spaces_highlighting = error
+
+# Incorrect spacing (space is missing elsewhere)
+resharper_missing_space_highlighting = error
+
+# Incorrect spacing (space is redundant elsewhere)
+resharper_redundant_space_highlighting = error
+
+# Incorrect spacing (tabs are prohibited here)
+resharper_tabs_outside_indent_highlighting = error
+
+
+##############################################################
+### Grammar Issues (4 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#Grammar
+resharper_grammar_mistake_in_comment_highlighting = error
+resharper_grammar_mistake_in_markup_attribute_highlighting = error
+resharper_grammar_mistake_in_markup_text_highlighting = error
+resharper_grammar_mistake_in_string_literal_highlighting = error
+
+
+##############################################################
+### Language Usage Opportunities (89 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#LanguageUsage
+resharper_append_to_collection_expression_highlighting = error
+resharper_class_cannot_be_instantiated_highlighting = error
+resharper_replace_conditional_expression_with_null_coalescing_highlighting = error
+resharper_use_negated_pattern_matching_highlighting = error
+resharper_use_pattern_matching_highlighting = error
+resharper_convert_constructor_to_member_initializers_highlighting = error
+resharper_convert_to_primary_constructor_highlighting = error
+resharper_convert_to_local_function_highlighting = error
+resharper_convert_to_extension_block_highlighting = error
+
+# this very often looks far worse - cosider if leaving it at suggestion level makes sense (which is the default)
+#resharper_convert_if_statement_to_switch_statement_highlighting = error
+
+resharper_use_await_using_highlighting = error
+resharper_convert_to_lambda_expression_highlighting = error
+
+# technically could be turned on, but for now validators are not compatible with it
+#resharper_convert_to_static_class_highlighting = error
+
+resharper_convert_to_using_declaration_highlighting = error
+resharper_convert_closure_to_method_group_highlighting = error
+resharper_use_negated_pattern_in_is_expression_highlighting = error
+resharper_convert_nullable_to_short_form_highlighting = error
+resharper_convert_to_auto_property_highlighting = error
+resharper_convert_to_auto_property_when_possible_highlighting = error
+resharper_convert_to_auto_property_with_private_setter_highlighting = error
+resharper_invoke_as_extension_member_highlighting = error
+resharper_invoke_as_extension_member_from_same_class_highlighting = error
+
+# not every LINQ is a good idea
+#resharper_foreach_can_be_converted_to_query_using_another_get_enumerator_highlighting = error
+
+resharper_for_can_be_converted_to_foreach_highlighting = error
+resharper_convert_if_statement_to_conditional_ternary_expression_highlighting = error
+resharper_convert_if_statement_to_null_coalescing_expression_highlighting = error
+resharper_convert_if_statement_to_null_coalescing_assignment_highlighting = error
+resharper_convert_if_statement_to_return_statement_highlighting = error
+resharper_inline_out_variable_declaration_highlighting = error
+resharper_inline_temporary_variable_highlighting = error
+resharper_introduce_optional_parameters_global_highlighting = error
+resharper_introduce_optional_parameters_local_highlighting = error
+
+# very often a bad idea
+#resharper_invert_if_highlighting = error
+
+resharper_join_null_check_with_usage_highlighting = error
+resharper_lambda_expression_can_be_made_static_highlighting = error
+resharper_lambda_expression_must_be_static_highlighting = error
+resharper_lambda_should_not_capture_context_highlighting = error
+resharper_use_verbatim_string_highlighting = error
+
+# not every LINQ is a good idea
+#resharper_loop_can_be_converted_to_query_highlighting = error
+
+resharper_merge_and_pattern_highlighting = error
+resharper_merge_conditional_expression_highlighting = error
+resharper_merge_into_negated_pattern_highlighting = error
+resharper_merge_nested_property_patterns_highlighting = error
+resharper_merge_into_pattern_highlighting = error
+resharper_merge_into_logical_pattern_highlighting = error
+resharper_merge_sequential_checks_highlighting = error
+resharper_move_to_existing_positional_deconstruction_pattern_highlighting = error
+resharper_move_to_extension_block_highlighting = error
+resharper_move_variable_declaration_inside_loop_condition_highlighting = error
+
+# LINQ are most likely bad ideas at least in some cases
+#resharper_foreach_can_be_partly_converted_to_query_using_another_get_enumerator_highlighting = error
+#resharper_loop_can_be_partly_converted_to_query_highlighting = error
+
+resharper_pass_string_interpolation_highlighting = error
+resharper_redundant_accessor_body_highlighting = error
+resharper_redundant_spread_element_highlighting = error
+resharper_replace_auto_property_with_computed_property_highlighting = error
+resharper_use_null_propagation_highlighting = error
+resharper_replace_object_pattern_with_var_pattern_highlighting = error
+resharper_replace_sequence_equal_with_constant_pattern_highlighting = error
+resharper_replace_slice_with_range_indexer_highlighting = error
+resharper_replace_substring_with_range_indexer_highlighting = error
+resharper_convert_switch_statement_to_switch_expression_highlighting = error
+resharper_convert_conditional_ternary_expression_to_switch_expression_highlighting = error
+resharper_replace_with_of_type_highlighting = error
+resharper_replace_with_field_keyword_highlighting = error
+resharper_replace_with_primary_constructor_parameter_highlighting = error
+resharper_use_symbol_alias_highlighting = error
+resharper_use_collection_expression_highlighting = error
+resharper_convert_to_compound_assignment_highlighting = error
+resharper_convert_to_null_coalescing_compound_assignment_highlighting = error
+resharper_use_deconstruction_highlighting = error
+resharper_swap_via_deconstruction_highlighting = error
+resharper_use_discard_assignment_highlighting = error
+resharper_use_index_from_end_expression_highlighting = error
+resharper_use_name_of_instead_of_to_string_highlighting = error
+resharper_use_nameof_expression_highlighting = error
+resharper_use_nameof_expression_for_part_of_the_string_highlighting = error
+resharper_use_name_of_instead_of_type_of_highlighting = error
+resharper_use_nameof_for_dependency_property_highlighting = error
+resharper_use_object_or_collection_initializer_highlighting = error
+resharper_use_positional_deconstruction_pattern_highlighting = error
+resharper_use_raw_string_highlighting = error
+resharper_use_string_interpolation_highlighting = error
+resharper_use_nullable_reference_types_annotation_syntax_highlighting = error
+resharper_use_unsigned_right_shift_operator_highlighting = error
+resharper_use_utf8_string_literal_highlighting = error
+resharper_use_with_expression_to_copy_anonymous_object_highlighting = error
+resharper_use_with_expression_to_copy_record_highlighting = error
+resharper_use_with_expression_to_copy_struct_highlighting = error
+resharper_use_with_expression_to_copy_tuple_highlighting = error
+
+
+##############################################################
+### NUnit (30 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#NUnit
+n_unit_async_method_must_be_task_highlighting = error
+n_unit_duplicate_values_highlighting = error
+n_unit_ignored_parameter_attribute_highlighting = error
+n_unit_implicit_unspecified_null_values_highlighting = error
+n_unit_incorrect_argument_type_highlighting = error
+n_unit_incorrect_expected_result_type_highlighting = error
+n_unit_incorrect_range_bounds_highlighting = error
+n_unit_range_step_sign_mismatch_highlighting = error
+n_unit_missing_arguments_in_test_case_attribute_highlighting = error
+n_unit_missing_cancel_after_attribute_highlighting = error
+n_unit_test_case_attribute_requires_expected_result_highlighting = error
+n_unit_no_values_provided_highlighting = error
+n_unit_non_public_method_with_test_attribute_highlighting = error
+n_unit_range_step_value_must_not_be_zero_highlighting = error
+n_unit_redundant_argument_in_test_case_attribute_highlighting = error
+n_unit_redundant_argument_instead_of_expected_result_highlighting = error
+n_unit_redundant_expected_result_in_test_case_attribute_highlighting = error
+n_unit_attribute_produces_too_many_tests_highlighting = error
+n_unit_parameter_type_is_not_compatible_with_attribute_highlighting = error
+n_unit_test_case_result_property_duplicates_expected_result_highlighting = error
+n_unit_test_case_result_property_is_obsolete_highlighting = error
+n_unit_test_case_source_must_be_field_property_method_highlighting = error
+n_unit_test_case_source_should_implement_i_enumerable_highlighting = error
+n_unit_test_case_source_must_be_static_highlighting = error
+n_unit_range_to_value_is_not_reachable_highlighting = error
+n_unit_method_with_parameters_and_test_attribute_highlighting = error
+n_unit_range_attribute_bounds_are_out_of_range_highlighting = error
+n_unit_auto_fixture_incorrect_argument_type_highlighting = error
+n_unit_auto_fixture_missed_test_or_test_fixture_attribute_highlighting = error
+n_unit_auto_fixture_redundant_argument_in_inline_auto_data_attribute_highlightin = errorg
+
+
+##############################################################
+### Potential Code Quality Issues (230 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#CodeSmell
+resharper_conditional_ternary_equal_branch_highlighting = error
+resharper_constructor_with_must_dispose_resource_attribute_base_is_not_annotated_highlighting = error
+resharper_thread_static_at_instance_field_highlighting = error
+#resharper_nullable_warning_suppression_is_used_highlighting = error
+resharper_event_never_invoked_global_highlighting = error
+resharper_access_to_disposed_closure_highlighting = error
+resharper_access_to_for_each_variable_in_closure_highlighting = error
+resharper_access_to_modified_closure_highlighting = error
+resharper_non_constant_equality_expression_has_constant_result_highlighting = error
+resharper_shift_expression_real_shift_count_is_zero_highlighting = error
+resharper_multiple_resolve_candidates_in_text_highlighting = error
+resharper_annotation_conflict_in_hierarchy_highlighting = error
+resharper_assignment_in_conditional_expression_highlighting = error
+#resharper_async_iterator_invocation_without_await_foreach_highlighting = error
+#resharper_async_override_method_without_await_highlighting = error
+#resharper_async_method_without_await_highlighting = error
+#resharper_async_void_override_method_without_await_highlighting = error
+#resharper_async_void_method_without_await_highlighting = error
+resharper_unused_auto_property_accessor_global_highlighting = error
+resharper_unused_auto_property_accessor_local_highlighting = error
+resharper_variable_length_string_hex_escape_sequence_highlighting = error
+#resharper_async_void_event_handler_method_highlighting = error
+#resharper_async_void_method_highlighting = error
+#resharper_async_void_throw_exception_highlighting = error
+#resharper_async_void_lambda_highlighting = error
+resharper_property_field_keyword_is_never_used_highlighting = error
+resharper_property_field_keyword_is_never_assigned_highlighting = error
+resharper_bitwise_operator_on_enum_without_flags_highlighting = error
+resharper_base_method_call_with_default_parameter_highlighting = error
+resharper_base_object_equals_is_object_equals_highlighting = error
+resharper_static_problem_in_text_highlighting = error
+resharper_access_rights_in_text_highlighting = error
+resharper_property_not_resolved_highlighting = error
+resharper_resource_not_resolved_highlighting = error
+resharper_resource_item_not_resolved_highlighting = error
+resharper_not_resolved_in_text_highlighting = error
+resharper_address_of_marshal_by_ref_object_highlighting = error
+resharper_captured_primary_constructor_parameter_is_mutable_highlighting = error
+resharper_by_ref_argument_is_volatile_field_highlighting = error
+resharper_confusing_char_as_integer_in_constructor_highlighting = error
+resharper_class_never_instantiated_global_highlighting = error
+resharper_class_never_instantiated_local_highlighting = error
+resharper_collection_never_queried_global_highlighting = error
+resharper_collection_never_queried_local_highlighting = error
+resharper_collection_never_updated_global_highlighting = error
+resharper_collection_never_updated_local_highlighting = error
+resharper_conflict_cqrs_attribute_highlighting = error
+resharper_shift_expression_result_equals_zero_highlighting = error
+resharper_co_variant_array_conversion_highlighting = error
+resharper_command_invasion_declaration_global_highlighting = error
+resharper_command_invasion_usage_global_highlighting = error
+resharper_query_invasion_declaration_global_highlighting = error
+resharper_query_invasion_usage_global_highlighting = error
+resharper_dispose_on_using_variable_highlighting = error
+resharper_int_division_by_zero_highlighting = error
+resharper_spin_lock_in_readonly_field_highlighting = error
+resharper_using_statement_resource_initialization_highlighting = error
+resharper_using_statement_resource_initialization_expression_highlighting = error
+resharper_format_specifier_captures_right_braces_highlighting = error
+resharper_duplicate_key_collection_initialization_highlighting = error
+resharper_duplicated_chained_if_bodies_highlighting = error
+resharper_duplicated_sequential_if_bodies_highlighting = error
+resharper_duplicated_switch_expression_arms_highlighting = error
+resharper_duplicated_switch_section_bodies_highlighting = error
+resharper_localizable_element_highlighting = error
+resharper_empty_general_catch_clause_highlighting = error
+resharper_redundant_with_expression_highlighting = error
+resharper_enumerable_sum_in_explicit_unchecked_context_highlighting = error
+resharper_compare_of_floats_by_equality_operator_highlighting = error
+resharper_can_simplify_string_escape_sequence_highlighting = error
+resharper_event_never_subscribed_to_global_highlighting = error
+resharper_event_never_subscribed_to_local_highlighting = error
+resharper_event_never_invoked_highlighting = error
+resharper_event_unsubscription_via_anonymous_delegate_highlighting = error
+resharper_possible_intended_rethrow_highlighting = error
+resharper_explicit_caller_info_argument_highlighting = error
+resharper_extract_common_branching_code_highlighting = error
+resharper_field_hides_interface_property_with_default_implementation_highlighting = error
+resharper_interpolated_string_expression_is_not_i_formattable_highlighting = error
+resharper_function_complexity_overflow_highlighting = error
+resharper_function_recursive_on_all_paths_highlighting = error
+resharper_function_never_returns_highlighting = error
+resharper_gc_suppress_finalize_for_type_without_destructor_highlighting = error
+resharper_unreachable_switch_case_due_to_integer_analysis_highlighting = error
+resharper_unreachable_switch_arm_due_to_integer_analysis_highlighting = error
+resharper_immutable_array_with_collection_initializer_highlighting = error
+resharper_math_clamp_min_greater_than_max_highlighting = error
+resharper_inconsistent_order_of_locks_highlighting = error
+resharper_inconsistently_synchronized_field_highlighting = error
+resharper_incorrect_constant_expected_annotation_highlighting = error
+resharper_zero_index_from_end_highlighting = error
+resharper_service_contract_without_operations_highlighting = error
+
+# todo: to be discussed
+#resharper_invalid_xml_doc_comment_highlighting = error
+
+resharper_polymorphic_field_like_event_invocation_highlighting = error
+resharper_possible_unintended_queryable_as_enumerable_highlighting = error
+resharper_iterator_never_returns_highlighting = error
+resharper_local_function_hides_method_highlighting = error
+resharper_local_variable_hides_member_highlighting = error
+resharper_local_variable_hides_primary_constructor_parameter_highlighting = error
+resharper_loop_variable_is_never_changed_inside_loop_highlighting = error
+resharper_out_parameter_with_handles_resource_disposal_attribute_highlighting = error
+resharper_in_parameter_with_must_dispose_resource_attribute_highlighting = error
+resharper_member_hides_static_from_outer_class_highlighting = error
+resharper_member_initializer_value_ignored_highlighting = error
+resharper_both_context_call_declaration_global_highlighting = error
+resharper_both_context_call_usage_global_highlighting = error
+resharper_operation_contract_without_service_contract_highlighting = error
+resharper_method_overload_with_optional_parameter_highlighting = error
+resharper_optional_parameter_hierarchy_mismatch_highlighting = error
+resharper_use_configure_await_false_for_async_disposable_highlighting = error
+resharper_use_configure_await_false_highlighting = error
+resharper_shebang_directive_bad_placement_highlighting = error
+resharper_multiple_order_by_highlighting = error
+resharper_not_accessed_field_global_highlighting = error
+resharper_not_accessed_field_local_highlighting = error
+resharper_not_accessed_positional_property_global_highlighting = error
+resharper_not_accessed_positional_property_local_highlighting = error
+resharper_member_hides_interface_member_with_default_implementation_highlighting = error
+resharper_non_readonly_member_in_get_hash_code_highlighting = error
+resharper_nullness_annotation_conflict_with_jet_brains_annotations_highlighting = error
+resharper_suppress_nullable_warning_expression_as_inverted_is_expression_highlighting = error
+resharper_reference_equals_with_value_type_highlighting = error
+resharper_one_way_operation_contract_with_return_type_highlighting = error
+resharper_operator_is_can_be_used_highlighting = error
+resharper_operator_without_matched_checked_operator_highlighting = error
+resharper_base_object_get_hash_code_call_in_get_hash_code_highlighting = error
+resharper_parameter_hides_member_highlighting = error
+resharper_parameter_hides_primary_constructor_parameter_highlighting = error
+resharper_partial_method_parameter_name_mismatch_highlighting = error
+resharper_possible_invalid_operation_exception_collection_was_modified_highlightin = errorg
+resharper_possible_interface_member_ambiguity_highlighting = error
+resharper_compare_non_constrained_generic_with_null_highlighting = error
+resharper_constructor_initializer_loop_highlighting = error
+resharper_possible_multiple_write_access_in_double_check_locking_highlighting = error
+resharper_read_access_in_double_check_locking_highlighting = error
+resharper_possible_infinite_inheritance_highlighting = error
+resharper_possible_loss_of_fraction_highlighting = error
+resharper_possible_mistaken_system_type_argument_highlighting = error
+resharper_possible_mistaken_call_to_get_type_highlighting = error
+resharper_possible_multiple_enumeration_highlighting = error
+resharper_int_variable_overflow_highlighting = error
+resharper_int_variable_overflow_in_checked_context_highlighting = error
+resharper_int_variable_overflow_in_unchecked_context_highlighting = error
+resharper_negative_index_highlighting = error
+resharper_indexing_by_invalid_range_highlighting = error
+resharper_possible_invalid_cast_exception_highlighting = error
+resharper_possible_invalid_cast_exception_in_foreach_loop_highlighting = error
+resharper_possible_invalid_operation_exception_highlighting = error
+resharper_possible_null_reference_exception_highlighting = error
+resharper_object_creation_as_statement_highlighting = error
+resharper_possible_unintended_reference_comparison_highlighting = error
+resharper_possibly_impure_method_call_on_readonly_variable_highlighting = error
+resharper_default_value_attribute_for_optional_parameter_highlighting = error
+resharper_possibly_missing_indexer_initializer_comma_highlighting = error
+resharper_possibly_mistaken_use_of_cancellation_token_highlighting = error
+resharper_possible_unintended_linear_search_in_set_highlighting = error
+resharper_possibly_unintended_side_effects_inside_conditional_invocation_highlighting = error
+resharper_possibly_mistaken_use_of_interpolated_string_insert_highlighting = error
+resharper_string_span_comparison_highlighting = error
+resharper_all_underscore_local_parameter_name_highlighting = error
+resharper_prefer_explicitly_provided_tuple_component_name_highlighting = error
+resharper_primary_constructor_parameter_capture_disallowed_highlighting = error
+resharper_optional_parameter_ref_out_highlighting = error
+resharper_return_of_task_produced_by_using_variable_highlighting = error
+resharper_return_of_using_variable_highlighting = error
+resharper_return_type_can_be_not_nullable_highlighting = error
+resharper_must_use_return_value_highlighting = error
+resharper_not_disposed_resource_highlighting = error
+resharper_not_disposed_resource_is_returned_by_property_highlighting = error
+resharper_generic_enumerator_not_disposed_highlighting = error
+resharper_iterator_method_result_is_ignored_highlighting = error
+resharper_return_value_of_pure_method_is_not_used_highlighting = error
+resharper_not_disposed_resource_is_returned_highlighting = error
+resharper_try_cast_always_succeeds_highlighting = error
+resharper_shift_expression_zero_left_operand_highlighting = error
+resharper_short_lived_http_client_highlighting = error
+resharper_similar_anonymous_type_nearby_highlighting = error
+resharper_equal_expression_comparison_highlighting = error
+
+# none, as there are cases when this tells nothing
+#Entity attack = dto.AttackType switch
+#{
+#    AttackType.Projectile => prefabs.Projectile,
+#    AttackType.Melee => prefabs.MeleeAttack,
+#    _ => throw new ArgumentOutOfRangeException(nameof(dto.AttackType), dto.AttackType, null)
+#};
+#resharper_switch_expression_handles_some_known_enum_values_with_exception_in_default_highlighting = error
+
+resharper_switch_statement_missing_some_enum_cases_no_default_highlighting = error
+
+# none, because this enforces explicit usage of all enum option while other analyzer does the oposite
+resharper_switch_statement_handles_some_known_enum_values_with_default_highlighting = none
+
+resharper_static_member_in_generic_type_highlighting = error
+resharper_static_member_initializer_referes_to_member_below_highlighting = error
+resharper_format_string_problem_highlighting = error
+resharper_duplicate_item_in_logger_template_highlighting = error
+resharper_structured_message_template_problem_highlighting = error
+resharper_suspicious_lock_over_synchronization_primitive_highlighting = error
+resharper_suspicious_parameter_name_in_argument_null_exception_highlighting = error
+resharper_shift_expression_right_operand_not_equal_real_count_highlighting = error
+resharper_suspicious_type_conversion_global_highlighting = error
+resharper_assignment_instead_of_discard_highlighting = error
+resharper_non_atomic_compound_operator_highlighting = error
+resharper_symbol_from_not_copied_locally_reference_used_warning_highlighting = error
+resharper_tail_recursive_call_highlighting = error
+resharper_is_expression_always_false_highlighting = error
+resharper_is_expression_always_true_highlighting = error
+resharper_constant_expected_highlighting = error
+resharper_pattern_is_redundant_highlighting = error
+resharper_pattern_always_matches_highlighting = error
+resharper_pattern_never_matches_highlighting = error
+resharper_thread_static_field_has_initializer_highlighting = error
+resharper_safe_cast_is_used_as_type_check_highlighting = error
+resharper_merge_cast_with_type_check_highlighting = error
+resharper_use_switch_case_pattern_variable_highlighting = error
+resharper_unassigned_field_global_highlighting = error
+resharper_unassigned_field_local_highlighting = error
+resharper_unassigned_readonly_field_highlighting = error
+resharper_multiple_cqrs_entity_highlighting = error
+resharper_razor_layout_not_resolved_highlighting = error
+resharper_razor_section_not_resolved_highlighting = error
+
+# todo: check later on TraderElementView
+#resharper_inheritdoc_invalid_usage_highlighting = error
+#resharper_inheritdoc_consider_usage_highlighting = error
+
+resharper_use_collection_count_property_highlighting = error
+resharper_use_format_specifier_in_format_string_highlighting = error
+resharper_simplify_string_interpolation_highlighting = error
+resharper_convert_type_check_to_null_check_highlighting = error
+resharper_convert_type_check_pattern_to_null_check_highlighting = error
+resharper_use_nullable_annotation_instead_of_attribute_highlighting = error
+resharper_useless_binary_operation_highlighting = error
+resharper_stack_alloc_inside_loop_highlighting = error
+resharper_possible_struct_member_modification_of_non_variable_struct_highlighting = error
+resharper_value_parameter_not_used_highlighting = error
+resharper_variable_can_be_not_nullable_highlighting = error
+resharper_variable_hides_outer_variable_highlighting = error
+resharper_virtual_member_call_in_constructor_highlighting = error
+resharper_void_method_with_must_dispose_resource_attribute_highlighting = error
+resharper_void_method_with_must_use_return_value_attribute_highlighting = error
+resharper_pure_attribute_on_void_method_highlighting = error
+resharper_with_expression_modifies_all_members_highlighting = error
+resharper_with_expression_instead_of_initializer_highlighting = error
+
+
+##############################################################
+### Redundancies in Code (102 inspections)﻿ ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#CodeRedundancy
+resharper_constant_null_coalescing_condition_highlighting = error
+resharper_null_coalescing_condition_is_always_not_null_according_to_api_contract_highlighting = error
+resharper_redundant_nullness_attribute_with_nullable_reference_types_highlighting = error
+resharper_unused_anonymous_method_signature_highlighting = error
+resharper_redundant_array_creation_expression_highlighting = error
+resharper_redundant_assignment_highlighting = error
+resharper_assignment_is_fully_discarded_highlightin = errorg
+resharper_useless_comparison_to_integral_constant_highlighting = error
+resharper_constant_conditional_access_qualifier_highlighting = error
+resharper_conditional_access_qualifier_is_non_nullable_according_to_api_contract_highlighting = error
+resharper_redundant_dictionary_contains_key_before_adding_highlighting = error
+resharper_redundant_cqrs_attribute_highlighting = error
+resharper_double_negation_operator_highlighting = error
+resharper_duplicated_statements_highlighting = error
+resharper_empty_extension_block_highlighting = error
+resharper_empty_for_statement_highlighting = error
+resharper_empty_region_highlighting = error
+resharper_redundant_delegate_creation_highlighting = error
+resharper_expression_is_always_null_highlighting = error
+resharper_condition_is_always_true_or_false_highlighting = error
+resharper_condition_is_always_true_or_false_according_to_nullable_api_contract_highlighting = error
+resharper_heuristic_unreachable_code_highlighting = error
+resharper_redundant_immediate_delegate_invocation_highlighting = error
+resharper_math_abs_method_is_redundant_highlighting = error
+resharper_suspicious_math_sign_method_highlighting = error
+resharper_redundant_attribute_parentheses_highlighting = error
+resharper_pattern_is_always_true_or_false_highlighting = error
+resharper_private_field_can_be_converted_to_local_variable_highlighting = error
+resharper_raw_string_can_be_simplified_highlighting = error
+resharper_redundant_attribute_usage_property_highlighting = error
+resharper_redundant_abstract_modifier_highlighting = error
+resharper_redundant_anonymous_type_property_name_highlighting = error
+resharper_redundant_caller_argument_expression_default_value_highlighting = error
+resharper_redundant_argument_default_value_highlighting = error
+resharper_redundant_overflow_checking_context_highlighting = error
+resharper_redundant_attribute_suffix_highlighting = error
+resharper_redundant_base_qualifier_highlighting = error
+resharper_redundant_bool_compare_highlighting = error
+resharper_redundant_collection_initializer_element_braces_highlighting = error
+resharper_redundant_case_label_highlighting = error
+resharper_redundant_enum_case_label_for_default_section_highlighting = error
+resharper_redundant_cast_highlighting = error
+resharper_redundant_catch_clause_highlighting = error
+resharper_redundant_record_class_keyword_highlighting = error
+resharper_redundant_collection_copy_call_highlighting = error
+resharper_redundant_check_before_assignment_highlighting = error
+resharper_redundant_ternary_expression_highlighting = error
+resharper_redundant_configure_await_highlighting = error
+resharper_redundant_jump_statement_highlighting = error
+resharper_redundant_discard_designation_highlighting = error
+resharper_redundant_if_else_block_highlighting = error
+resharper_redundant_empty_object_creation_argument_list_highlighting = error
+resharper_redundant_empty_finally_block_highlighting = error
+resharper_redundant_empty_object_or_collection_initializer_highlighting = error
+resharper_redundant_empty_switch_section_highlighting = error
+resharper_redundant_explicit_params_array_creation_highlighting = error
+resharper_redundant_explicit_nullable_creation_highlighting = error
+resharper_redundant_explicit_positional_property_declaration_highlighting = error
+resharper_redundant_explicit_array_size_highlighting = error
+resharper_redundant_explicit_tuple_component_name_highlighting = error
+resharper_redundant_explicit_array_creation_highlighting = error
+resharper_redundant_fixed_pointer_declaration_highlighting = error
+resharper_redundant_using_directive_global_highlighting = error
+resharper_redundant_enumerable_cast_call_highlighting = error
+resharper_redundant_lambda_parameter_type_highlighting = error
+resharper_redundant_lambda_signature_parentheses_highlighting = error
+resharper_redundant_name_qualifier_highlighting = error
+resharper_redundant_not_null_constraint_highlighting = error
+resharper_redundant_nullable_annotation_on_type_constraint_has_non_nullable_base_type_highlighting = error
+resharper_redundant_nullable_annotation_on_type_constraint_has_non_nullable_type_kind_highlighting = error
+resharper_redundant_nullable_annotation_on_reference_type_constraint_highlighting = error
+resharper_redundant_nullable_flow_attribute_highlighting = error
+resharper_redundant_nullable_directive_highlighting = error
+resharper_redundant_suppress_nullable_warning_expression_highlighting = error
+resharper_redundant_to_string_call_highlighting = error
+resharper_redundant_to_string_call_for_value_type_highlighting = error
+resharper_redundant_logical_conditional_expression_operand_highlighting = error
+resharper_redundant_query_order_by_ascending_keyword_highlighting = error
+resharper_redundant_property_pattern_clause_highlighting = error
+resharper_redundant_range_bound_highlighting = error
+resharper_redundant_readonly_modifier_highlighting = error
+resharper_redundant_scoped_parameter_modifier_highlighting = error
+resharper_redundant_declaration_semicolon_highlighting = error
+resharper_redundant_string_interpolation_highlighting = error
+resharper_redundant_string_format_call_highlighting = error
+resharper_redundant_string_to_char_array_call_highlighting = error
+resharper_redundant_switch_expression_arms_highlighting = error
+resharper_redundant_type_arguments_inside_nameof_highlighting = error
+resharper_redundant_type_arguments_of_method_highlighting = error
+resharper_redundant_type_check_in_pattern_highlighting = error
+resharper_redundant_type_declaration_body_highlighting = error
+resharper_redundant_using_directive_highlighting = error
+resharper_redundant_verbatim_prefix_highlighting = error
+resharper_redundant_verbatim_string_prefix_highlighting = error
+resharper_redundant_virtual_modifier_highlighting = error
+resharper_redundant_with_cancellation_highlighting = error
+resharper_redundant_pattern_parentheses_highlighting = error
+resharper_redundant_always_match_subpattern_highlighting = error
+resharper_for_statement_condition_is_true_highlighting = error
+resharper_redundant_nullable_type_mark_highlighting = error
+resharper_redundant_unsafe_context_highlighting = error
+
+# todo: none because we want to add #nullable just in case
+resharper_unused_nullable_directive_highlighting = none
+
+
+##############################################################
+### Redundancies in Symbol Declarations (51 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#DeclarationRedundancy
+resharper_class_with_virtual_members_never_inherited_global_highlighting = error
+resharper_class_with_virtual_members_never_inherited_local_highlighting = error
+resharper_unused_tuple_component_in_return_value_highlighting = error
+resharper_meaningless_default_parameter_value_highlighting = error
+resharper_empty_constructor_highlighting = error
+resharper_empty_destructor_highlighting = error
+resharper_redundant_partial_method_empty_implementation_highlighting = error
+resharper_empty_namespace_highlighting = error
+resharper_entity_name_captured_only_global_highlighting = error
+resharper_entity_name_captured_only_local_highlighting = error
+resharper_unused_local_function_highlighting = error
+resharper_unused_local_function_compiler_highlighting = error
+resharper_unused_local_function_return_value_highlighting = error
+resharper_unused_method_return_value_global_highlighting = error
+resharper_unused_method_return_value_local_highlighting = error
+resharper_not_accessed_variable_highlighting = error
+resharper_not_accessed_out_parameter_variable_highlighting = error
+resharper_not_accessed_primary_constructor_parameter_compiler_highlighting = error
+resharper_parameter_only_used_for_precondition_check_global_highlighting = error
+resharper_parameter_only_used_for_precondition_check_local_highlighting = error
+resharper_out_parameter_value_is_always_discarded_global_highlighting = error
+resharper_out_parameter_value_is_always_discarded_local_highlighting = error
+resharper_redundant_params_highlighting = error
+resharper_redundant_sets_required_members_attribute_highlighting = error
+resharper_redundant_base_constructor_call_highlighting = error
+resharper_redundant_extends_list_entry_highlighting = error
+resharper_redundant_default_member_initializer_highlighting = error
+resharper_redundant_overridden_member_highlighting = error
+resharper_redundant_overload_global_highlighting = error
+resharper_redundant_overload_local_highlighting = error
+resharper_partial_method_with_single_part_highlighting = error
+resharper_partial_type_with_single_part_highlighting = error
+resharper_sealed_member_in_sealed_class_highlighting = error
+resharper_unused_type_global_highlighting = error
+resharper_unused_type_local_highlighting = error
+resharper_unused_member_in_super_global_highlighting = error
+resharper_unused_member_in_super_local_highlighting = error
+resharper_unused_member_global_highlighting = error
+resharper_unused_member_local_highlighting = error
+resharper_unused_member_hierarchy_global_highlighting = error
+resharper_unused_member_hierarchy_local_highlighting = error
+resharper_enum_underlying_type_is_int_highlighting = error
+resharper_unused_label_highlighting = error
+resharper_unused_variable_highlighting = error
+resharper_unused_parameter_global_highlighting = error
+resharper_unused_parameter_local_highlighting = error
+resharper_unused_parameter_in_partial_method_highlighting = error
+resharper_unused_positional_parameter_compiler_highlighting = error
+resharper_unused_type_parameter_highlighting = error
+resharper_virtual_member_never_overridden_global_highlighting = error
+resharper_virtual_member_never_overridden_local_highlighting = error
+
+
+##############################################################
+### Security (1 inspection) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#Security
+resharper_vulnerable_api_highlighting = error
+
+
+##############################################################
+### Spelling Issues (3 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#Spelling
+resharper_comment_typo_highlighting = error
+resharper_identifier_typo_highlighting = error
+resharper_string_literal_typo_highlighting = error
+
+
+##############################################################
+### Syntax Style (48 inspections) ==============================
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#CodeStyleIssues
+resharper_arrange_missing_parentheses_highlighting = error
+resharper_arrange_static_member_qualifier_highlighting = error
+resharper_arrange_this_qualifier_highlighting = error
+resharper_arrange_null_checking_pattern_highlighting = error
+resharper_arrange_empty_string_highlighting = error
+resharper_arrange_attributes_highlighting = error
+resharper_arrange_var_keywords_in_deconstructing_declaration_highlighting = error
+
+# probably useless as it enforces blocks (adding braces to single-liners)
+#resharper_place_assignment_expression_into_block_highlighting = error
+
+resharper_arrange_redundant_parentheses_highlighting = error
+resharper_built_in_type_reference_style_highlighting = error
+resharper_built_in_type_reference_style_for_member_access_highlighting = error
+resharper_separate_control_transfer_statement_highlighting = error
+resharper_unnecessary_whitespace_highlighting = error
+resharper_tabs_are_disallowed_highlighting = error
+resharper_arrange_type_member_modifiers_highlighting = error
+resharper_arrange_type_modifiers_highlighting = error
+resharper_arguments_style_other_highlighting = error
+
+# none, becasue it is inconsistent, and it does not highlight labels
+#internal static readonly ObjectPool<ProjectileExplosionView> ExplosionPool =
+#    new(static () => Explosion,
+#        actionOnGet: static view => view.gameObject.SetActive(true),
+#        actionOnRelease: static view => view.gameObject.SetActive(false),
+#        collectionCheck: true,
+#        defaultCapacity: 10,
+#        maxSize: 10);
+#resharper_arguments_style_anonymous_function_highlighting = error
+
+# none, same as above but for values instead of functions
+#resharper_arguments_style_literal_highlighting = error
+
+# none, same as above but for values instead of functions
+#resharper_arguments_style_named_expression_highlighting = error
+
+resharper_arguments_style_string_literal_highlighting = error
+resharper_arrange_constructor_or_destructor_body_highlighting = error
+resharper_arrange_local_function_body_highlighting = error
+resharper_arrange_method_or_operator_body_highlighting = error
+resharper_arrange_accessor_owner_body_highlighting = error
+resharper_enforce_do_while_statement_braces_highlighting = error
+resharper_enforce_fixed_statement_braces_highlighting = error
+resharper_enforce_for_statement_braces_highlighting = error
+resharper_enforce_foreach_statement_braces_highlighting = error
+resharper_enforce_if_statement_braces_highlighting = error
+resharper_enforce_lock_statement_braces_highlighting = error
+resharper_enforce_using_statement_braces_highlighting = error
+resharper_enforce_while_statement_braces_highlighting = error
+resharper_remove_redundant_braces_highlighting = error
+resharper_arrange_namespace_body_highlighting = error
+resharper_suggest_discard_declaration_var_style_highlighting = error
+resharper_arrange_trailing_comma_in_multiline_lists_highlighting = error
+resharper_arrange_trailing_comma_in_singleline_lists_highlighting = error
+resharper_arrange_default_value_when_type_evident_highlighting = error
+resharper_arrange_default_value_when_type_not_evident_highlighting = error
+resharper_arrange_object_creation_when_type_evident_highlighting = error
+resharper_arrange_object_creation_when_type_not_evident_highlighting = error
+resharper_suggest_var_or_type_elsewhere_highlighting = error
+resharper_suggest_var_or_type_built_in_types_highlighting = error
+
+# none because we want to use compact entity queries
+#foreach (var (stats, finalStats, entity)
+#         in SystemAPI.Query<RefRW<StatsComponent>, RefRW<FinalStatsComponent>>().WithEntityAccess())
+resharper_suggest_var_or_type_deconstruction_declarations_highlighting = none
+
+resharper_suggest_var_or_type_simple_types_highlighting = error
+
+
+### todo
+### Unity (47 inspections)﻿
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#UNITY
+
+
+### todo
+### Unity Burst Compiler Warnings (17 inspections)
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#UNITY_BURST
+
+
+### todo
+### Compiler Warnings (211 inspections)
+# https://www.jetbrains.com/help/rider/Reference__Code_Inspections_CSHARP.html#CompilerWarnings
+
+
+#####################################################################
+### Integrated Development Environment ==============================
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = error
+
+# IDE0007: Use implicit type
+dotnet_diagnostic.IDE0007.severity = none
+
+# IDE0008: Use implicit type
+dotnet_diagnostic.IDE0008.severity = none
+
+# IDE0034: Simplify 'default' expression
+csharp_prefer_simple_default_expression = true
+
+# IDE0034: Simplify 'default' expression
+dotnet_diagnostic.IDE0034.severity = error
+
+# probably can be none as resharper catches it anyway, while VS additionally (and wrongly) puts Awake etc. under that category
+# IDE0051: Remove unused private members
+dotnet_diagnostic.IDE0051.severity = error
+
+# IDE0251: Make member 'readonly'
+dotnet_diagnostic.IDE0251.severity = error
+
+
+
+### UNITY Specific ==============================
+
+# UNT0013: Remove invalid SerializeField attribute
+dotnet_diagnostic.UNT0013.severity = error
+
+# UNT0019: Redundant indirection call
+dotnet_diagnostic.UNT0019.severity = error
+
+# UNT0024: Give priority to scalar calculations over vector calculations
+dotnet_diagnostic.UNT0024.severity = error
+
+# UNT0032: Inefficient localPosition/localRotation assignment
+dotnet_diagnostic.UNT0032.severity = error
+
+### C# Compiler
+
+# CS0219: Variable is assigned but its value is never used
+dotnet_diagnostic.CS0219.severity = error
+
+# CS8602: Dereference of a possibly null reference
+dotnet_diagnostic.CS8602.severity = error
+
+# CS0618: Type or member is obsolete
+dotnet_diagnostic.CS0618.severity = error
+
+# We have to disable this warning as configs for example are injected indirectly (via DI) and there is no way for analyzer to know that.
+# CS0649: Field is never assigned to, and will always have its default value
+dotnet_diagnostic.CS0649.severity = none
+
+# We have to disable this warning as configs for example are injected indirectly (via DI) and there is no way for analyzer to know that.
+# CS8618: Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+dotnet_diagnostic.CS8618.severity = none
+
+# CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+dotnet_diagnostic.CS8632.severity = error

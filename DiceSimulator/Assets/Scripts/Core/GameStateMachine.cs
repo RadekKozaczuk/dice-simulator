@@ -20,11 +20,10 @@ namespace Core
         /// 'betweenLoadAndUnload' action is the best suitable for scenarios when we need to just when scenes stopped loading but right before they start to unload.
         /// Great example would be when we go from a level to a level and the level we are leaving is going to disappear.
         /// </summary>
-		public GameStateMachine(
+        public GameStateMachine(
             IReadOnlyList<(TState from, TState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)> transitions,
             IReadOnlyList<(TState state, Action? onEntry, Action? onExit)> states)
-			: base(transitions, states)
-        { }
+            : base(transitions, states) { }
 
         /// <summary>
         /// Actual state change may be delayed in time. Consecutive calls are not allowed.
@@ -52,28 +51,28 @@ namespace Core
             if (scenesToLoadUnload != null)
             {
                 Assert.IsFalse(Utils.HasDuplicates(CombineArrays(scenesToLoadUnload.Value.scenesToLoad, additionalScenesToLoad)),
-                               "GameStateMachine was asked to load the same scene more than once.");
+                    "GameStateMachine was asked to load the same scene more than once.");
                 Assert.IsFalse(Utils.HasDuplicates(CombineArrays(scenesToLoadUnload.Value.scenesToUnload, additionalScenesToUnload)),
-                               "GameStateMachine was asked to unload the same scene more than once.");
+                    "GameStateMachine was asked to unload the same scene more than once.");
             }
-#endif 
+#endif
 
             // execute state's on-exit code
             _states.TryGetValue(transition.From, out StateDto fromState);
             fromState.OnExit?.Invoke();
 
             if (scenesToLoadUnload != null)
-                if (scenesToLoadUnload.Value.scenesToLoad is {Length: > 0} || additionalScenesToLoad is {Length: > 0})
+                if (scenesToLoadUnload.Value.scenesToLoad is { Length: > 0 } || additionalScenesToLoad is { Length: > 0 })
                     await LoadScenes(CombineArrays(scenesToLoadUnload.Value.scenesToLoad, additionalScenesToLoad));
 
             // change state
             _currentState = state;
-            
+
             // execute state's on-entry code
             _states.TryGetValue(transition.To, out StateDto toState);
 
             if (scenesToLoadUnload != null)
-                if (scenesToLoadUnload.Value.scenesToUnload is { Length: > 0 } || additionalScenesToUnload is { Length: > 0})
+                if (scenesToLoadUnload.Value.scenesToUnload is { Length: > 0 } || additionalScenesToUnload is { Length: > 0 })
                     UnloadScenes(CombineArrays(scenesToLoadUnload.Value.scenesToUnload, additionalScenesToUnload));
 
             // actual end of the transition
@@ -109,7 +108,7 @@ namespace Core
         /// </summary>
         static async Awaitable AwaitAsyncOperations(params AsyncOperation[] operations)
         {
-            while (!operations.All(t => t.isDone))
+            while (!operations.All(static t => t.isDone))
                 await Awaitable.NextFrameAsync();
         }
     }

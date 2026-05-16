@@ -27,12 +27,12 @@ namespace GameLogic
                 // do nothing if there are still previous balls flight around or no more shots left
                 if (BallsLeft <= 0 || BallDtos.Count > 0)
                     return;
-                
+
                 var mouseClickPosition = new float2(
                     value.x * Constants.MapSizeX / 1920 - Constants.MapSizeX / 2,
                     value.y * Constants.MapSizeY / 1080 - Constants.MapSizeY / 2);
-                
-                var world = World.DefaultGameObjectInjectionWorld;
+
+                World world = World.DefaultGameObjectInjectionWorld;
 
                 SystemHandle handle = world.GetExistingSystem<SpawnBallSystem>();
                 ref SystemState state = ref world.Unmanaged.ResolveSystemStateRef(handle);

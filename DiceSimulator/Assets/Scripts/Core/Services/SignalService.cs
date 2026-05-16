@@ -191,7 +191,8 @@ namespace Core.Services
         /// <summary>
         /// Adds a new signal to the queue. Signals will be executed in First-In-First-Out order when <see cref="ExecuteSentSignals"/> is called.
         /// </summary>
-        public static void AddSignal(int id, object arg0, object arg1, object arg2, object arg3, object arg4, object arg5, object arg6)
+        public static void AddSignal(int id, object arg0, object arg1, object arg2, object arg3, object arg4, object arg5,
+            object arg6)
         {
             _signals.Enqueue(id);
             int index = _signalQueueLookup[id].queueIndex;
@@ -208,8 +209,8 @@ namespace Core.Services
         /// <summary>
         /// Adds a new signal to the queue. Signals will be executed in First-In-First-Out order when <see cref="ExecuteSentSignals"/> is called.
         /// </summary>
-        public static void AddSignal(int id, object arg0, object arg1, object arg2, object arg3, object arg4, object arg5, object arg6,
-                                     object arg7)
+        public static void AddSignal(int id, object arg0, object arg1, object arg2, object arg3, object arg4, object arg5,
+            object arg6, object arg7)
         {
             _signals.Enqueue(id);
             int index = _signalQueueLookup[id].queueIndex;

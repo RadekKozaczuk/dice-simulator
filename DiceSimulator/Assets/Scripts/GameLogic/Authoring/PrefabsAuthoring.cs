@@ -18,7 +18,7 @@ namespace GameLogic.Authoring
             {
                 Entity entity = GetEntity(TransformUsageFlags.None);
 
-                AddComponent(entity, new PrefabsComponent 
+                AddComponent(entity, new PrefabsComponent
                 {
                     Ball = GetEntity(authoring._ball, TransformUsageFlags.None)
                 });

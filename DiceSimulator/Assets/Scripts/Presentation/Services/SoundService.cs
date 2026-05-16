@@ -44,7 +44,7 @@ namespace Presentation.Services
         /// <summary>
         /// Looped sounds must be manually stopped.
         /// </summary>
-        static readonly Dictionary<int, AudioSource> _loopedSounds = new ();
+        static readonly Dictionary<int, AudioSource> _loopedSounds = new();
 
         internal static void Initialize()
         {
@@ -71,8 +71,8 @@ namespace Presentation.Services
             SoundData.SoundPair[] sounds = data.Sounds;
 
             Assert.IsTrue(sounds.Length > 0,
-                          "You cannot invoke PlaySound function for a sound data that doesn't have any audio clips."
-                          + " Add at least one audio clip to the corresponding ScriptableObject.");
+                "You cannot invoke PlaySound function for a sound data that doesn't have any audio clips."
+                + " Add at least one audio clip to the corresponding ScriptableObject.");
 
             AudioClip clip = sounds[0].Sound;
 
@@ -94,7 +94,6 @@ namespace Presentation.Services
                 soundId = _loopedSounds.Count + 1;
                 _loopedSounds.Add(soundId, source);
             }
-            
 
             return soundId;
         }

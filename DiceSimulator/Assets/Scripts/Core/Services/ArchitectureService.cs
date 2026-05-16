@@ -92,7 +92,7 @@ namespace Core.Services
             foreach (string guid in guids)
             {
                 string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-                var asset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
+                ScriptableObject asset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(assetPath);
 
                 // skips debug configs when in a release build.
                 if (!EditorUserBuildSettings.development && asset.name.Contains("Debug"))

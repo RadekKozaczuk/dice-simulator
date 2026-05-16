@@ -4,7 +4,6 @@ using Core;
 using GameLogic.Components;
 using Unity.Collections;
 using Unity.Entities;
-using UnityEngine;
 
 namespace GameLogic.Systems
 {
@@ -31,7 +30,7 @@ namespace GameLogic.Systems
                 {
                     int id = state.EntityManager.GetComponentData<BallComponent>(entity).Id;
                     Signals.BallDestroyed(id);
-                    
+
                     GameLogicData.BallDtos.Remove(id);
                     if (GameLogicData.BallDtos.Count == 0 && GameLogicData.BallsLeft == 0)
                         Signals.GameEnded();

@@ -7,7 +7,7 @@ namespace Presentation
     {
         [SerializeField]
         internal Transform BallsContainer;
-        
+
         [SerializeField]
         internal Transform BricksContainer;
     }

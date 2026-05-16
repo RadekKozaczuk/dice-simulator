@@ -37,12 +37,14 @@ namespace Presentation.Services
         /// If contains value then the audio clip corresponding the given <see cref="Music"/> value is being loaded or is already loaded.
         /// </summary>
         static readonly AudioClip?[] _loadedMusic = new AudioClip? [Enum.GetNames(typeof(Music)).Length];
+
         static readonly AsyncOperationHandle<AudioClip>[] _asyncOperationHandles = new AsyncOperationHandle<AudioClip> [Enum.GetNames(typeof(Music)).Length];
 
         /// <summary>
         /// Contains audio clip's index. If it has value then music is either already loaded or is being loaded into memory, null otherwise.
         /// </summary>
         static Music? _currentMusic;
+
         const string Music = "musicVolume";
         static AudioSource _musicSource = null!;
 
@@ -72,7 +74,7 @@ namespace Presentation.Services
                 _currentMusic = music;
             };
         }
-        
+
         /// <summary>
         /// Unloads music asset from memory.
         /// Throws an error is requested music is not present in the memory.

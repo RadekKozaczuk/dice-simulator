@@ -34,12 +34,6 @@ namespace Presentation.Controllers
         static int _canvasWidth;
         static int _canvasHeight;
 
-        static readonly Vector2Int[] _resolutions = {
-            new (1920, 1080), // 16:9 ~1.777
-            new (2732, 2047), // xxxx ~1.335
-            new (2400, 1080)  // 20:9 ~2.222
-        };
-
         [Preserve]
         PresentationMainController() { }
 
@@ -99,15 +93,15 @@ namespace Presentation.Controllers
             if (PresentationData.HpLabels.TryGetValue(id, out HpView hpLabel))
                 hpLabel.Hp = currentHp;
 
-            SoundService.Play(Sound.ClickHit);            
+            SoundService.Play(Sound.ClickHit);
         }
-        
+
         [React]
         static void OnBrickSpawned(int id, BrickType brickType, Vector2 position, float rotation, float scale, int hp)
         {
             LevelSceneReferenceHolder holder = PresentationData.SceneReferenceHolders[Level.LevelScene];
-            var pos = new  Vector3(position.x, 0, position.y);
-            Quaternion rot = Quaternion.Euler(0, rotation, 0);
+            var pos = new Vector3(position.x, 0, position.y);
+            var rot = Quaternion.Euler(0, rotation, 0);
 
             switch (brickType)
             {
@@ -123,7 +117,7 @@ namespace Presentation.Controllers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(brickType), brickType, null);
             }
-            
+
             // undestructable bricks should not have the hp label
             if (hp == int.MinValue)
                 return;

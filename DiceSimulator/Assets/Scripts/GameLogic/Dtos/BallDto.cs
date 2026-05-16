@@ -17,7 +17,7 @@ namespace GameLogic.Dtos
             {
                 if (value == _position)
                     return;
-                
+
                 _position = value;
                 Signals.BallPositionChanged(_id, _position);
             }

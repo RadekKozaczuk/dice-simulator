@@ -14,7 +14,7 @@ namespace GameLogic.Config
         [InfoBox("The amount of balls spawned on every shot.", InfoMessageType.None)]
         [SerializeField]
         internal int BallPerShotCount = 1;
-        
+
         [InfoBox("The amount of balls player has in each round.", InfoMessageType.None)]
         [SerializeField]
         internal int BallPerGameCount = 3;

@@ -35,7 +35,7 @@ namespace GameLogic.Authoring
                 Entity entity = GetEntity(TransformUsageFlags.NonUniformScale);
                 BrickType type = authoring._type;
                 int id = IdCounterService.NextId(type);
-                var transform = authoring.GetComponent<Transform>();
+                Transform transform = authoring.GetComponent<Transform>();
 
                 switch (type)
                 {
@@ -45,7 +45,7 @@ namespace GameLogic.Authoring
                         float rotation = transform.rotation.eulerAngles.y;
                         float scale = transform.localScale.x;
                         AddComponent(entity, new BrickComponent(id, type, rotation, scale, hp));
-                        
+
                         if (authoring._indestructible)
                             AddComponent(entity, new IndestructibleTag());
 
