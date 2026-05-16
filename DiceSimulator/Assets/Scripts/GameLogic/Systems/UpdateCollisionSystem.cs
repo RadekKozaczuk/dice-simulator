@@ -59,12 +59,6 @@ namespace GameLogic.Systems
                 {
                     RefRW<BrickComponent> brick = SystemAPI.GetComponentRW<BrickComponent>(entityB);
 
-                    if (entityManager.HasComponent<IndestructibleTag>(entityB))
-                    {
-                        Signals.BrickHit(brick.ValueRO.Id, brick.ValueRW.Hp);
-                        continue;
-                    }
-
                     brick.ValueRW.Hp--;
                     Signals.BrickHit(brick.ValueRO.Id, brick.ValueRW.Hp);
                     CoreData.Score++;

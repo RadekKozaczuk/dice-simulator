@@ -57,7 +57,7 @@ namespace Presentation.Services
         /// The audio clip is chosen at random taking into account its probability.
         /// Final volume is taken from the sound data and <see cref="Volume"/>.
         /// </summary>
-        internal static void Play(Sound sound) => Play_Internal(sound, Vector3.zero, false);
+        internal static void Play(Sound sound) => _ = Play_Internal(sound, Vector3.zero, false);
 
         /// <summary>
         /// Returns Sound ID.

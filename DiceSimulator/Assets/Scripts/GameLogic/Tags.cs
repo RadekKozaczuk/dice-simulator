@@ -15,9 +15,5 @@ namespace GameLogic
 
     struct DestructionAreaTag : IComponentData { }
 
-    struct IndestructibleTag : IComponentData { }
-
-    struct InvisibilityTag : IComponentData { }
-
     struct SpawnPointTag : IComponentData { }
 }

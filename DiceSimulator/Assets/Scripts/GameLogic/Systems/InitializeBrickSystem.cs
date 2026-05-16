@@ -37,8 +37,7 @@ namespace GameLogic.Systems
                 float scale = brick.ValueRO.Scale;
                 ecb.RemoveComponent<NewlySpawnedTag>(entity);
 
-                if (!state.EntityManager.HasComponent<InvisibilityTag>(entity))
-                    Signals.BrickSpawned(brick.ValueRO.Id, brick.ValueRO.Type, pos.xz, rotation, scale, brick.ValueRO.Hp);
+                Signals.BrickSpawned(brick.ValueRO.Id, brick.ValueRO.Type, pos.xz, rotation, scale, brick.ValueRO.Hp);
             }
 
             ecb.Playback(state.EntityManager);

@@ -16,7 +16,7 @@ namespace Core.CustomInspector
         protected override void DrawPropertyLayout(GUIContent? label)
         {
             int index = Property.Index;
-            // If label is null, it means it's element of array, otherwise its the property itself
+            // If label is null, it means it's element of array, otherwise it's the property itself
             if (label == null)
             {
                 string name = index >= 0 && index < Attribute.Names.Length
@@ -27,7 +27,6 @@ namespace Core.CustomInspector
             }
             else
                 CallNextDrawer(label);
-
         }
     }
 }

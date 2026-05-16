@@ -4,11 +4,8 @@ namespace Core.Pooling
 {
     public class ObjectPool<T> : AbstractMemoryPool<T> where T : class, new()
     {
-        protected Action<T>? OnGetMethod { set => _onGetMethod = value; }
-        Action<T>? _onGetMethod;
-
-        protected Func<T>? CustomAlloc { set => _customAlloc = value; }
-        Func<T>? _customAlloc;
+        readonly Action<T>? _onGetMethod;
+        readonly Func<T>? _customAlloc;
 
         public ObjectPool(Func<T>? customAlloc = null,
             Action<T>? onGetMethod = null,

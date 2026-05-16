@@ -21,11 +21,6 @@ namespace Core.Pooling
 
         int _maxSize;
 
-        protected Action<T, bool> OnReturn
-        {
-            set => _onReturn = value;
-        }
-
         readonly Stack<T> _stack = new();
         Action<T, bool>? _onReturn;
         protected readonly object _locker = new();
@@ -37,12 +32,6 @@ namespace Core.Pooling
         }
 
         public void Dispose() { }
-
-        /// <summary>
-        /// Returns element back to the pool if <see cref="MaxSize"/> has not been reached.
-        /// Invokes <see cref="_onReturn"/> function.
-        /// </summary>
-        public void Return(object item) => Return((T)item);
 
         /// <summary>
         /// Returns element back to the pool if <see cref="MaxSize"/> has not been reached.
