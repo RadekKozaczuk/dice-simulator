@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Presentation.Views
 {
-    class BallView : MonoBehaviour
+    class DiceView : MonoBehaviour
     {
         static readonly BallConfig _config;
 

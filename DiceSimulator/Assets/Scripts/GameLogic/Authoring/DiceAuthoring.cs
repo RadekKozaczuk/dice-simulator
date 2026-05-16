@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace GameLogic.Authoring
 {
-    class BallAuthoring : MonoBehaviour
+    class DiceAuthoring : MonoBehaviour
     {
-        class Baker : Baker<BallAuthoring>
+        class Baker : Baker<DiceAuthoring>
         {
-            public override void Bake(BallAuthoring authoring)
+            public override void Bake(DiceAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.None);
-                AddComponent<BallComponent>(entity);
+                AddComponent<DiceComponent>(entity);
             }
         }
     }

@@ -20,16 +20,16 @@ namespace GameLogic.Systems
     {
         // if we want to access something that is not part of the query we can use a component-lookup.
         // component-lookup is essentially a dictionary, so it introduces a random memory access operation therefore is it less efficient
-        ComponentLookup<BallComponent> _ballLookup;
+        ComponentLookup<DiceComponent> _ballLookup;
         ComponentLookup<BrickComponent> _brickLookup;
 
         void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<SimulationSingleton>();
-            state.RequireForUpdate<BallComponent>();
+            state.RequireForUpdate<DiceComponent>();
 
-            _ballLookup = SystemAPI.GetComponentLookup<BallComponent>(true);
+            _ballLookup = SystemAPI.GetComponentLookup<DiceComponent>(true);
             _brickLookup = SystemAPI.GetComponentLookup<BrickComponent>();
         }
 

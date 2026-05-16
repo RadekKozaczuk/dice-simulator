@@ -63,7 +63,7 @@ namespace GameLogic.Systems
                 ecb.SetName(ball, $"Ball_{id}");
 #endif
 
-                ecb.SetComponent(ball, new BallComponent(id));
+                ecb.SetComponent(ball, new DiceComponent(id));
                 float3 velocity = new float3(direction.x, 0, direction.y) * 100 * _config.BallSpeed * deltaTime;
                 ecb.SetComponent(ball, new PhysicsVelocity { Linear = velocity });
 

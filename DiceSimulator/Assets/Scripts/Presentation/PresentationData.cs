@@ -10,7 +10,7 @@ namespace Presentation
     /// </summary>
     static class PresentationData
     {
-        internal static readonly Dictionary<int, BallView> Balls = new();
+        internal static readonly Dictionary<int, DiceView> Balls = new();
         internal static readonly Dictionary<int, BrickView> Bricks = new();
 
         /// <summary>

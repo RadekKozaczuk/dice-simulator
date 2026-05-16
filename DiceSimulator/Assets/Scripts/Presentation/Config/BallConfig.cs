@@ -8,7 +8,7 @@ namespace Presentation.Config
     class BallConfig : ScriptableObject
     {
         [SerializeField]
-        internal BallView Prefab;
+        internal DiceView Prefab;
 
         [SerializeField]
         internal float MinRotationSpeed = 50f;

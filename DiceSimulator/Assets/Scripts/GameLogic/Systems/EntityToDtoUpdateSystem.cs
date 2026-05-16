@@ -21,8 +21,8 @@ namespace GameLogic.Systems
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-            foreach ((RefRO<BallComponent> ball, RefRO<LocalTransform> transform)
-                     in SystemAPI.Query<RefRO<BallComponent>, RefRO<LocalTransform>>()
+            foreach ((RefRO<DiceComponent> ball, RefRO<LocalTransform> transform)
+                     in SystemAPI.Query<RefRO<DiceComponent>, RefRO<LocalTransform>>()
                                  .WithAll<PhysicsVelocity>()
                                  .WithNone<DestroyedTag>())
                 GameLogicData.BallDtos[ball.ValueRO.Id].Position = transform.ValueRO.Position.xz;

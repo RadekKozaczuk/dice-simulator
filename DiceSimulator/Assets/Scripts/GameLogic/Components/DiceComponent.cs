@@ -3,10 +3,10 @@ using Unity.Entities;
 
 namespace GameLogic.Components
 {
-    struct BallComponent : IComponentData
+    struct DiceComponent : IComponentData
     {
         internal readonly int Id;
 
-        internal BallComponent(int id) => Id = id;
+        internal DiceComponent(int id) => Id = id;
     }
 }

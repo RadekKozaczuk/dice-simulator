@@ -42,7 +42,7 @@ namespace Presentation.Controllers
             if (!_coreSceneLoaded)
                 return;
 
-            foreach (KeyValuePair<int, BallView> kvp in PresentationData.Balls)
+            foreach (KeyValuePair<int, DiceView> kvp in PresentationData.Balls)
                 kvp.Value.CustomUpdate();
         }
 
@@ -73,8 +73,8 @@ namespace Presentation.Controllers
         {
             LevelSceneReferenceHolder holder = PresentationData.SceneReferenceHolders[Level.LevelScene];
             var pos = new Vector3(position.x, 0, position.y);
-            BallView ball = Object.Instantiate(_ballConfig.Prefab, pos, Quaternion.identity, holder.BallsContainer);
-            PresentationData.Balls.Add(id, ball);
+            DiceView dice = Object.Instantiate(_ballConfig.Prefab, pos, Quaternion.identity, holder.BallsContainer);
+            PresentationData.Balls.Add(id, dice);
         }
 
         [React]

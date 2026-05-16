@@ -26,9 +26,9 @@ namespace GameLogic.Systems
             foreach ((RefRO<DestroyedTag> _, Entity entity)
                      in SystemAPI.Query<RefRO<DestroyedTag>>().WithEntityAccess())
             {
-                if (state.EntityManager.HasComponent<BallComponent>(entity))
+                if (state.EntityManager.HasComponent<DiceComponent>(entity))
                 {
-                    int id = state.EntityManager.GetComponentData<BallComponent>(entity).Id;
+                    int id = state.EntityManager.GetComponentData<DiceComponent>(entity).Id;
                     Signals.BallDestroyed(id);
 
                     GameLogicData.BallDtos.Remove(id);
