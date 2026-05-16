@@ -1,0 +1,131 @@
+{
+    "version": 1,
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "MainMenu",
+            "id": "79189bc8-6123-40ef-b9a4-f6096672af4e",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "e3418382-93a6-40e9-bb85-990b408178c0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f30de7f2-2841-4b87-b74e-03ae4493c504",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gameplay",
+            "id": "327c6329-d1a6-48ca-868e-a9644ea235c0",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "6af5c871-33c2-42fe-a646-a3a10014abb3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "26c5f8c6-c1e5-4256-8aff-0ff5519ef865",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Shot",
+                    "type": "Button",
+                    "id": "aeb815ee-28d4-42ab-ad80-5edc45578d0b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "65e7396f-2201-4cbc-ab8d-c9de87c56000",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f1e90bc-d560-4da4-857e-dba955802b4a",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95f9378b-cae2-44f8-a8f0-21370e63ac75",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Popup",
+            "id": "ad153b8d-0241-4826-a557-fe9d3d2f7462",
+            "actions": [
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "609c7001-d338-4384-ac62-6136bc89ac87",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a873a0dd-90fa-45c5-96a8-56e46001d8aa",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

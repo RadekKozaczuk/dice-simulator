@@ -1,0 +1,99 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=Assets_002F3rdParty/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=Packages/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeAccessorOwnerBody/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeAttributes/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeConstructorOrDestructorBody/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeDefaultValueWhenTypeEvident/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeDefaultValueWhenTypeNotEvident/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeLocalFunctionBody/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeMethodOrOperatorBody/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeModifiersOrder/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeNamespaceBody/@EntryIndexedValue">DO_NOT_SHOW</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeObjectCreationWhenTypeEvident/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeObjectCreationWhenTypeNotEvident/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeRedundantParentheses/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeTrailingCommaInMultilineLists/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeTrailingCommaInSinglelineLists/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeTypeMemberModifiers/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=ArrangeTypeModifiers/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=BuiltInTypeReferenceStyle/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=BuiltInTypeReferenceStyleForMemberAccess/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceDoWhileStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceFixedStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceForeachStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceForStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceIfStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceLockStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceUsingStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=EnforceWhileStatementBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=RemoveRedundantBraces/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=SuggestVarOrType_005FBuiltInTypes/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=SuggestVarOrType_005FElsewhere/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=SuggestVarOrType_005FSimpleTypes/@EntryIndexedValue">ERROR</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_DOWHILE/@EntryValue">NotRequired</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_FIXED/@EntryValue">NotRequired</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_LOCK/@EntryValue">NotRequired</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_USING/@EntryValue">NotRequired</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/CONSTRUCTOR_OR_DESTRUCTOR_BODY/@EntryValue">ExpressionBody</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/DEFAULT_VALUE_WHEN_TYPE_NOT_EVIDENT/@EntryValue">DefaultExpression</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/LOCAL_FUNCTION_BODY/@EntryValue">ExpressionBody</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/METHOD_OR_OPERATOR_BODY/@EntryValue">ExpressionBody</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/MODIFIERS_ORDER/@EntryValue">public internal private protected file new static abstract virtual sealed readonly override extern unsafe volatile async required</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/PARENTHESES_REDUNDANCY_STYLE/@EntryValue">Remove</s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/USE_HEURISTICS_FOR_BODY_STYLE/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/ALIGN_LINQ_QUERY/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/ALIGN_MULTILINE_CALLS_CHAIN/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/ALIGN_MULTILINE_EXTENDS_LIST/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/ALIGN_MULTILINE_PARAMETER/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/ALIGN_MULTIPLE_DECLARATION/@EntryValue">True</s:Boolean>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/BLANK_LINES_BEFORE_CONTROL_TRANSFER_STATEMENTS/@EntryValue">1</s:Int64>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/BLANK_LINES_INSIDE_REGION/@EntryValue">0</s:Int64>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/EMPTY_BLOCK_STYLE/@EntryValue">TOGETHER_SAME_LINE</s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/INDENT_NESTED_FOR_STMT/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/INDENT_NESTED_FOREACH_STMT/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/INDENT_NESTED_WHILE_STMT/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/INDENT_PREPROCESSOR_REGION/@EntryValue">NO_INDENT</s:String>
+	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/INDENT_PRIMARY_CONSTRUCTOR_DECL_PARS/@EntryValue">INSIDE</s:String>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_CODE/@EntryValue">1</s:Int64>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_DECLARATIONS/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_EXISTING_EXPR_MEMBER_ARRANGEMENT/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_EXISTING_INITIALIZER_ARRANGEMENT/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_USER_LINEBREAKS/@EntryValue">False</s:Boolean>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/MAX_FORMAL_PARAMETERS_ON_LINE/@EntryValue">10</s:Int64>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/MAX_PRIMARY_CONSTRUCTOR_PARAMETERS_ON_LINE/@EntryValue">10</s:Int64>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/OUTDENT_STATEMENT_LABELS/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/STICK_COMMENT/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_BEFORE_EQ/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_BEFORE_PRIMARY_CONSTRUCTOR_DECLARATION_LPAR/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_BEFORE_PRIMARY_CONSTRUCTOR_DECLARATION_RPAR/@EntryValue">False</s:Boolean>
+	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_LIMIT/@EntryValue">140</s:Int64>
+	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForBuiltInTypes/@EntryValue">UseExplicitType</s:String>
+	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForOtherTypes/@EntryValue">UseVarWhenEvident</s:String>
+	<s:String x:Key="/Default/CodeStyle/CSharpVarKeywordUsage/ForSimpleTypes/@EntryValue">UseVarWhenEvident</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=AC/@EntryIndexedValue">AC</s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/ApplyAutoDetectedRules/@EntryValue">False</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=15b5b1f1_002D457c_002D4ca6_002Db278_002D5615aedc07d3/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=15b5b1f1_002D457c_002D4ca6_002Db278_002D5615aedc07d3/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=236f7aa5_002D7b06_002D43ca_002Dbf2a_002D9b31bfcff09a/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=236f7aa5_002D7b06_002D43ca_002Dbf2a_002D9b31bfcff09a/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=4a98fdf6_002D7d98_002D4f5a_002Dafeb_002Dea44ad98c70c/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Instance" AccessRightKinds="Private, Protected, PrivateProtected" Description="Instance fields (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="FIELD" /&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="_" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=53eecf85_002Dd821_002D40e8_002Dac97_002Dfdb734542b84/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Instance" AccessRightKinds="ProtectedInternal, Internal, Public" Description="Instance fields (not private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="FIELD" /&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=5f0fdb63_002Dc892_002D4d2c_002D9324_002D15c80b22a7ef/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Instance" AccessRightKinds="Private" Description="Unity serialized field (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="UNITY_SERIALISED_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="_" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=61a991a4_002Dd0a3_002D4d19_002D90a5_002Df8f4d75c30c1/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Any" Description="Local variables"&gt;&lt;ElementKinds&gt;&lt;Kind Name="LOCAL_VARIABLE" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="aaBb_AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=669e5282_002Dfb4b_002D4e90_002D91e7_002D07d269d04b60/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Private, Protected, ProtectedInternal, Internal, Public, PrivateProtected" Description="Constant fields"&gt;&lt;ElementKinds&gt;&lt;Kind Name="CONSTANT_FIELD" /&gt;&lt;Kind Name="LOCAL_CONSTANT" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=70345118_002D4b40_002D4ece_002D937c_002Dbbeb7a0b2e70/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Static" AccessRightKinds="Protected, ProtectedInternal, Internal, Public" Description="Static fields (not private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="FIELD" /&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=764ff927_002D7071_002D4b2c_002D8087_002D6d10acacd778/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Protected, ProtectedInternal, Internal, Public, PrivateProtected, FileLocal" Description="Unity serialized field (not private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="UNITY_SERIALISED_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb_AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=8b8504e3_002Df0be_002D4c14_002D9103_002Dc732f2bddc15/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Any" AccessRightKinds="Any" Description="Enum members"&gt;&lt;ElementKinds&gt;&lt;Kind Name="ENUM_MEMBER" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="False" Prefix="" Suffix="" Style="AaBb_AaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=a4f433b8_002Dabcd_002D4e55_002Da08f_002D82e78cef0f0c/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=a4f433b8_002Dabcd_002D4e55_002Da08f_002D82e78cef0f0c/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=c873eafb_002Dd57f_002D481d_002D8c93_002D77f6863c2f88/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=c873eafb_002Dd57f_002D481d_002D8c93_002D77f6863c2f88/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/UserRules/=f9fce829_002De6f4_002D4cb2_002D80f1_002D5497c44f51df/@EntryIndexedValue">&lt;Policy&gt;&lt;Descriptor Staticness="Static" AccessRightKinds="Private, PrivateProtected" Description="Static fields (private)"&gt;&lt;ElementKinds&gt;&lt;Kind Name="FIELD" /&gt;&lt;Kind Name="READONLY_FIELD" /&gt;&lt;/ElementKinds&gt;&lt;/Descriptor&gt;&lt;Policy Inspect="True" WarnAboutPrefixesAndSuffixes="True" Prefix="_" Suffix="" Style="aaBb" /&gt;&lt;/Policy&gt;</s:String>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpKeepExistingMigration/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpPlaceEmbeddedOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ECSharpUseContinuousIndentInsideBracesMigration/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateBlankLinesAroundFieldToBlankLinesAroundProperty/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=dtos/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=npcs/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=npc_0027s/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>
