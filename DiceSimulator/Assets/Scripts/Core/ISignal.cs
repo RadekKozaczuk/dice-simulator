@@ -10,16 +10,6 @@ namespace Core
 
         void DiceStopped();
 
-        /// <summary>
-        /// Hp after the hit.
-        /// </summary>
-        void BrickHit(int id, int currentHp);
-
-        /// <summary>
-        /// Position is x and z.
-        /// </summary>
-        void BrickSpawned(int id, BrickType brickType, Vector2 position, float rotation, float scale, int hp);
-
         void DiceSpawned(Vector3 position, Quaternion rotation);
 
         /// <summary>

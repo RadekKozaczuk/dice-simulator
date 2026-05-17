@@ -28,6 +28,7 @@ namespace GameLogic.Systems
             foreach ((RefRO<LocalTransform> transform, RefRW<PhysicsVelocity> velocity, Entity entity)
                      in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>>()
                                  .WithAll<DiceComponent>()
+                                 .WithChangeFilter<LocalTransform>()
                                  .WithEntityAccess())
             {
                 bool isStopped = Utils.IsStopped(in velocity.ValueRO);
@@ -36,7 +37,6 @@ namespace GameLogic.Systems
                 {
                     Debug.LogError("Dice Stopped signal sent");
                     Signals.DiceStopped();
-                    //state.Enabled = false;
 
                     // freeze further movement
                     ecb.RemoveComponent<PhysicsVelocity>(entity);

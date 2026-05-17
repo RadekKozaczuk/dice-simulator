@@ -1,5 +1,4 @@
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using System;
 using System.Collections.Generic;
 using Core;
 using JetBrains.Annotations;
@@ -34,6 +33,8 @@ namespace Presentation.Controllers
         static int _canvasWidth;
         static int _canvasHeight;
 
+        static DiceView _dice;
+
         [Preserve]
         PresentationMainController() { }
 
@@ -66,14 +67,20 @@ namespace Presentation.Controllers
         static void OnDiceSpawned(Vector3 position, Quaternion rotation)
         {
             Debug.LogError("Dice spawned");
-            DiceView view = Object.Instantiate(_diceConfig.Dice, position, rotation);
-            view.gameObject.name = "Dice";
+            _dice = Object.Instantiate(_diceConfig.Dice, position, rotation);
+            _dice.gameObject.name = "Dice";
         }
 
         [React]
         static void OnDiceStopped()
         {
             Debug.LogError("Dice stopped");
+        }
+
+        [React]
+        static void OnDicePositionChanged(Vector3 position, Quaternion rotation)
+        {
+            _dice.gameObject.transform.SetPositionAndRotation(position, rotation);
         }
     }
 }
