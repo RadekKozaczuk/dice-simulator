@@ -5,14 +5,9 @@ using GameLogic.Components;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace GameLogic.Systems
 {
-    /// <summary>
-    /// Iterates over all balls and destroys those tagged with <see cref="DestroyedTag"/>.
-    /// Destruction in ECS is for some reason always postponed by one frame.
-    /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     [SuppressMessage("ReSharper", "MemberHidesInterfaceMemberWithDefaultImplementation")]
     [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -33,7 +28,6 @@ namespace GameLogic.Systems
                 ecb.SetName(entity, "Dice");
 #endif
 
-                Debug.LogError("Dice spawned ECS");
                 ecb.RemoveComponent<NewlySpawnedTag>(entity);
                 Signals.DiceSpawned(transform.ValueRO.Position, transform.ValueRO.Rotation);
             }

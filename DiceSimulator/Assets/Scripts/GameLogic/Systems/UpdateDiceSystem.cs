@@ -6,14 +6,9 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace GameLogic.Systems
 {
-    /// <summary>
-    /// Iterates over all balls and destroys those tagged with <see cref="DestroyedTag"/>.
-    /// Destruction in ECS is for some reason always postponed by one frame.
-    /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     [SuppressMessage("ReSharper", "MemberHidesInterfaceMemberWithDefaultImplementation")]
     [SuppressMessage("ReSharper", "UnusedMember.Local")]
@@ -31,11 +26,10 @@ namespace GameLogic.Systems
                                  .WithChangeFilter<LocalTransform>()
                                  .WithEntityAccess())
             {
-                bool isStopped = Utils.IsStopped(in velocity.ValueRO);
+                bool isStopped = Utils.IsStopped(in velocity.ValueRO, 0.2f);
 
                 if (isStopped)
                 {
-                    Debug.LogError("Dice Stopped signal sent");
                     Signals.DiceStopped();
 
                     // freeze further movement

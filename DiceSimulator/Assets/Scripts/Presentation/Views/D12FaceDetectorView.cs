@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,77 +11,97 @@ namespace Presentation.Views
         [SerializeField]
         Mesh _mesh;
 
+        [SerializeField]
+        DiceFaceView _diceFacePrefab;
+
+        [SerializeField]
+        float _distance;
+
+        float _calculatedDistance;
+
         [Serializable]
-        public struct DieFace
+        public struct DiceFace
         {
-            public int Value;          // Numer ścianki (przypiszemy potem w inspektorze)
-            public Vector3 LocalNormal; // Automatycznie wyliczony wektor lokalny
-            public Quaternion Quaternion; // Automatycznie wyliczony wektor lokalny
+            public int Number;
+            public Vector3 Normal;
+            public Quaternion Quaternion;
         }
 
-        public List<DieFace> DetectedFaces = new();
+        public List<DiceFace> DetectedFaces = new();
 
-        // Próg tolerancji dla ścianek (w radianach/stopniach), zapobiega dublowaniu
+        // prevent duplicates
         const float AngleThreshold = 5f;
 
-        void Awake()
-        {
-            GenerateFacesFromMesh();
-        }
-
         [Button("sdf")]
-        [ContextMenu("Generate Faces From Mesh")] // Pozwala kliknąć prawym przyciskiem myszy na komponent w edytorze
         void GenerateFacesFromMesh()
         {
+            DetectedFaces.Clear();
+            DiceView dice = GetComponent<DiceView>();
+
+            foreach (DiceFaceView face in dice.Faces)
+                DestroyImmediate(face.gameObject);
+
+            dice.Faces.Clear();
+
             Vector3[] vertices = _mesh.vertices;
             int[] triangles = _mesh.triangles;
 
             var uniqueNormals = new List<Vector3>();
 
-            // Przechodzimy przez wszystkie trójkąty mesha (co 3 indeksy)
+            // iterate over every triangle
             for (int i = 0; i < triangles.Length; i += 3)
             {
                 Vector3 v1 = vertices[triangles[i]];
                 Vector3 v2 = vertices[triangles[i + 1]];
                 Vector3 v3 = vertices[triangles[i + 2]];
 
-                // Obliczamy wektor normalny dla pojedynczego trójkąta (Local Space)
+                // normal
                 Vector3 side1 = v2 - v1;
                 Vector3 side2 = v3 - v1;
-                Vector3 triangleNormal = Vector3.Cross(side1, side2).normalized;
+                Vector3 normal = Vector3.Cross(side1, side2).normalized;
 
-                // Sprawdzamy, czy ten kierunek jest już na naszej liście unikalnych ścian
+                // calculate centroid
+                Vector3 centroid = (v1 + v2 + v3) / 3f;
+                _calculatedDistance = Vector3.Distance(centroid, Vector3.zero);
+                Debug.LogError(_calculatedDistance);
+
                 bool isNewFace = true;
                 foreach (Vector3 existingNormal in uniqueNormals)
-                    if (Vector3.Angle(triangleNormal, existingNormal) < AngleThreshold)
+                    if (Vector3.Angle(normal, existingNormal) < AngleThreshold)
                     {
                         isNewFace = false;
                         break;
                     }
 
-                // Jeśli to nowa ściana, zapisujemy ją
+                // save only unique normals for later
                 if (isNewFace)
-                    uniqueNormals.Add(triangleNormal);
+                    uniqueNormals.Add(normal);
             }
 
-            // Przepisujemy unikalne wektory do naszej ostatecznej listy
-            DetectedFaces.Clear();
             for (int i = 0; i < uniqueNormals.Count; i++)
             {
-                // 1. Tworzymy rotację, w której wektor normalny ściany wskazuje do przodu (Forward)
-                // Jako drugi parametr podajemy Vector3.up, aby ustabilizować obrót wokół własnej osi
                 var localRotation = Quaternion.LookRotation(uniqueNormals[i], Vector3.up);
 
-                var newFace = new DieFace
+                var newFace = new DiceFace
                 {
-                    Value = i + 1, // Domyślnie przypisuje numery od 1 do 12
-                    LocalNormal = uniqueNormals[i],
+                    Number = i + 1, // default numbers from 1 to 12
+                    Normal = uniqueNormals[i],
                     Quaternion = localRotation
                 };
                 DetectedFaces.Add(newFace);
             }
 
-            Debug.Log($"Pomyślnie wykryto {DetectedFaces.Count} ścian na meshu.");
+            foreach (DiceFace face in DetectedFaces)
+            {
+                Vector3 newPosition = Vector3.zero + face.Normal * _calculatedDistance;
+                DiceFaceView diceFace = Instantiate(_diceFacePrefab, newPosition, face.Quaternion, dice.transform);
+
+                string number = face.Number.ToString();
+                diceFace.name = number;
+                diceFace.Label.text = number;
+                dice.Faces.Add(diceFace);
+            }
         }
     }
 }
+#endif

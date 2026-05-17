@@ -20,10 +20,12 @@ namespace GameLogic
         {
             set
             {
+                // ReSharper disable once UnusedVariable
                 var mouseClickPosition = new float2(
                     value.x * Constants.MapSizeX / 1920 - Constants.MapSizeX / 2,
                     value.y * Constants.MapSizeY / 1080 - Constants.MapSizeY / 2);
 
+                // ReSharper disable once UnusedVariable
                 World world = World.DefaultGameObjectInjectionWorld;
 
                 /*SystemHandle handle = world.GetExistingSystem<SpawnBallSystem>();

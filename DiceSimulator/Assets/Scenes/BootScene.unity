@@ -185,31 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}
-  detectedFaces:
-  - value: 1
-    localNormal: {x: -0.8506508, y: 0, z: 0.52573115}
-  - value: 2
-    localNormal: {x: -0.8506508, y: 0.00000011964335, z: -0.5257311}
-  - value: 3
-    localNormal: {x: 0.8506508, y: 0, z: -0.52573115}
-  - value: 4
-    localNormal: {x: 0.8506508, y: 0.00000011964335, z: 0.5257311}
-  - value: 5
-    localNormal: {x: 0.5257311, y: 0.8506508, z: -0.00000011964335}
-  - value: 6
-    localNormal: {x: -0.5257311, y: 0.8506508, z: 0.00000011964335}
-  - value: 7
-    localNormal: {x: -0.5257311, y: -0.8506508, z: -0.00000011964335}
-  - value: 8
-    localNormal: {x: 0.5257311, y: -0.8506508, z: 0.00000011964335}
-  - value: 9
-    localNormal: {x: 0, y: -0.52573115, z: -0.8506508}
-  - value: 10
-    localNormal: {x: 0.00000011964335, y: 0.5257311, z: -0.8506508}
-  - value: 11
-    localNormal: {x: -0.00000011964335, y: 0.5257311, z: 0.8506508}
-  - value: 12
-    localNormal: {x: 0.00000011964335, y: -0.5257311, z: 0.8506508}
+  _diceFacePrefab: {fileID: 0}
+  _distance: 0
+  DetectedFaces: []
 --- !u!1 &1503564972
 GameObject:
   m_ObjectHideFlags: 0

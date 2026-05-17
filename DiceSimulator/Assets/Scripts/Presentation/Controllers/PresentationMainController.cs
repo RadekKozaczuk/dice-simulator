@@ -66,7 +66,6 @@ namespace Presentation.Controllers
         [React]
         static void OnDiceSpawned(Vector3 position, Quaternion rotation)
         {
-            Debug.LogError("Dice spawned");
             _dice = Object.Instantiate(_diceConfig.Dice, position, rotation);
             _dice.gameObject.name = "Dice";
         }
@@ -74,7 +73,7 @@ namespace Presentation.Controllers
         [React]
         static void OnDiceStopped()
         {
-            Debug.LogError("Dice stopped");
+            Debug.LogError("DiceStopped");
         }
 
         [React]

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970649104543885981}
+  - component: {fileID: 7963915879005725927}
   - component: {fileID: 7287104067950938110}
   - component: {fileID: 917518243444567886}
   - component: {fileID: 2425002201381569895}
   m_Layer: 5
-  m_Name: DiceFaceText
+  m_Name: DiceFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,6 +40,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7963915879005725927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471805443261672374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3159b61f8f3f4855940ef69d5a3dc2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Label: {fileID: 7107212608684013824}
 --- !u!223 &7287104067950938110
 Canvas:
   m_ObjectHideFlags: 0
