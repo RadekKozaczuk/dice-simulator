@@ -18,7 +18,7 @@ namespace Presentation.Services
 
         static InputAction _movementAction;
         static InputAction _mousePositionAction;
-        static InputAction _shotAction;
+        static InputAction _rollAction;
 
         internal static void Initialize()
         {
@@ -48,8 +48,13 @@ namespace Presentation.Services
 
             _mousePositionAction = gameplay.FindAction(MousePosition);
 
-            _shotAction = gameplay.FindAction(Shot);
-            _shotAction.performed += static _ => GameLogicViewModel.MouseClickPosition = _mousePositionAction.ReadValue<Vector2>();
+            _rollAction = gameplay.FindAction(Shot);
+            _rollAction.performed += static _ =>
+            {
+                Vector2 qwe = _mousePositionAction.ReadValue<Vector2>();
+                GameLogicViewModel.MouseClickPosition = qwe;
+                Debug.LogError($"GameLogicViewModel.MouseClickPosition: {qwe}");
+            };
 
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);

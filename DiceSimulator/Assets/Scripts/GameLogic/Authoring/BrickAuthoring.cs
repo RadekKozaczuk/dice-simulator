@@ -20,7 +20,7 @@ namespace GameLogic.Authoring
         {
             public override void Bake(BrickAuthoring authoring)
             {
-                Entity entity = GetEntity(TransformUsageFlags.NonUniformScale);
+                Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 BrickType type = authoring._type;
                 int id = IdCounterService.NextId(type);
                 Transform transform = authoring.GetComponent<Transform>();

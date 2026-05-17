@@ -8,11 +8,13 @@ namespace GameLogic.Components
     {
         internal readonly int Id;
         internal readonly BrickType Type;
+
         /// <summary>
         /// Amount of hits after which the brick is destroyed.
         /// <see cref="int.MinValue"/> means that brick is undestructable.
         /// </summary>
         internal readonly float Rotation;
+
         internal readonly float Scale;
         internal int Hp;
 
