@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 720508758}
   - component: {fileID: 720508759}
+  - component: {fileID: 720508760}
   m_Layer: 0
   m_Name: Boot
   m_TagString: Untagged
@@ -171,6 +172,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc7cf19083ebda941bc3c61cf3effc41, type: 2}
   - {fileID: 11400000, guid: efd92ca955a614e4f8166c3b0358a058, type: 2}
   - {fileID: 11400000, guid: de1a8862611c73d42a366447d161f94b, type: 2}
+--- !u!114 &720508760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720508757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c729c815d5224766b6f226c7b7404894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}
+  detectedFaces:
+  - value: 1
+    localNormal: {x: -0.8506508, y: 0, z: 0.52573115}
+  - value: 2
+    localNormal: {x: -0.8506508, y: 0.00000011964335, z: -0.5257311}
+  - value: 3
+    localNormal: {x: 0.8506508, y: 0, z: -0.52573115}
+  - value: 4
+    localNormal: {x: 0.8506508, y: 0.00000011964335, z: 0.5257311}
+  - value: 5
+    localNormal: {x: 0.5257311, y: 0.8506508, z: -0.00000011964335}
+  - value: 6
+    localNormal: {x: -0.5257311, y: 0.8506508, z: 0.00000011964335}
+  - value: 7
+    localNormal: {x: -0.5257311, y: -0.8506508, z: -0.00000011964335}
+  - value: 8
+    localNormal: {x: 0.5257311, y: -0.8506508, z: 0.00000011964335}
+  - value: 9
+    localNormal: {x: 0, y: -0.52573115, z: -0.8506508}
+  - value: 10
+    localNormal: {x: 0.00000011964335, y: 0.5257311, z: -0.8506508}
+  - value: 11
+    localNormal: {x: -0.00000011964335, y: 0.5257311, z: 0.8506508}
+  - value: 12
+    localNormal: {x: 0.00000011964335, y: -0.5257311, z: 0.8506508}
 --- !u!1 &1503564972
 GameObject:
   m_ObjectHideFlags: 0

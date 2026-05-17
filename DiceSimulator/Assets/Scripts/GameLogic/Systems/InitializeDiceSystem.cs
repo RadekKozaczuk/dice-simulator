@@ -16,11 +16,11 @@ namespace GameLogic.Systems
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     [SuppressMessage("ReSharper", "MemberHidesInterfaceMemberWithDefaultImplementation")]
     [SuppressMessage("ReSharper", "UnusedMember.Local")]
-    partial struct SpawnDiceSystem : ISystem
+    partial struct InitializeDiceSystem : ISystem
     {
         void OnCreate(ref SystemState state) => state.RequireForUpdate<NewlySpawnedTag>();
 
-        void OnUpdate(ref SystemState state)
+        readonly void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
