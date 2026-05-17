@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,11 +14,6 @@ namespace Presentation.Views
 
         [SerializeField]
         DiceFaceView _diceFacePrefab;
-
-        [SerializeField]
-        float _distance;
-
-        float _calculatedDistance;
 
         [Serializable]
         public struct DiceFace
@@ -48,6 +44,8 @@ namespace Presentation.Views
 
             var uniqueNormals = new List<Vector3>();
 
+            List<float> distances = new();
+
             // iterate over every triangle
             for (int i = 0; i < triangles.Length; i += 3)
             {
@@ -62,8 +60,13 @@ namespace Presentation.Views
 
                 // calculate centroid
                 Vector3 centroid = (v1 + v2 + v3) / 3f;
-                _calculatedDistance = Vector3.Distance(centroid, Vector3.zero);
-                Debug.LogError(_calculatedDistance);
+                float distance = Vector3.Distance(centroid, Vector3.zero);
+
+                if (!distances.Contains(distance))
+                {
+                    distances.Add(distance);
+                    Debug.LogError(distance);
+                }
 
                 bool isNewFace = true;
                 foreach (Vector3 existingNormal in uniqueNormals)
@@ -91,9 +94,12 @@ namespace Presentation.Views
                 DetectedFaces.Add(newFace);
             }
 
+            // choose minimum
+            float smallest = distances.Min();
+
             foreach (DiceFace face in DetectedFaces)
             {
-                Vector3 newPosition = Vector3.zero + face.Normal * _calculatedDistance;
+                Vector3 newPosition = Vector3.zero + face.Normal * smallest;
                 DiceFaceView diceFace = Instantiate(_diceFacePrefab, newPosition, face.Quaternion, dice.transform);
 
                 string number = face.Number.ToString();

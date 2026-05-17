@@ -186,7 +186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}
   _diceFacePrefab: {fileID: 0}
-  _distance: 0
   DetectedFaces: []
 --- !u!1 &1503564972
 GameObject:
