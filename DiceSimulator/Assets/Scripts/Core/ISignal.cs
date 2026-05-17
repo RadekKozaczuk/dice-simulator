@@ -26,6 +26,8 @@ namespace Core
         /// </summary>
         void BrickSpawned(int id, BrickType brickType, Vector2 position, float rotation, float scale, int hp);
 
+        void DiceSpawned(Vector3 position, Quaternion rotation);
+
         /// <summary>
         /// Sent after the last ball leaves the map.
         /// </summary>

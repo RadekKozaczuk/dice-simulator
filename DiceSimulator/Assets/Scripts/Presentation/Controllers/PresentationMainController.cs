@@ -28,7 +28,7 @@ namespace Presentation.Controllers
         static bool _coreSceneLoaded;
 
         static readonly BallConfig _ballConfig;
-        static readonly BrickConfig _brickConfig;
+        static readonly DiceConfig _diceConfig;
         static readonly UIConfig _uiConfig;
 
         static int _canvasWidth;
@@ -107,9 +107,9 @@ namespace Presentation.Controllers
             {
                 case BrickType.Basic:
                 {
-                    BrickView brick = Object.Instantiate(_brickConfig.Brick, pos, rot, holder.BricksContainer);
+                    DiceView brick = Object.Instantiate(_diceConfig.Dice, pos, rot, holder.BricksContainer);
                     brick.transform.localScale = new Vector3(scale, 1, 1);
-                    PresentationData.Bricks.Add(id, brick);
+                    //PresentationData.Bricks.Add(id, brick);
                     break;
                 }
                 case BrickType.Bomb:
@@ -144,6 +144,17 @@ namespace Presentation.Controllers
         static void OnGameEnded() => PopupService.ShowPopup(PopupType.LeaderBoard);
 
         [React]
-        static void OnScoreChanged() => UISceneReferenceHolder.Score.SetValue(CoreData.Score);
+        static void OnScoreChanged()
+        {
+            //UISceneReferenceHolder.Score.SetValue(CoreData.Score);
+        }
+
+        [React]
+        static void OnDiceSpawned(Vector3 position, Quaternion rotation)
+        {
+            Debug.LogError("Dice spawned");
+            DiceView view = Object.Instantiate(_diceConfig.Dice, position, rotation);
+            view.gameObject.name = "Dice";
+        }
     }
 }

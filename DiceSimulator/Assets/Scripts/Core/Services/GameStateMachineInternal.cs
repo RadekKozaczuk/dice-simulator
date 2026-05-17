@@ -65,8 +65,8 @@ namespace Core.Services
                 for (; i < a.Length; i++)
                     arr[i] = a[i];
 
-                for (int j = 0; j < b.Length; j++)
-                    arr[i++] = b[j];
+                foreach (int t in b)
+                    arr[i++] = t;
 
                 return arr;
             }

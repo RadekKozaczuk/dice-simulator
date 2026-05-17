@@ -33,7 +33,6 @@ namespace GameLogic.ViewModels
         public static void GameplayOnEntry()
         {
             CoreData.Score = 0;
-            GameLogicData.BallsLeft = _config.BallPerGameCount;
         }
 
         public static void GameplayOnExit() { }

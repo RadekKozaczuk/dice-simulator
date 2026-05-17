@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfa0ff42e284d8e80f9216bb92a49b4, type: 3}
   m_Name: BrickConfig
   m_EditorClassIdentifier: 
-  Portal: {fileID: 1011677025663605413, guid: 6836a85774352544da14cf62426450af, type: 3}
-  Brick: {fileID: 4810963350180391102, guid: 524a4514203108b4c8429006583ec2f7, type: 3}
+  Dice: {fileID: 1298554220427969716, guid: f4e9687ae13d7424e8d3a874e54b1cd8, type: 3}

@@ -17,6 +17,7 @@ namespace Presentation.ViewModels
     {
         static readonly BallConfig _ballConfig;
         static readonly UIConfig _uiConfig;
+        static readonly DiceConfig _diceConfig;
 
         [Inject]
         static readonly PresentationMainController _presentationMainController;

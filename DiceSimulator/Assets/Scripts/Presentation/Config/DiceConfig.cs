@@ -7,10 +7,10 @@ namespace Presentation.Config
     /// <summary>
     /// Bricks are static elements of the map.
     /// </summary>
-    [CreateAssetMenu(fileName = "PropConfig", menuName = "Config/Presentation/PropConfig")]
-    class BrickConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "DiceConfig", menuName = "Config/Presentation/DiceConfig")]
+    class DiceConfig : ScriptableObject
     {
         [SerializeField]
-        internal BrickView Brick;
+        internal DiceView Dice;
     }
 }

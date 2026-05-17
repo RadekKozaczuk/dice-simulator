@@ -13,7 +13,7 @@ namespace Presentation.Popups.Views
 
         internal virtual void Initialize()
         {
-            var rect = GetComponent<RectTransform>();
+            RectTransform rect = GetComponent<RectTransform>();
             SetPopupHeightSize(rect);
         }
 

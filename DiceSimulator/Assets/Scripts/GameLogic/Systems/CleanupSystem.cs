@@ -12,7 +12,6 @@ namespace GameLogic.Systems
     /// Destruction in ECS is for some reason always postponed by one frame.
     /// </summary>
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
-    [UpdateAfter(typeof(UpdateCollisionSystem))]
     [SuppressMessage("ReSharper", "MemberHidesInterfaceMemberWithDefaultImplementation")]
     [SuppressMessage("ReSharper", "UnusedMember.Local")]
     partial struct CleanupSystem : ISystem
@@ -30,15 +29,6 @@ namespace GameLogic.Systems
                 {
                     int id = state.EntityManager.GetComponentData<DiceComponent>(entity).Id;
                     Signals.BallDestroyed(id);
-
-                    GameLogicData.BallDtos.Remove(id);
-                    if (GameLogicData.BallDtos.Count == 0 && GameLogicData.BallsLeft == 0)
-                        Signals.GameEnded();
-                }
-                else if (state.EntityManager.HasComponent<BrickComponent>(entity))
-                {
-                    int id = state.EntityManager.GetComponentData<BrickComponent>(entity).Id;
-                    Signals.BrickDestroyed(id);
                 }
 
                 ecb.DestroyEntity(entity);

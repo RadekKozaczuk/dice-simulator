@@ -5,6 +5,7 @@
 namespace Core.Services
 {
     public delegate void ChangeState(GameState requested, int[]? additionalScenesToLoad = null, int[]? additionalScenesToUnload = null);
+
     public delegate GameState GetCurrentGameState();
 
     public static class GameStateService

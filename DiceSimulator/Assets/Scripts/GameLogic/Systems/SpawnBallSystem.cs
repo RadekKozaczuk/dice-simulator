@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using GameLogic.Components;
 using GameLogic.Config;
-using GameLogic.Dtos;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -66,8 +65,6 @@ namespace GameLogic.Systems
                 ecb.SetComponent(ball, new DiceComponent(id));
                 float3 velocity = new float3(direction.x, 0, direction.y) * 100 * _config.BallSpeed * deltaTime;
                 ecb.SetComponent(ball, new PhysicsVelocity { Linear = velocity });
-
-                GameLogicData.BallDtos.Add(id, new BallDto(id, position.xz));
             }
 
             ecb.Playback(state.EntityManager);

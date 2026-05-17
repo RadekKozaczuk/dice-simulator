@@ -11,8 +11,9 @@ namespace GameLogic.Authoring
         {
             public override void Bake(DiceAuthoring authoring)
             {
-                Entity entity = GetEntity(TransformUsageFlags.None);
+                Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent<DiceComponent>(entity);
+                AddComponent<NewlySpawnedTag>(entity);
             }
         }
     }
