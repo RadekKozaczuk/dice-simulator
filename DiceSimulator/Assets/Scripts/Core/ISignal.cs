@@ -6,15 +6,9 @@ namespace Core
 {
     public interface ISignal
     {
-        void BallDestroyed(int id);
+        void DicePositionChanged(Vector3 position, Quaternion rotation);
 
-        void BallPositionChanged(int id, Vector2 position);
-
-        void BallSpawned(int id, Vector2 position);
-
-        void BallsLeftChanged(int currentCount);
-
-        void BrickDestroyed(int id);
+        void DiceStopped();
 
         /// <summary>
         /// Hp after the hit.

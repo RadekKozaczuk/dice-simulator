@@ -92,9 +92,9 @@ MonoBehaviour:
   m_ForceUnique: 0
   m_Material:
     m_SupportsTemplate: 1
-    m_Template: {fileID: 11400000, guid: 1aa9adf9ac97b094db9bd38c39073f30, type: 2}
+    m_Template: {fileID: 0}
     m_CollisionResponse:
-      m_Override: 1
+      m_Override: 0
       m_Value: 0
     m_Friction:
       m_Override: 0
@@ -104,10 +104,10 @@ MonoBehaviour:
     m_Restitution:
       m_Override: 0
       m_Value:
-        Value: 1
+        Value: 0.75
         CombineMode: 2
     m_BelongsToCategories:
-      m_Override: 1
+      m_Override: 0
       m_Value:
         Category00: 1
         Category01: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
         Category30: 0
         Category31: 0
     m_CollidesWithCategories:
-      m_Override: 1
+      m_Override: 0
       m_Value:
         Category00: 1
         Category01: 1
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_MotionType: 0
   m_Smoothing: 0
   m_Mass: 1
-  m_LinearDamping: 0.01
-  m_AngularDamping: 0.05
+  m_LinearDamping: 0.05
+  m_AngularDamping: 1
   m_InitialLinearVelocity:
     x: 0
     y: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
     x: 0
     y: 0
     z: 0
-  m_GravityFactor: 1
+  m_GravityFactor: 4
   m_OverrideDefaultMassDistribution: 0
   m_CenterOfMass:
     x: 0

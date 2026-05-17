@@ -54,93 +54,6 @@ namespace Presentation.Controllers
         }
 
         [React]
-        static void OnBallDestroyed(int id)
-        {
-            Object.Destroy(PresentationData.Balls[id].gameObject);
-            PresentationData.Balls.Remove(id);
-        }
-
-        [React]
-        static void OnBallPositionChanged(int id, Vector2 position) =>
-            PresentationData.Balls[id].transform.position = new Vector3(position.x, 0, position.y);
-
-        [React]
-        static void OnBallsLeftChanged(int currentCount) =>
-            UISceneReferenceHolder.BallsLeft.SetValue(currentCount);
-
-        [React]
-        static void OnBallSpawned(int id, Vector2 position)
-        {
-            LevelSceneReferenceHolder holder = PresentationData.SceneReferenceHolders[Level.LevelScene];
-            var pos = new Vector3(position.x, 0, position.y);
-            DiceView dice = Object.Instantiate(_ballConfig.Prefab, pos, Quaternion.identity, holder.BallsContainer);
-            PresentationData.Balls.Add(id, dice);
-        }
-
-        [React]
-        static void OnBrickDestroyed(int id)
-        {
-            Object.Destroy(PresentationData.Bricks[id].gameObject);
-            PresentationData.Bricks.Remove(id);
-
-            Object.Destroy(PresentationData.HpLabels[id].gameObject);
-            PresentationData.HpLabels.Remove(id);
-        }
-
-        [React]
-        static void OnBrickHit(int id, int currentHp)
-        {
-            if (PresentationData.HpLabels.TryGetValue(id, out HpView hpLabel))
-                hpLabel.Hp = currentHp;
-
-            SoundService.Play(Sound.ClickHit);
-        }
-
-        [React]
-        static void OnBrickSpawned(int id, BrickType brickType, Vector2 position, float rotation, float scale, int hp)
-        {
-            LevelSceneReferenceHolder holder = PresentationData.SceneReferenceHolders[Level.LevelScene];
-            var pos = new Vector3(position.x, 0, position.y);
-            var rot = Quaternion.Euler(0, rotation, 0);
-
-            switch (brickType)
-            {
-                case BrickType.Basic:
-                {
-                    DiceView brick = Object.Instantiate(_diceConfig.Dice, pos, rot, holder.BricksContainer);
-                    brick.transform.localScale = new Vector3(scale, 1, 1);
-                    //PresentationData.Bricks.Add(id, brick);
-                    break;
-                }
-                case BrickType.Bomb:
-                    throw new NotImplementedException("Bomb will be added in a DLC");
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(brickType), brickType, null);
-            }
-
-            // undestructable bricks should not have the hp label
-            if (hp == int.MinValue)
-                return;
-
-            // spawn hp view - but only for element with non-zero hp
-            var canPos = new Vector3(
-                position.x + Core.Constants.MapSizeX / 2,
-                position.y + Core.Constants.MapSizeY / 2,
-                0);
-
-            Camera cam = PresentationSceneReferenceHolder.GameplayCamera;
-            int height = cam.pixelHeight;
-            int width = cam.pixelWidth;
-            canPos.x = canPos.x * width / Core.Constants.MapSizeX;
-            canPos.y = canPos.y * height / Core.Constants.MapSizeY;
-
-            Transform parent = UISceneReferenceHolder.HpLabelContainer.transform;
-            HpView view = Object.Instantiate(_uiConfig.HpLabel, canPos, Quaternion.identity, parent);
-            view.Hp = hp;
-            PresentationData.HpLabels.Add(id, view);
-        }
-
-        [React]
         static void OnGameEnded() => PopupService.ShowPopup(PopupType.LeaderBoard);
 
         [React]
@@ -155,6 +68,12 @@ namespace Presentation.Controllers
             Debug.LogError("Dice spawned");
             DiceView view = Object.Instantiate(_diceConfig.Dice, position, rotation);
             view.gameObject.name = "Dice";
+        }
+
+        [React]
+        static void OnDiceStopped()
+        {
+            Debug.LogError("Dice stopped");
         }
     }
 }

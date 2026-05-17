@@ -27,7 +27,6 @@ namespace GameLogic.Systems
 
         void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SpawnPointTag>();
             state.RequireForUpdate<PrefabsComponent>();
         }
 
@@ -35,8 +34,7 @@ namespace GameLogic.Systems
 
         internal void SpawnBalls(ref SystemState state, float2 mousePosition)
         {
-            Entity singleton = SystemAPI.GetSingletonEntity<SpawnPointTag>();
-            RefRO<LocalTransform> spawn = SystemAPI.GetComponentRO<LocalTransform>(singleton);
+            /*RefRO<LocalTransform> spawn = SystemAPI.GetComponentRO<LocalTransform>(singleton);
 
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             PrefabsComponent prefabs = SystemAPI.GetSingleton<PrefabsComponent>();
@@ -68,7 +66,7 @@ namespace GameLogic.Systems
             }
 
             ecb.Playback(state.EntityManager);
-            ecb.Dispose();
+            ecb.Dispose();*/
         }
     }
 }
