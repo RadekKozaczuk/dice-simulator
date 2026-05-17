@@ -94,8 +94,8 @@ MonoBehaviour:
     m_SupportsTemplate: 1
     m_Template: {fileID: 11400000, guid: 1aa9adf9ac97b094db9bd38c39073f30, type: 2}
     m_CollisionResponse:
-      m_Override: 0
-      m_Value: 1
+      m_Override: 1
+      m_Value: 0
     m_Friction:
       m_Override: 0
       m_Value:
@@ -107,7 +107,7 @@ MonoBehaviour:
         Value: 1
         CombineMode: 2
     m_BelongsToCategories:
-      m_Override: 0
+      m_Override: 1
       m_Value:
         Category00: 1
         Category01: 0
@@ -142,11 +142,11 @@ MonoBehaviour:
         Category30: 0
         Category31: 0
     m_CollidesWithCategories:
-      m_Override: 0
+      m_Override: 1
       m_Value:
-        Category00: 0
+        Category00: 1
         Category01: 1
-        Category02: 1
+        Category02: 0
         Category03: 0
         Category04: 0
         Category05: 0
