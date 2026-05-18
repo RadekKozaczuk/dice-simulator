@@ -28,7 +28,9 @@ namespace Presentation.Services
             {
                 // if there is a popup - close it
                 // otherwise quit the game
-                if (PopupService.CurrentPopup == null)
+                if (PopupService.CurrentPopup)
+                    PopupService.CloseCurrentPopup();
+                else
                 {
                     GameLogicViewModel.QuitGame();
 
@@ -38,8 +40,6 @@ namespace Presentation.Services
                     Application.Quit();
 #endif
                 }
-                else
-                    PopupService.CloseCurrentPopup();
             };
 
             // Gameplay bindings
@@ -51,16 +51,16 @@ namespace Presentation.Services
             _rollAction = gameplay.FindAction(Shot);
             _rollAction.performed += static _ =>
             {
-                Vector2 qwe = _mousePositionAction.ReadValue<Vector2>();
-                GameLogicViewModel.MouseClickPosition = qwe;
-                Debug.LogError($"GameLogicViewModel.MouseClickPosition: {qwe}");
+                Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
+                GameLogicViewModel.MouseClickPosition = mousePosition;
+                Debug.LogError($"GameLogicViewModel.MouseClickPosition: {mousePosition}");
             };
 
             _rollAction.canceled += static _ =>
             {
-                Vector2 qwe = _mousePositionAction.ReadValue<Vector2>();
-                GameLogicViewModel.MouseClickPosition = qwe;
-                Debug.LogError($"Roll released: {qwe}");
+                Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
+                GameLogicViewModel.MouseClickPosition = mousePosition;
+                Debug.LogError($"Roll released: {mousePosition}");
                 GameLogicViewModel.StartRoll();
             };
 

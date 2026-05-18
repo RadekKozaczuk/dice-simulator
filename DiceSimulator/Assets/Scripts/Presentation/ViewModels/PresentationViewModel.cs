@@ -1,4 +1,3 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 using Core.DependencyInjector;
 using Core;
 using JetBrains.Annotations;
@@ -15,7 +14,7 @@ namespace Presentation.ViewModels
     public class PresentationViewModel
     {
         static readonly UIConfig _uiConfig;
-        static readonly DiceConfig _diceConfig;
+        static readonly PresentationConfig _presentationConfig;
 
         [Inject]
         static readonly PresentationMainController _presentationMainController;

@@ -8,7 +8,7 @@ namespace Core
     {
         void DicePositionChanged(Vector3 position, Quaternion rotation);
 
-        void DiceStopped();
+        void DiceStopped(int result, int total);
 
         void DiceSpawned(Vector3 position, Quaternion rotation);
     }

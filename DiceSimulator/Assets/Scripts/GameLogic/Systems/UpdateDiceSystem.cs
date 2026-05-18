@@ -16,6 +16,8 @@ namespace GameLogic.Systems
     {
         static readonly PlayerConfig _config;
 
+        int _total;
+
         void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceTag>();
 
         void OnUpdate(ref SystemState state)
@@ -32,7 +34,8 @@ namespace GameLogic.Systems
 
                 if (isStopped)
                 {
-                    Signals.DiceStopped();
+                    _total++;
+                    Signals.DiceStopped(1, _total);
 
                     // freeze further movement
                     ecb.RemoveComponent<PhysicsVelocity>(entity);

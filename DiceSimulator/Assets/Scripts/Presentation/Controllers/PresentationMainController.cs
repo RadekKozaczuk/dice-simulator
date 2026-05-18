@@ -21,9 +21,7 @@ namespace Presentation.Controllers
     [UsedImplicitly]
     class PresentationMainController : ICustomUpdate
     {
-        static bool _coreSceneLoaded;
-
-        static readonly DiceConfig _diceConfig;
+        static readonly PresentationConfig _presentationConfig;
         static readonly UIConfig _uiConfig;
 
         static int _canvasWidth;
@@ -34,28 +32,28 @@ namespace Presentation.Controllers
         [Preserve]
         PresentationMainController() { }
 
-        public void CustomUpdate()
-        {
-            //if (!_coreSceneLoaded)
-            //    return;
-        }
+        public void CustomUpdate() { }
 
         internal static void OnCoreSceneLoaded()
         {
             SoundService.Initialize();
             MusicService.Initialize();
-            _coreSceneLoaded = true;
         }
 
         [React]
         static void OnDiceSpawned(Vector3 position, Quaternion rotation)
         {
-            _dice = Object.Instantiate(_diceConfig.Dice, position, rotation);
+            _dice = Object.Instantiate(_presentationConfig.DicePrefab, position, rotation);
             _dice.gameObject.name = "Dice";
         }
 
         [React]
-        static void OnDiceStopped() => UISceneReferenceHolder.Panel.EnableRoll();
+        static void OnDiceStopped(int result, int total)
+        {
+            PanelView panel = UISceneReferenceHolder.Panel;
+            panel.EnableRoll();
+            panel.SetValues(result, total);
+        }
 
         [React]
         static void OnDicePositionChanged(Vector3 position, Quaternion rotation) =>

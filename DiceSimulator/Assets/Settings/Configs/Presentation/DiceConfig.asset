@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: OdinModuleConfig
+  m_Script: {fileID: 11500000, guid: cbfa0ff42e284d8e80f9216bb92a49b4, type: 3}
+  m_Name: DiceConfig
   m_EditorClassIdentifier: 
-  configurations:
-  - ID: Unity.Mathematics
-    ActivationSettings: 0
-  ModuleTogglingSettings: 1
-  ModuleUpdateSettings: 1
+  DicePrefab: {fileID: 1298554220427969716, guid: f4e9687ae13d7424e8d3a874e54b1cd8, type: 3}
+  GroundPrefab: {fileID: 2815226264647411421, guid: b14ceb2f3230ce343957bdca02644b01, type: 3}

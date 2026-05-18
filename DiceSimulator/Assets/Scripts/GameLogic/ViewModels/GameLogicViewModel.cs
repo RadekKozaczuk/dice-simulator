@@ -41,6 +41,22 @@ namespace GameLogic.ViewModels
 
         public static (int music, int sound) LoadVolumeSettings() => PersistentStorageService.LoadVolumeSettings();
 
+        /// <summary>
+        /// Dice will start to ascend and is ready to be casted.
+        /// </summary>
+        public static void DiceSelected()
+        {
+            
+        }
+
+        /// <summary>
+        /// Dice will start to move back to start position.
+        /// </summary>
+        public static void DiceUnselected()
+        {
+            
+        }
+        
         public static void StartRoll()
         {
             // randomize direction and strength

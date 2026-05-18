@@ -23,5 +23,10 @@ namespace GameLogic.Config
         [InfoBox("Height at which the dice is initially lift up when rolled by player.", InfoMessageType.None)]
         [SerializeField]
         internal float DiceHeight = 10;
+
+        [Range(0, 5)]
+        [InfoBox("How long it will take the dice to reach the maximum height after being lifted up manually by player.", InfoMessageType.None)]
+        [SerializeField]
+        internal float AscendingTime = 2;
     }
 }

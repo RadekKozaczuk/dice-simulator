@@ -245,6 +245,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_SphereRadius
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_Capsule.Height
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_Capsule.Radius
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_Cylinder.Height
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_Cylinder.Radius
+      value: 0.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_PrimitiveSize.y
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7369809480902424229, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
+      propertyPath: m_PrimitiveSize.z
+      value: 1.0000002
+      objectReference: {fileID: 0}
     - target: {fileID: 9139073706826768100, guid: fc5b7d7347324b145ba82949da29dab4, type: 3}
       propertyPath: m_LocalScale.y
       value: 30
