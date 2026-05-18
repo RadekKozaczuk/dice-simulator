@@ -7,16 +7,21 @@ namespace GameLogic.Config
     [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Config/GameLogic/PlayerConfig")]
     class PlayerConfig : ScriptableObject
     {
+        [InfoBox("Force at which the dice is thrown when using RollButton.", InfoMessageType.None)]
+        [Range(1, 50)]
+        [SerializeField]
+        internal int AutoRollStrength = 15;
+
+        [InfoBox("The higher the value the faster dice's physics gets disabled."
+            + " Used to prevent the dice from wiggling when on the ground."
+            + " Adjust accordingly. Too high values and the dice may stop preemptively, too low and it may never stop.", InfoMessageType.None)]
+        [Range(0, 1f)]
+        [SerializeField]
+        internal float DicePhysicsFreezeThreshold = 0.1f;
+
         [Range(1, 20)]
+        [InfoBox("Height at which the dice is initially lift up when rolled by player.", InfoMessageType.None)]
         [SerializeField]
-        internal int BallSpeed = 10;
-
-        [InfoBox("The amount of balls spawned on every shot.", InfoMessageType.None)]
-        [SerializeField]
-        internal int BallPerShotCount = 1;
-
-        [InfoBox("The amount of balls player has in each round.", InfoMessageType.None)]
-        [SerializeField]
-        internal int BallPerGameCount = 3;
+        internal float DiceHeight = 10;
     }
 }

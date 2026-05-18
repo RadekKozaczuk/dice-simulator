@@ -58,12 +58,6 @@ namespace Presentation.Controllers
         static void OnGameEnded() => PopupService.ShowPopup(PopupType.LeaderBoard);
 
         [React]
-        static void OnScoreChanged()
-        {
-            //UISceneReferenceHolder.Score.SetValue(CoreData.Score);
-        }
-
-        [React]
         static void OnDiceSpawned(Vector3 position, Quaternion rotation)
         {
             _dice = Object.Instantiate(_diceConfig.Dice, position, rotation);
@@ -71,15 +65,10 @@ namespace Presentation.Controllers
         }
 
         [React]
-        static void OnDiceStopped()
-        {
-            Debug.LogError("DiceStopped");
-        }
+        static void OnDiceStopped() => UISceneReferenceHolder.Panel.EnableRoll();
 
         [React]
-        static void OnDicePositionChanged(Vector3 position, Quaternion rotation)
-        {
+        static void OnDicePositionChanged(Vector3 position, Quaternion rotation) =>
             _dice.gameObject.transform.SetPositionAndRotation(position, rotation);
-        }
     }
 }

@@ -51,20 +51,15 @@ namespace Presentation.ViewModels
 
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
 
-            InfoView ballsLeft = UISceneReferenceHolder.BallsLeft;
+            PanelView ballsLeft = UISceneReferenceHolder.Panel;
             ballsLeft.gameObject.SetActive(true);
-            ballsLeft.Initialize("Balls Left: ");
-
-            InfoView score = UISceneReferenceHolder.Score;
-            score.gameObject.SetActive(true);
-            score.Initialize("Score: ");
+            ballsLeft.SetValues(0, 0);
         }
 
         public static void GameplayOnExit()
         {
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
-            UISceneReferenceHolder.BallsLeft.gameObject.SetActive(false);
-            UISceneReferenceHolder.Score.gameObject.SetActive(false);
+            UISceneReferenceHolder.Panel.gameObject.SetActive(false);
 
             PresentationData.Balls.Clear();
         }

@@ -45,7 +45,7 @@ namespace Presentation.Popups
             Object.Destroy(popupGo);
             Popups.RemoveAt(0);
 
-            if (_blockingPanel != null)
+            if (_blockingPanel)
                 if (Popups.Count > 0)
                     _blockingPanel.transform.SetSiblingIndex(Popups.Count - 1);
                 else
@@ -69,7 +69,7 @@ namespace Presentation.Popups
             Popups.Insert(0, popup);
 
             // blocking panel should be always second from bottom
-            if (_blockingPanel != null)
+            if (_blockingPanel)
                 _blockingPanel.transform.SetSiblingIndex(Popups.Count - 1);
         }
     }

@@ -16,11 +16,5 @@ namespace Core
         /// Sent after the last ball leaves the map.
         /// </summary>
         void GameEnded();
-
-        /// <summary>
-        /// Indicates that the score has changed.
-        /// Score can be read from <see cref="CoreData.Score"/>
-        /// </summary>
-        void ScoreChanged();
     }
 }

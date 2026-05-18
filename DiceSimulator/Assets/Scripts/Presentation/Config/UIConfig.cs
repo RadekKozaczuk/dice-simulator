@@ -12,9 +12,6 @@ namespace Presentation.Config
         internal InputActionAsset InputActionAsset;
 
         [SerializeField]
-        internal LeaderBoardElementView LeaderBoardElementView;
-
-        [SerializeField]
         internal HpView HpLabel;
     }
 }

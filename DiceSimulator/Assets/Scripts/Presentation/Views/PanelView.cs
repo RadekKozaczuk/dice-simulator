@@ -21,13 +21,19 @@ namespace Presentation.Views
             _roll.onClick.AddListener(() =>
             {
                 GameLogicViewModel.StartRoll();
-                _roll.enabled = false;
+                _roll.interactable = false;
             });
         }
 
-        internal void OnDiceStopped()
+        internal void SetValues(int result, int total)
         {
-            _roll.enabled = true;
+            _result.text = "Result: " + result;
+            _total.text = "Total " + total;
         }
+
+        /// <summary>
+        /// Make the Roll button interactable.
+        /// </summary>
+        internal void EnableRoll() => _roll.interactable = true;
     }
 }

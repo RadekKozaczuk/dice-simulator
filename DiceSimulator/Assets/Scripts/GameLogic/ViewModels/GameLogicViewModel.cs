@@ -1,8 +1,9 @@
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using Core;
 using GameLogic.Config;
 using GameLogic.Services;
+using GameLogic.Systems;
 using JetBrains.Annotations;
+using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -32,10 +33,7 @@ namespace GameLogic.ViewModels
 
         public static void MainMenuOnExit() { }
 
-        public static void GameplayOnEntry()
-        {
-            CoreData.Score = 0;
-        }
+        public static void GameplayOnEntry() { }
 
         public static void GameplayOnExit() { }
 
@@ -55,12 +53,13 @@ namespace GameLogic.ViewModels
 
         public static void StartRoll(Vector2 direction, float strength)
         {
-            
+            World world = World.DefaultGameObjectInjectionWorld;
+            SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();
+            ref SystemState state = ref world.Unmanaged.ResolveSystemStateRef(handle);
+            ref UpdateDiceSystem system = ref world.Unmanaged.GetUnsafeSystemRef<UpdateDiceSystem>(handle);
+            system.StartRoll(ref state, direction);
         }
 
-        /// <summary>
-        /// If the instance hosted a lobby, the lobby will be deleted.
-        /// </summary>
         public static void QuitGame() { }
     }
 }

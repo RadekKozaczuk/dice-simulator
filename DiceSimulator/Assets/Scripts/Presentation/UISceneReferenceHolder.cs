@@ -12,9 +12,7 @@ namespace Presentation
     {
         internal static Canvas Canvas;
         internal static Transform PopupContainer;
-        internal static Transform HpLabelContainer;
-        internal static InfoView BallsLeft;
-        internal static InfoView Score;
+        internal static PanelView Panel;
 
         [SerializeField]
         Canvas _canvas;
@@ -23,21 +21,13 @@ namespace Presentation
         Transform _popupContainer;
 
         [SerializeField]
-        Transform _hpLabelContainer;
-
-        [SerializeField]
-        InfoView _ballsLeft;
-
-        [SerializeField]
-        InfoView _score;
+        PanelView _panel;
 
         void Awake()
         {
             Canvas = _canvas;
             PopupContainer = _popupContainer;
-            HpLabelContainer = _hpLabelContainer;
-            BallsLeft = _ballsLeft;
-            Score = _score;
+            Panel = _panel;
         }
     }
 }

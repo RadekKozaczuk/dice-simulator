@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a885d1275ee44196bcda23d387149305, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  BallSpeed: 12
+  AutoRollStrength: 20
+  DicePhysicsFreezeThreshold: 0.5
+  DiceHeight: 10
