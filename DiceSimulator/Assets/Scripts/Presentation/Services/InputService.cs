@@ -56,6 +56,14 @@ namespace Presentation.Services
                 Debug.LogError($"GameLogicViewModel.MouseClickPosition: {qwe}");
             };
 
+            _rollAction.canceled += static _ =>
+            {
+                Vector2 qwe = _mousePositionAction.ReadValue<Vector2>();
+                GameLogicViewModel.MouseClickPosition = qwe;
+                Debug.LogError($"Roll released: {qwe}");
+                GameLogicViewModel.StartRoll();
+            };
+
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);
             popup.FindAction(Quit).performed += static _ =>

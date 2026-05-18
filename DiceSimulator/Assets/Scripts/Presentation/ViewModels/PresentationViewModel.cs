@@ -67,7 +67,6 @@ namespace Presentation.ViewModels
             UISceneReferenceHolder.Score.gameObject.SetActive(false);
 
             PresentationData.Balls.Clear();
-            PresentationData.Bricks.Clear();
         }
 
         public static void SetMusicVolume(int music)

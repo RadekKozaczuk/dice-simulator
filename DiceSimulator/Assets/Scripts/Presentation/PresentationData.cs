@@ -11,7 +11,6 @@ namespace Presentation
     static class PresentationData
     {
         internal static readonly Dictionary<int, DiceView> Balls = new();
-        internal static readonly Dictionary<int, BrickView> Bricks = new();
 
         /// <summary>
         /// Not every brick will have a hp label.

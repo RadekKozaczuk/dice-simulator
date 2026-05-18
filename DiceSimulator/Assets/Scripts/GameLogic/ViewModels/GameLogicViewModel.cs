@@ -3,8 +3,10 @@ using Core;
 using GameLogic.Config;
 using GameLogic.Services;
 using JetBrains.Annotations;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Scripting;
+using Random = Unity.Mathematics.Random;
 
 namespace GameLogic.ViewModels
 {
@@ -40,6 +42,21 @@ namespace GameLogic.ViewModels
         public static void SaveVolumeSettings(int music, int sound) => PersistentStorageService.SaveVolumeSettings(music, sound);
 
         public static (int music, int sound) LoadVolumeSettings() => PersistentStorageService.LoadVolumeSettings();
+
+        public static void StartRoll()
+        {
+            // randomize direction and strength
+            var random = new Random(123);
+            float2 randomDirection = random.NextFloat2Direction();
+            float randomMagnitude = random.NextFloat();
+
+            StartRoll(randomDirection, randomMagnitude);
+        }
+
+        public static void StartRoll(Vector2 direction, float strength)
+        {
+            
+        }
 
         /// <summary>
         /// If the instance hosted a lobby, the lobby will be deleted.

@@ -202,7 +202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390699295987479842, guid: 3e8e2e5d1be09a74f994ce20fd5ca5ff, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -1479.2913
       objectReference: {fileID: 0}
     - target: {fileID: 4390699295987479842, guid: 3e8e2e5d1be09a74f994ce20fd5ca5ff, type: 3}
       propertyPath: m_SizeDelta.y
@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390699295987479842, guid: 3e8e2e5d1be09a74f994ce20fd5ca5ff, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 739.6456
       objectReference: {fileID: 0}
     - target: {fileID: 4390699295987479842, guid: 3e8e2e5d1be09a74f994ce20fd5ca5ff, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7620916832681462666, guid: 3e8e2e5d1be09a74f994ce20fd5ca5ff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -351,7 +351,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
