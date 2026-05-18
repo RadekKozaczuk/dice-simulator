@@ -6,7 +6,6 @@ using Presentation.Config;
 using Presentation.Controllers;
 using Presentation.Services;
 using Presentation.Views;
-using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Scripting;
 
@@ -45,9 +44,6 @@ namespace Presentation.ViewModels
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(true);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(false);
 
-            // load level data
-            GetLevelSceneReferenceHolders();
-
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
 
             PanelView ballsLeft = UISceneReferenceHolder.Panel;
@@ -59,8 +55,6 @@ namespace Presentation.ViewModels
         {
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
             UISceneReferenceHolder.Panel.gameObject.SetActive(false);
-
-            PresentationData.Balls.Clear();
         }
 
         public static void SetMusicVolume(int music)
@@ -76,14 +70,5 @@ namespace Presentation.ViewModels
         }
 
         public static void PlaySound(Sound sound) => SoundService.Play(sound);
-
-        static void GetLevelSceneReferenceHolders()
-        {
-            PresentationData.SceneReferenceHolders.Clear();
-            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("LevelSceneReferenceHolder");
-
-            foreach (GameObject go in gameObjects)
-                PresentationData.SceneReferenceHolders.Add((Level)go.scene.buildIndex, go.GetComponent<LevelSceneReferenceHolder>());
-        }
     }
 }

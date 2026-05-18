@@ -1,7 +1,5 @@
-﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Core;
-using GameLogic.Components;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
@@ -21,7 +19,7 @@ namespace GameLogic.Systems
 
             foreach ((RefRO<LocalTransform> transform, Entity entity)
                      in SystemAPI.Query<RefRO<LocalTransform>>()
-                                 .WithAll<DiceComponent, NewlySpawnedTag>()
+                                 .WithAll<DiceTag, NewlySpawnedTag>()
                                  .WithEntityAccess())
             {
 #if UNITY_EDITOR

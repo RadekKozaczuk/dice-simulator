@@ -1,9 +1,7 @@
 ﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using System.Collections.Generic;
 using Core;
 using Core.Services;
 using Presentation.ViewModels;
-using Presentation.Views;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,12 +25,6 @@ namespace Presentation.Popups.Views
         {
             PresentationViewModel.PlaySound(Sound.ClickHit);
             PopupService.CloseCurrentPopup();
-
-            // destroy hp labels
-            foreach (KeyValuePair<int, HpView> kvp in PresentationData.HpLabels)
-                Destroy(kvp.Value.gameObject);
-            PresentationData.HpLabels.Clear();
-
             GameStateService.ChangeState(GameState.MainMenu);
         }
     }

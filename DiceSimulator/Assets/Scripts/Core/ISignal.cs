@@ -11,10 +11,5 @@ namespace Core
         void DiceStopped();
 
         void DiceSpawned(Vector3 position, Quaternion rotation);
-
-        /// <summary>
-        /// Sent after the last ball leaves the map.
-        /// </summary>
-        void GameEnded();
     }
 }

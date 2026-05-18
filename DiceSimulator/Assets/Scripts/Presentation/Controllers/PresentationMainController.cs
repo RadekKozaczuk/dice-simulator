@@ -1,9 +1,6 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using System.Collections.Generic;
 using Core;
 using JetBrains.Annotations;
 using Presentation.Config;
-using Presentation.Popups;
 using Presentation.Services;
 using Presentation.Views;
 using UnityEngine;
@@ -49,9 +46,6 @@ namespace Presentation.Controllers
             MusicService.Initialize();
             _coreSceneLoaded = true;
         }
-
-        [React]
-        static void OnGameEnded() => PopupService.ShowPopup(PopupType.LeaderBoard);
 
         [React]
         static void OnDiceSpawned(Vector3 position, Quaternion rotation)

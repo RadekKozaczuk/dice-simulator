@@ -1,7 +1,5 @@
-﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Core;
-using GameLogic.Components;
 using GameLogic.Config;
 using Unity.Collections;
 using Unity.Entities;
@@ -18,7 +16,7 @@ namespace GameLogic.Systems
     {
         static readonly PlayerConfig _config;
 
-        void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceComponent>();
+        void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceTag>();
 
         void OnUpdate(ref SystemState state)
         {
@@ -26,7 +24,7 @@ namespace GameLogic.Systems
 
             foreach ((RefRO<LocalTransform> transform, RefRW<PhysicsVelocity> velocity, Entity entity)
                      in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>>()
-                                 .WithAll<DiceComponent>()
+                                 .WithAll<DiceTag>()
                                  .WithChangeFilter<LocalTransform>()
                                  .WithEntityAccess())
             {
@@ -54,7 +52,7 @@ namespace GameLogic.Systems
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-            Entity dice = SystemAPI.GetSingletonEntity<DiceComponent>();
+            Entity dice = SystemAPI.GetSingletonEntity<DiceTag>();
             RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
             transform.ValueRW.Position.y = _config.DiceHeight;
 

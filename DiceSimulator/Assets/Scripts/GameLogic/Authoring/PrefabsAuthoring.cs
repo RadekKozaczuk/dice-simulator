@@ -17,15 +17,8 @@ namespace GameLogic.Authoring
             public override void Bake(PrefabsAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.None);
-
-                AddComponent(entity, new PrefabsComponent
-                {
-                    Ball = GetEntity(authoring._ball, TransformUsageFlags.None)
-                });
+                AddComponent(entity, new PrefabsComponent());
             }
         }
-
-        [SerializeField]
-        GameObject _ball;
     }
 }

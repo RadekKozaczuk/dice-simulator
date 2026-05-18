@@ -3,8 +3,5 @@ using Unity.Entities;
 
 namespace GameLogic.Components
 {
-    struct PrefabsComponent : IComponentData
-    {
-        internal Entity Ball;
-    }
+    struct PrefabsComponent : IComponentData { }
 }
