@@ -15,7 +15,6 @@ namespace Presentation.ViewModels
     [UsedImplicitly]
     public class PresentationViewModel
     {
-        static readonly BallConfig _ballConfig;
         static readonly UIConfig _uiConfig;
         static readonly DiceConfig _diceConfig;
 

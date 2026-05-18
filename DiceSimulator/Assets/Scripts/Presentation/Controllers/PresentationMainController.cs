@@ -26,7 +26,6 @@ namespace Presentation.Controllers
     {
         static bool _coreSceneLoaded;
 
-        static readonly BallConfig _ballConfig;
         static readonly DiceConfig _diceConfig;
         static readonly UIConfig _uiConfig;
 
@@ -40,11 +39,8 @@ namespace Presentation.Controllers
 
         public void CustomUpdate()
         {
-            if (!_coreSceneLoaded)
-                return;
-
-            foreach (KeyValuePair<int, DiceView> kvp in PresentationData.Balls)
-                kvp.Value.CustomUpdate();
+            //if (!_coreSceneLoaded)
+            //    return;
         }
 
         internal static void OnCoreSceneLoaded()
