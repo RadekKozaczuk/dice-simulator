@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using Core.DependencyInjector;
 using Core;
+using GameLogic.ViewModels;
 using JetBrains.Annotations;
 using Presentation.Config;
 using Presentation.Controllers;
@@ -20,8 +20,12 @@ namespace Presentation.ViewModels
 
         static bool _isDragging;
         static Vector2 _lastMousePosition;
-        static List<Vector2> _velocityBuffer = new();
+        static readonly Vector2[] _velocityBuffer = new Vector2[30];
         static int _velocityIndex;
+
+        // The maximum possible magnitude of a Vector2(1000, 1000)
+        static readonly float _maxPossibleInputMag = Mathf.Sqrt(1000f * 1000f + 1000f * 1000f); // ~1414.21f
+        const float MaxTargetOutput = 50f;
 
         [Inject]
         static readonly PresentationMainController _presentationMainController;
@@ -75,7 +79,10 @@ namespace Presentation.ViewModels
 
         public static void PlaySound(Sound sound) => SoundService.Play(sound);
 
-        public static void SetMousePosition(Vector2 mousePosition) { }
+        public static void SetMousePosition(Vector2 mousePosition)
+        {
+            UpdateDrag(mousePosition);
+        }
 
         public static void TryGrabDice(Vector2 mousePosition)
         {
@@ -83,56 +90,61 @@ namespace Presentation.ViewModels
             Ray ray = PresentationSceneReferenceHolder.GameplayCamera.ScreenPointToRay(position);
             int mask = LayerMask.GetMask("Dice");
 
-            Vector3 missEndPoint = ray.origin + ray.direction * 1000f;
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, mask))
-            {
-                //Debug.DrawLine(ray.origin, missEndPoint, Color.green, 999f);
-                Debug.Log("Clicked: " + hit.collider.name);
+            if (Physics.Raycast(ray, out RaycastHit _, 1000f, mask))
                 BeginDrag(mousePosition);
-            }
-            /*else
-            {
-                // Fix: Draw the line along the ray's direction for its max distance (1000f)
-                Debug.DrawLine(ray.origin, missEndPoint, Color.red, 999f);
-            }*/
         }
 
-        public static void ReleaseDice() { }
+        public static void ReleaseDice()
+        {
+            if (_isDragging)
+                EndDrag();
+        }
 
         static void BeginDrag(Vector2 mousePosition)
         {
             _isDragging = true;
-
             _lastMousePosition = mousePosition;
 
-            for (int i = 0; i < _velocityBuffer.Count; i++)
+            for (int i = 0; i < _velocityBuffer.Length; i++)
                 _velocityBuffer[i] = Vector2.zero;
 
             _velocityIndex = 0;
         }
 
-        void UpdateDrag(Vector2 mousePosition)
+        static void UpdateDrag(Vector2 mousePosition)
         {
-            Vector2 currentMousePosition = mousePosition;
-
-            Vector2 delta = currentMousePosition - _lastMousePosition;
+            Vector2 delta = mousePosition - _lastMousePosition;
 
             // pixels per second
             Vector2 velocity = delta / Time.deltaTime;
 
             _velocityBuffer[_velocityIndex] = velocity;
-            _velocityIndex = (_velocityIndex + 1) % _velocityBuffer.Count;
+            _velocityIndex = (_velocityIndex + 1) % _velocityBuffer.Length;
 
-            _lastMousePosition = currentMousePosition;
+            _lastMousePosition = mousePosition;
         }
 
-        void EndDrag()
+        static void EndDrag()
         {
             _isDragging = false;
 
             Vector2 averageVelocity = GetAverageVelocity();
+            var normal = Vector2.Normalize(averageVelocity);
 
-            //RollDice(averageVelocity);
+            Debug.LogError($"averageVelocity: {averageVelocity}");
+
+            // 1. Get the actual length of the Vector2
+            float currentMagnitude = averageVelocity.magnitude;
+
+            // 2. Turn it into a 0.0 to 1.0 percentage based on the max diagonal limit
+            float percentage = Mathf.InverseLerp(0f, _maxPossibleInputMag, currentMagnitude);
+
+            // 3. Scale that percentage to your target range of 0 to 50
+            float mappedValue = Mathf.Lerp(0f, MaxTargetOutput, percentage);
+
+            Debug.LogError($"avg: {mappedValue}");
+
+            GameLogicViewModel.StartRoll(normal, mappedValue);
         }
 
         static Vector2 GetAverageVelocity()
@@ -142,7 +154,7 @@ namespace Presentation.ViewModels
             foreach (Vector2 v in _velocityBuffer)
                 sum += v;
 
-            return sum / _velocityBuffer.Count;
+            return sum / _velocityBuffer.Length;
         }
     }
 }

@@ -1,4 +1,3 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 using GameLogic.Config;
 using GameLogic.Services;
 using GameLogic.Systems;
@@ -31,25 +30,11 @@ namespace GameLogic.ViewModels
 
         public static void GameplayOnExit() { }
 
-        public static void SaveVolumeSettings(int music, int sound) => PersistentStorageService.SaveVolumeSettings(music, sound);
+        public static void SaveVolumeSettings(int music, int sound) =>
+            PersistentStorageService.SaveVolumeSettings(music, sound);
 
-        public static (int music, int sound) LoadVolumeSettings() => PersistentStorageService.LoadVolumeSettings();
-
-        /// <summary>
-        /// Dice will start to ascend and is ready to be casted.
-        /// </summary>
-        public static void DiceSelected()
-        {
-            Debug.LogError("DiceSelected");
-        }
-
-        /// <summary>
-        /// Dice will start to move back to start position.
-        /// </summary>
-        public static void DiceUnselected()
-        {
-            Debug.LogError("DiceUnselected");
-        }
+        public static (int music, int sound) LoadVolumeSettings() =>
+            PersistentStorageService.LoadVolumeSettings();
 
         /// <summary>
         /// Rolls the dice in a random direction with a predetermined (<see cref="PlayerConfig.AutoRollStrength"/>) strength.
@@ -58,10 +43,13 @@ namespace GameLogic.ViewModels
         {
             // randomize direction and strength
             float2 direction = _random.NextFloat2Direction();
-            StartRoll(direction, _config.AutoRollStrength);
+            StartRoll_Internal(direction, _config.AutoRollStrength);
         }
 
-        public static void StartRoll(float2 direction, float magnitude)
+        public static void StartRoll(Vector2 direction, float magnitude) =>
+            StartRoll_Internal(direction, magnitude);
+
+        static void StartRoll_Internal(float2 direction, float magnitude)
         {
             World world = World.DefaultGameObjectInjectionWorld;
             SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();
