@@ -20,7 +20,6 @@ namespace Presentation.Views
         {
             public int Number;
             public Vector3 Normal;
-            public Quaternion Quaternion;
         }
 
         public List<DiceFace> DetectedFaces = new();
@@ -28,7 +27,7 @@ namespace Presentation.Views
         // prevent duplicates
         const float AngleThreshold = 5f;
 
-        [Button("sdf")]
+        [Button("Generate Faces")]
         void GenerateFacesFromMesh()
         {
             DetectedFaces.Clear();
@@ -83,13 +82,10 @@ namespace Presentation.Views
 
             for (int i = 0; i < uniqueNormals.Count; i++)
             {
-                var localRotation = Quaternion.LookRotation(uniqueNormals[i], Vector3.up);
-
                 var newFace = new DiceFace
                 {
                     Number = i + 1, // default numbers from 1 to 12
-                    Normal = uniqueNormals[i],
-                    Quaternion = localRotation
+                    Normal = uniqueNormals[i]
                 };
                 DetectedFaces.Add(newFace);
             }
@@ -99,8 +95,9 @@ namespace Presentation.Views
 
             foreach (DiceFace face in DetectedFaces)
             {
-                Vector3 newPosition = Vector3.zero + face.Normal * smallest;
-                DiceFaceView diceFace = Instantiate(_diceFacePrefab, newPosition, face.Quaternion, dice.transform);
+                Vector3 position = Vector3.zero + face.Normal * smallest;
+                var rotation = Quaternion.LookRotation(face.Normal, Vector3.up);
+                DiceFaceView diceFace = Instantiate(_diceFacePrefab, position, rotation, dice.transform);
 
                 string number = face.Number.ToString();
                 diceFace.name = number;
