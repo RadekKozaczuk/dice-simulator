@@ -1,5 +1,4 @@
-﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -32,7 +31,7 @@ namespace Core.DependencyInjector
         static readonly Dictionary<Type, DynamicInstanceDto> _dynamicInstances = new();
 
         [UsedImplicitly]
-        public static void Inject(Func<Type, TScriptableObject?> findConfig, List<string> assemblyNames)
+        public static void Inject(Func<Type, TScriptableObject> findConfig, List<string> assemblyNames)
         {
             var assemblies = new Assembly[assemblyNames.Count];
             for (int i = 0; i < assemblyNames.Count; i++)
@@ -115,7 +114,7 @@ namespace Core.DependencyInjector
         /// Additionally, for static controllers (services) - register it in SignalService.
         /// </summary>
         // todo: could be merged with FirstPass
-        static void BindConfigsAndReactiveServices(Assembly[] assemblies, Func<Type, TScriptableObject?> findConfig)
+        static void BindConfigsAndReactiveServices(Assembly[] assemblies, Func<Type, TScriptableObject> findConfig)
         {
             foreach (Assembly asm in assemblies)
                 foreach (Type type in asm.GetTypes())
@@ -214,7 +213,7 @@ namespace Core.DependencyInjector
                 ConstructorInfo constructor = type.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance)[0];
 
                 object instance = constructor.Invoke(new object[] { });
-                StaticInstanceDto? staticInstance = _staticInstances.Find(si => si.Type == type);
+                StaticInstanceDto staticInstance = _staticInstances.Find(si => si.Type == type);
 
                 if (staticInstance != null)
                     throw new ArgumentException("Binding the same element twice is not allowed.");

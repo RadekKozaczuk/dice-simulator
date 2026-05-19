@@ -21,8 +21,8 @@ namespace Core
         /// Great example would be when we go from a level to a level and the level we are leaving is going to disappear.
         /// </summary>
         public GameStateMachine(
-            IReadOnlyList<(TState from, TState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)> transitions,
-            IReadOnlyList<(TState state, Action? onEntry, Action? onExit)> states)
+            IReadOnlyList<(TState from, TState to, Func<(int[], int[])> scenesToLoadUnload)> transitions,
+            IReadOnlyList<(TState state, Action onEntry, Action onExit)> states)
             : base(transitions, states) { }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Core
         /// <param name="additionalScenesToLoad">Additional scenes (not defined in the transition) to load during</param>
         /// <param name="additionalScenesToUnload"></param>
         /// <exception cref="Exception"></exception>
-        public async Awaitable ChangeState(TState state, int[]? additionalScenesToLoad = null, int[]? additionalScenesToUnload = null)
+        public async Awaitable ChangeState(TState state, int[] additionalScenesToLoad = null, int[] additionalScenesToUnload = null)
         {
             List<TransitionDto> transitions = _transitions.FindAll(t => Equal(t.From, _currentState) && Equal(t.To, state));
 
@@ -45,7 +45,7 @@ namespace Core
 #endif
 
             TransitionDto transition = transitions[0];
-            (int[]? scenesToLoad, int[]? scenesToUnload)? scenesToLoadUnload = transition.ScenesToLoadUnload?.Invoke();
+            (int[] scenesToLoad, int[] scenesToUnload)? scenesToLoadUnload = transition.ScenesToLoadUnload?.Invoke();
 
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
             if (scenesToLoadUnload != null)

@@ -1,4 +1,3 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 using System;
 using Core;
 using Core.Config;
@@ -36,7 +35,7 @@ namespace Presentation.Services
         /// <summary>
         /// If contains value then the audio clip corresponding the given <see cref="Music"/> value is being loaded or is already loaded.
         /// </summary>
-        static readonly AudioClip?[] _loadedMusic = new AudioClip? [Enum.GetNames(typeof(Music)).Length];
+        static readonly AudioClip[] _loadedMusic = new AudioClip [Enum.GetNames(typeof(Music)).Length];
 
         static readonly AsyncOperationHandle<AudioClip>[] _asyncOperationHandles = new AsyncOperationHandle<AudioClip> [Enum.GetNames(typeof(Music)).Length];
 

@@ -42,7 +42,7 @@ namespace Core.Services
 
             // AssetDatabase may not be read at the moment when InitializeOnLoad is called
             // but, it should on domain reload
-            SceneAsset? entryScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/BootScene.unity");
+            SceneAsset entryScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/Scenes/BootScene.unity");
             if (entryScene)
             {
                 EditorSceneManager.playModeStartScene = entryScene;

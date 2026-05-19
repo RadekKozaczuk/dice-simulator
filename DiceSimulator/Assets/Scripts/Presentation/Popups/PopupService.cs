@@ -16,11 +16,11 @@ namespace Presentation.Popups
     static class PopupService
     {
         // ReSharper disable once MemberCanBePrivate.Global
-        internal static AbstractPopup? CurrentPopup => Popups.Count > 0 ? Popups[0] : null;
+        internal static AbstractPopup CurrentPopup => Popups.Count > 0 ? Popups[0] : null;
 
         internal static readonly List<AbstractPopup> Popups = new();
 
-        static Image? _blockingPanel;
+        static Image _blockingPanel;
         static readonly PopupConfig _config;
         static readonly UIConfig _uiConfig;
 

@@ -21,10 +21,10 @@ namespace Core.Pooling
 
         // ReSharper disable once CollectionNeverUpdated.Local
         readonly Stack<T> _stack = new();
-        Action<T, bool>? _onReturn;
+        Action<T, bool> _onReturn;
         protected readonly object _locker = new();
 
-        protected AbstractMemoryPool(Action<T, bool>? onReturn, int maxSize = int.MaxValue)
+        protected AbstractMemoryPool(Action<T, bool> onReturn, int maxSize = int.MaxValue)
         {
             _onReturn = onReturn;
             MaxSize = maxSize;

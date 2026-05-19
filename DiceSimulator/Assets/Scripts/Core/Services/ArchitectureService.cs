@@ -36,7 +36,7 @@ namespace Core.Services
         /// Tapping delay is used only when the game is build on mobile devices and tells how fast player has to tap to open the debug console.
         /// </summary>
         public static void Initialize(int signalCount, string[] signalNames,
-            Queue<object>?[] signalQueues, List<ScriptableObject> configs)
+            Queue<object>[] signalQueues, List<ScriptableObject> configs)
         {
             List<string> assemblyNames = new()
             {
@@ -52,7 +52,7 @@ namespace Core.Services
 
             return;
 
-            ScriptableObject? FindConfig(Type type)
+            ScriptableObject FindConfig(Type type)
             {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
                 if (!_usedConfigs.Contains(type))

@@ -1,5 +1,4 @@
-﻿#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using Sirenix.OdinInspector.Editor;
@@ -13,7 +12,7 @@ namespace Core.CustomInspector
     [CustomPropertyDrawer(typeof(LabeledArrayAttribute))]
     public class LabeledArrayDrawer<T> : OdinAttributeDrawer<LabeledArrayAttribute, T>
     {
-        protected override void DrawPropertyLayout(GUIContent? label)
+        protected override void DrawPropertyLayout(GUIContent label)
         {
             int index = Property.Index;
             // If label is null, it means it's element of array, otherwise it's the property itself

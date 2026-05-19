@@ -8,10 +8,10 @@ namespace Core.Services
     {
         protected readonly struct StateDto
         {
-            public readonly Action? OnEntry;
-            public readonly Action? OnExit;
+            public readonly Action OnEntry;
+            public readonly Action OnExit;
 
-            internal StateDto(Action? onEntry, Action? onExit)
+            internal StateDto(Action onEntry, Action onExit)
             {
                 OnEntry = onEntry;
                 OnExit = onExit;
@@ -22,9 +22,9 @@ namespace Core.Services
         {
             public readonly TState From;
             public readonly TState To;
-            public readonly Func<(int[]?, int[]?)>? ScenesToLoadUnload;
+            public readonly Func<(int[], int[])> ScenesToLoadUnload;
 
-            internal TransitionDto(TState from, TState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)
+            internal TransitionDto(TState from, TState to, Func<(int[], int[])> scenesToLoadUnload)
             {
                 From = from;
                 To = to;
@@ -36,14 +36,14 @@ namespace Core.Services
         protected readonly Dictionary<TState, StateDto> _states = new();
         protected TState _currentState;
 
-        protected GameStateMachineInternal(IReadOnlyList<(TState from, TState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)> transitions,
-            IReadOnlyList<(TState state, Action? onEntry, Action? onExit)> states)
+        protected GameStateMachineInternal(IReadOnlyList<(TState from, TState to, Func<(int[], int[])> scenesToLoadUnload)> transitions,
+            IReadOnlyList<(TState state, Action onEntry, Action onExit)> states)
         {
             _transitions = new List<TransitionDto>(transitions.Count);
-            foreach ((TState from, TState to, Func<(int[]?, int[]?)>? scenesToLoadUnload) in transitions)
+            foreach ((TState from, TState to, Func<(int[], int[])> scenesToLoadUnload) in transitions)
                 _transitions.Add(new TransitionDto(from, to, scenesToLoadUnload));
 
-            foreach ((TState state, Action? onEntry, Action? onExit) state in states)
+            foreach ((TState state, Action onEntry, Action onExit) state in states)
                 _states.Add(state.state, new StateDto(state.onEntry, state.onExit));
         }
 
@@ -55,7 +55,7 @@ namespace Core.Services
         /// Returns a copy containing elements from both arrays.
         /// If a and b are both null or empty, returns empty array.
         /// </summary>
-        protected static int[] CombineArrays(int[]? a, int[]? b)
+        protected static int[] CombineArrays(int[] a, int[] b)
         {
             if (a is { Length: > 0 } && b is { Length: > 0 })
             {

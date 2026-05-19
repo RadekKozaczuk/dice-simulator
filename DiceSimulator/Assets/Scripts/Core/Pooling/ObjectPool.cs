@@ -4,12 +4,12 @@ namespace Core.Pooling
 {
     public class ObjectPool<T> : AbstractMemoryPool<T> where T : class, new()
     {
-        readonly Action<T>? _onGetMethod;
-        readonly Func<T>? _customAlloc;
+        readonly Action<T> _onGetMethod;
+        readonly Func<T> _customAlloc;
 
-        public ObjectPool(Func<T>? customAlloc = null,
-            Action<T>? onGetMethod = null,
-            Action<T, bool>? onReturnedMethod = null,
+        public ObjectPool(Func<T> customAlloc = null,
+            Action<T> onGetMethod = null,
+            Action<T, bool> onReturnedMethod = null,
             int maxSize = int.MaxValue) : base(onReturnedMethod, maxSize)
         {
             _onGetMethod = onGetMethod;

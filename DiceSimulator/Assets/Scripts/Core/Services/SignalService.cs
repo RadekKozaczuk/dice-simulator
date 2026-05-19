@@ -44,7 +44,7 @@ namespace Core.Services
         /// First method/signal has no parameters and is represented by a null. Second method/signal has two parameters
         /// (<see cref="int"/> and <see cref="string"/>) therefore is represented by two queues with respective value types.
         /// </summary>
-        static Queue<object>?[] _signalQueues;
+        static Queue<object>[] _signalQueues;
 
         /// <summary>
         /// Each time a new signal is called, its ID is added here.
@@ -53,7 +53,7 @@ namespace Core.Services
 
         static Type _reactAttribute;
 
-        public static void Initialize(int signalCount, string[] signalNames, Queue<object>?[] signalQueues, Type reactAttribute)
+        public static void Initialize(int signalCount, string[] signalNames, Queue<object>[] signalQueues, Type reactAttribute)
         {
             _signalCount = signalCount;
             _signalQueueLookup = new (int index, Type[] types)[signalCount];
