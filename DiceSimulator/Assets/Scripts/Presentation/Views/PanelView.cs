@@ -20,7 +20,7 @@ namespace Presentation.Views
         {
             _roll.onClick.AddListener(() =>
             {
-                GameLogicViewModel.StartRoll();
+                GameLogicViewModel.AutoRoll();
                 _roll.interactable = false;
             });
         }

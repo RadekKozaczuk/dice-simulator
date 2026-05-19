@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 720508758}
   - component: {fileID: 720508759}
-  - component: {fileID: 720508760}
   m_Layer: 0
   m_Name: Boot
   m_TagString: Untagged
@@ -168,25 +167,9 @@ MonoBehaviour:
   _configs:
   - {fileID: 11400000, guid: ed4f63deb804b084cbe9c0c752a43028, type: 2}
   - {fileID: 11400000, guid: 6fef378c839bc754fbfc38cb999836d7, type: 2}
-  - {fileID: 11400000, guid: dca00bbc2af4bf9419da03b844bc8d19, type: 2}
   - {fileID: 11400000, guid: dc7cf19083ebda941bc3c61cf3effc41, type: 2}
   - {fileID: 11400000, guid: efd92ca955a614e4f8166c3b0358a058, type: 2}
   - {fileID: 11400000, guid: de1a8862611c73d42a366447d161f94b, type: 2}
---- !u!114 &720508760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 720508757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c729c815d5224766b6f226c7b7404894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}
-  _diceFacePrefab: {fileID: 0}
-  DetectedFaces: []
 --- !u!1 &1503564972
 GameObject:
   m_ObjectHideFlags: 0

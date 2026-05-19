@@ -2,6 +2,7 @@
 using Core;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Physics;
 using Unity.Transforms;
 
 namespace GameLogic.Systems
@@ -26,7 +27,10 @@ namespace GameLogic.Systems
                 ecb.SetName(entity, "Dice");
 #endif
 
+                // initially the dice is frozen
+                ecb.RemoveComponent<PhysicsVelocity>(entity);
                 ecb.RemoveComponent<NewlySpawnedTag>(entity);
+
                 Signals.DiceSpawned(transform.ValueRO.Position, transform.ValueRO.Rotation);
             }
 

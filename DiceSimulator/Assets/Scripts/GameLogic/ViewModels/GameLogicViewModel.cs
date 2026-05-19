@@ -16,6 +16,8 @@ namespace GameLogic.ViewModels
     {
         static readonly PlayerConfig _config;
 
+        static Random _random = new(123);
+
         /// <summary>
         /// This value is a pixel coordinate where (0, 0) is the lower-left corner
         /// and, (1920, 1080) (depending on the resolution), is the upper right corner.
@@ -57,17 +59,16 @@ namespace GameLogic.ViewModels
             
         }
         
-        public static void StartRoll()
+        public static void AutoRoll()
         {
             // randomize direction and strength
-            var random = new Random(123);
-            float2 randomDirection = random.NextFloat2Direction();
-            float randomMagnitude = random.NextFloat();
+            float2 direction = _random.NextFloat2Direction();
+            float magnitude = _random.NextFloat();
 
-            StartRoll(randomDirection, randomMagnitude);
+            StartRoll(direction, magnitude);
         }
 
-        public static void StartRoll(Vector2 direction, float strength)
+        static void StartRoll(float2 direction, float magnitude)
         {
             World world = World.DefaultGameObjectInjectionWorld;
             SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();

@@ -57,7 +57,7 @@ namespace GameLogic.Systems
 
             Entity dice = SystemAPI.GetSingletonEntity<DiceTag>();
             RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
-            transform.ValueRW.Position.y = _config.DiceHeight;
+            transform.ValueRW.Position = new float3(0, _config.DiceHeight, 0);
 
             float3 linear = new float3(direction.x, 0, direction.y) * _config.AutoRollStrength;
             var velocity = new PhysicsVelocity { Linear = linear };

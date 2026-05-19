@@ -61,7 +61,7 @@ namespace Presentation.Services
                 Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
                 GameLogicViewModel.MouseClickPosition = mousePosition;
                 Debug.LogError($"Roll released: {mousePosition}");
-                GameLogicViewModel.StartRoll();
+                GameLogicViewModel.AutoRoll();
             };
 
             // Popups bindings
