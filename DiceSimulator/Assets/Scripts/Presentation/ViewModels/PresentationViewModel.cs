@@ -56,7 +56,7 @@ namespace Presentation.ViewModels
 
             PanelView ballsLeft = UISceneReferenceHolder.Panel;
             ballsLeft.gameObject.SetActive(true);
-            ballsLeft.SetValues(0, 0);
+            ballsLeft.RollEnded(0, 0);
         }
 
         public static void GameplayOnExit()
@@ -133,18 +133,15 @@ namespace Presentation.ViewModels
 
             Debug.LogError($"averageVelocity: {averageVelocity}");
 
-            // 1. Get the actual length of the Vector2
             float currentMagnitude = averageVelocity.magnitude;
-
-            // 2. Turn it into a 0.0 to 1.0 percentage based on the max diagonal limit
             float percentage = Mathf.InverseLerp(0f, _maxPossibleInputMag, currentMagnitude);
-
-            // 3. Scale that percentage to your target range of 0 to 50
             float mappedValue = Mathf.Lerp(0f, MaxTargetOutput, percentage);
 
             Debug.LogError($"avg: {mappedValue}");
 
             GameLogicViewModel.StartRoll(normal, mappedValue);
+            PanelView panel = UISceneReferenceHolder.Panel;
+            panel.RollInProgress();
         }
 
         static Vector2 GetAverageVelocity()

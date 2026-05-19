@@ -49,8 +49,7 @@ namespace Presentation.Controllers
         static void OnDiceStopped(int result, int total)
         {
             PanelView panel = UISceneReferenceHolder.Panel;
-            panel.EnableRoll();
-            panel.SetValues(result, total);
+            panel.RollEnded(result, total);
         }
 
         [React]

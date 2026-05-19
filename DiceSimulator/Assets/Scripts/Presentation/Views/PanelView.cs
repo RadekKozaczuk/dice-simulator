@@ -21,19 +21,27 @@ namespace Presentation.Views
             _roll.onClick.AddListener(() =>
             {
                 GameLogicViewModel.AutoRoll();
-                _roll.interactable = false;
+                RollInProgress();
             });
         }
 
-        internal void SetValues(int result, int total)
+        /// <summary>
+        /// Disables <see cref="_roll"/> button and changes the description of <see cref="_result"/>
+        /// </summary>
+        internal void RollInProgress()
         {
-            _result.text = "Result: " + result;
-            _total.text = "Total " + total;
+            _roll.interactable = false;
+            _result.text = "Result: ?";
         }
 
         /// <summary>
-        /// Make the Roll button interactable.
+        /// Make the Roll button interactable and prints the results.
         /// </summary>
-        internal void EnableRoll() => _roll.interactable = true;
+        internal void RollEnded(int result, int total)
+        {
+            _roll.interactable = true;
+            _result.text = "Result: " + result;
+            _total.text = "Total " + total;
+        }
     }
 }
