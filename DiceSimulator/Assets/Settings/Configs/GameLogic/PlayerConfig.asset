@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   AutoRollStrength: 20
-  DicePhysicsFreezeThreshold: 0.7
+  DicePhysicsFreezeThreshold: 0.65
   DiceHeight: 10
   AscendingTime: 2
