@@ -27,8 +27,6 @@ namespace GameLogic.ViewModels
         [Preserve]
         GameLogicViewModel() { }
 
-        public static void CustomUpdate() { }
-
         public static void BootingOnExit() => PersistentStorageService.Initialize();
 
         public static void MainMenuOnEntry() { }
@@ -46,19 +44,13 @@ namespace GameLogic.ViewModels
         /// <summary>
         /// Dice will start to ascend and is ready to be casted.
         /// </summary>
-        public static void DiceSelected()
-        {
-            
-        }
+        public static void DiceSelected() { }
 
         /// <summary>
         /// Dice will start to move back to start position.
         /// </summary>
-        public static void DiceUnselected()
-        {
-            
-        }
-        
+        public static void DiceUnselected() { }
+
         public static void AutoRoll()
         {
             // randomize direction and strength

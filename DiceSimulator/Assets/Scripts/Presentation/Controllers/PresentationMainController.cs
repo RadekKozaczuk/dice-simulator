@@ -21,7 +21,7 @@ namespace Presentation.Controllers
     /// being too long to comprehend. We also do not want to react on signals in viewmodels for the exact same reason.<br/>
     /// </summary>
     [UsedImplicitly]
-    class PresentationMainController : ICustomUpdate
+    class PresentationMainController
     {
         static readonly PresentationConfig _presentationConfig;
         static readonly UIConfig _uiConfig;
@@ -33,8 +33,6 @@ namespace Presentation.Controllers
 
         [Preserve]
         PresentationMainController() { }
-
-        public void CustomUpdate() { }
 
         internal static void OnCoreSceneLoaded()
         {

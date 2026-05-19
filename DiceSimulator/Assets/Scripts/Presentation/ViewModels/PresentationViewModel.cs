@@ -22,8 +22,6 @@ namespace Presentation.ViewModels
         [Preserve]
         PresentationViewModel() { }
 
-        public static void CustomUpdate() => _presentationMainController.CustomUpdate();
-
         public static void OnCoreSceneLoaded() => PresentationMainController.OnCoreSceneLoaded();
 
         public static void BootingOnExit() => InputService.Initialize();

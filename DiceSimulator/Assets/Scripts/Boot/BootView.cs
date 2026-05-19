@@ -83,11 +83,7 @@ namespace Boot
                 return;
 
             if (_isCoreSceneLoaded)
-            {
-                GameLogicViewModel.CustomUpdate();
-                PresentationViewModel.CustomUpdate();
                 ArchitectureService.ExecuteSentSignals();
-            }
         }
 
         static GameStateMachine<GameState> CreateStateMachine() =>
