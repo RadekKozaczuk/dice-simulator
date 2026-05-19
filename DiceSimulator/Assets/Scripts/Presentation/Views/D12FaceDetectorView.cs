@@ -1,7 +1,8 @@
 ﻿#if UNITY_EDITOR
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Dtos;
+using Core.Views;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -14,13 +15,6 @@ namespace Presentation.Views
 
         [SerializeField]
         DiceFaceView _diceFacePrefab;
-
-        [Serializable]
-        public struct DiceFace
-        {
-            public int Number;
-            public Vector3 Normal;
-        }
 
         public List<DiceFace> DetectedFaces = new();
 

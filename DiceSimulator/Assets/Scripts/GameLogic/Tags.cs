@@ -4,6 +4,4 @@ using Unity.Entities;
 namespace GameLogic
 {
     struct NewlySpawnedTag : IComponentData { }
-
-    struct DiceTag : IComponentData { }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Core;
+using GameLogic.Components;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
@@ -20,7 +21,7 @@ namespace GameLogic.Systems
 
             foreach ((RefRO<LocalTransform> transform, Entity entity)
                      in SystemAPI.Query<RefRO<LocalTransform>>()
-                                 .WithAll<DiceTag, NewlySpawnedTag>()
+                                 .WithAll<DiceComponent, NewlySpawnedTag>()
                                  .WithEntityAccess())
             {
 #if UNITY_EDITOR

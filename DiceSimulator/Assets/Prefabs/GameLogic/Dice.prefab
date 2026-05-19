@@ -46,6 +46,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eebe1e5b30415895463bec1fac7529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionMesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}
+  DetectedFaces:
+  - Number: 1
+    Normal: {x: -0.8506508, y: 0, z: 0.52573115}
+  - Number: 2
+    Normal: {x: -0.8506508, y: 0.00000011964335, z: -0.5257311}
+  - Number: 3
+    Normal: {x: 0.8506508, y: 0, z: -0.52573115}
+  - Number: 4
+    Normal: {x: 0.8506508, y: 0.00000011964335, z: 0.5257311}
+  - Number: 5
+    Normal: {x: 0.5257311, y: 0.8506508, z: -0.00000011964335}
+  - Number: 6
+    Normal: {x: -0.5257311, y: 0.8506508, z: 0.00000011964335}
+  - Number: 7
+    Normal: {x: -0.5257311, y: -0.8506508, z: -0.00000011964335}
+  - Number: 8
+    Normal: {x: 0.5257311, y: -0.8506508, z: 0.00000011964335}
+  - Number: 9
+    Normal: {x: 0, y: -0.52573115, z: -0.8506508}
+  - Number: 10
+    Normal: {x: 0.00000011964335, y: 0.5257311, z: -0.8506508}
+  - Number: 11
+    Normal: {x: -0.00000011964335, y: 0.5257311, z: 0.8506508}
+  - Number: 12
+    Normal: {x: 0.00000011964335, y: -0.5257311, z: 0.8506508}
 --- !u!114 &6601705157944450192
 MonoBehaviour:
   m_ObjectHideFlags: 0

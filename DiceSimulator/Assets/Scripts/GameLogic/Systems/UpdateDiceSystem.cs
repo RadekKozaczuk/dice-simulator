@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Core;
+using Core.Dtos;
+using GameLogic.Components;
 using GameLogic.Config;
 using Unity.Collections;
 using Unity.Entities;
@@ -18,15 +20,14 @@ namespace GameLogic.Systems
 
         int _total;
 
-        void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceTag>();
+        void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceComponent>();
 
         void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-            foreach ((RefRO<LocalTransform> transform, RefRW<PhysicsVelocity> velocity, Entity entity)
-                     in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>>()
-                                 .WithAll<DiceTag>()
+            foreach ((RefRO<LocalTransform> transform, RefRW<PhysicsVelocity> velocity, RefRO<DiceComponent> dice, Entity entity)
+                     in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>, RefRO<DiceComponent>>()
                                  .WithChangeFilter<LocalTransform>()
                                  .WithEntityAccess())
             {
@@ -34,8 +35,9 @@ namespace GameLogic.Systems
 
                 if (isStopped)
                 {
-                    _total++;
-                    Signals.DiceStopped(1, _total);
+                    int result = GetBestResult(in dice.ValueRO.Faces, in transform.ValueRO.Rotation);
+                    _total += result;
+                    Signals.DiceStopped(result, _total);
 
                     // freeze further movement
                     ecb.RemoveComponent<PhysicsVelocity>(entity);
@@ -55,7 +57,7 @@ namespace GameLogic.Systems
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-            Entity dice = SystemAPI.GetSingletonEntity<DiceTag>();
+            Entity dice = SystemAPI.GetSingletonEntity<DiceComponent>();
             RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
             transform.ValueRW.Position = new float3(0, _config.DiceHeight, 0);
 
@@ -65,6 +67,31 @@ namespace GameLogic.Systems
 
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
+        }
+
+        int GetBestResult(in FixedList512Bytes<DiceFace> faces, in quaternion rotation)
+        {
+            float bestDot = -1f;
+            int bestIndex = -1;
+
+            for (int i = 0; i < faces.Length; i++)
+            {
+                DiceFace face = faces[i];
+
+                // Convert local normal to world space
+                float3 worldNormal = math.rotate(rotation, face.Normal);
+
+                // Compare with world up
+                float dot = math.dot(worldNormal, math.up());
+
+                if (dot > bestDot)
+                {
+                    bestDot = dot;
+                    bestIndex = i;
+                }
+            }
+
+            return faces[bestIndex].Number;
         }
     }
 }
