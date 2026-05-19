@@ -8,6 +8,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 
 namespace Boot
 {
@@ -54,9 +55,9 @@ namespace Boot
         {
             SceneManager.sceneLoaded += static (scene, _) =>
             {
-                if (scene.buildIndex == (int)Level.CoreScene)
+                if (scene.buildIndex == (int)Core.Scene.CoreScene)
                 {
-                    SceneManager.UnloadSceneAsync((int)Level.BootScene);
+                    SceneManager.UnloadSceneAsync((int)Core.Scene.BootScene);
                     _isCoreSceneLoaded = true;
 
                     PresentationViewModel.OnCoreSceneLoaded();
@@ -91,13 +92,13 @@ namespace Boot
                 {
                     (GameState.Boot,
                      GameState.MainMenu,
-                     static () => (new[] { (int)Level.MainMenuScene, (int)Level.CoreScene, (int)Level.UIScene }, null)),
+                     static () => (new[] { (int)Core.Scene.MainMenuScene, (int)Core.Scene.CoreScene, (int)Core.Scene.UIScene }, null)),
                     (GameState.MainMenu,
                      GameState.Gameplay,
-                     static () => (new[] { (int)Level.LevelScene }, new[] { (int)Level.MainMenuScene })),
+                     static () => (new[] { (int)Core.Scene.LevelScene }, new[] { (int)Core.Scene.MainMenuScene })),
                     (GameState.Gameplay,
                      GameState.MainMenu,
-                     static () => (new[] { (int)Level.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
+                     static () => (new[] { (int)Core.Scene.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
                 },
                 new (GameState, Action?, Action?)[]
                 {
@@ -144,8 +145,8 @@ namespace Boot
         }
 
         /// <summary>
-        /// Returns ids of all currently open scenes except for <see cref="Level.CoreScene" />,
-        /// <see cref="Level.MainMenuScene" /> and <see cref="Level.UIScene" />
+        /// Returns ids of all currently open scenes except for <see cref="Core.Scene.CoreScene" />,
+        /// <see cref="Core.Scene.MainMenuScene" /> and <see cref="Core.Scene.UIScene" />
         /// </summary>
         static int[] ScenesToUnloadFromGameplayToMainMenu()
         {
@@ -155,7 +156,7 @@ namespace Boot
             for (int i = 0; i < countLoaded; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                if ((Level)scene.buildIndex is Level.CoreScene or Level.MainMenuScene or Level.UIScene)
+                if ((Core.Scene)scene.buildIndex is Core.Scene.CoreScene or Core.Scene.MainMenuScene or Core.Scene.UIScene)
                     continue;
 
                 scenesToUnload.Add(scene.buildIndex);

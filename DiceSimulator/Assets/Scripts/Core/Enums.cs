@@ -14,8 +14,7 @@ namespace Core
         ClickHit
     }
 
-    // todo: kinda misleading name if it also consist boot, core, and alike
-    public enum Level
+    public enum Scene
     {
         BootScene = 0,
         CoreScene = 1,
@@ -36,24 +35,6 @@ namespace Core
         /// <summary>
         /// Settings accessible from the main menu.
         /// </summary>
-        Settings,
-        LeaderBoard
-    }
-
-    /// <summary>
-    /// For clarity, it should match physical layers.
-    /// </summary>
-    public enum CollisionEntityType
-    {
-        Undefined = int.MinValue,
-        Ball = 0,
-        Brick = 1,
-        DestructionArea = 2
-    }
-
-    public enum BrickType
-    {
-        Basic,
-        Bomb
+        Settings
     }
 }
