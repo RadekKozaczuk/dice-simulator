@@ -18,12 +18,6 @@ namespace GameLogic.ViewModels
 
         static Random _random = new(123);
 
-        /// <summary>
-        /// This value is a pixel coordinate where (0, 0) is the lower-left corner
-        /// and, (1920, 1080) (depending on the resolution), is the upper right corner.
-        /// </summary>
-        public static Vector2 MouseClickPosition { set => GameLogicData.MouseClickPosition = value; }
-
         [Preserve]
         GameLogicViewModel() { }
 
@@ -44,29 +38,36 @@ namespace GameLogic.ViewModels
         /// <summary>
         /// Dice will start to ascend and is ready to be casted.
         /// </summary>
-        public static void DiceSelected() { }
+        public static void DiceSelected()
+        {
+            Debug.LogError("DiceSelected");
+        }
 
         /// <summary>
         /// Dice will start to move back to start position.
         /// </summary>
-        public static void DiceUnselected() { }
+        public static void DiceUnselected()
+        {
+            Debug.LogError("DiceUnselected");
+        }
 
+        /// <summary>
+        /// Rolls the dice in a random direction with a predetermined (<see cref="PlayerConfig.AutoRollStrength"/>) strength.
+        /// </summary>
         public static void AutoRoll()
         {
             // randomize direction and strength
             float2 direction = _random.NextFloat2Direction();
-            float magnitude = _random.NextFloat();
-
-            StartRoll(direction, magnitude);
+            StartRoll(direction, _config.AutoRollStrength);
         }
 
-        static void StartRoll(float2 direction, float magnitude)
+        public static void StartRoll(float2 direction, float magnitude)
         {
             World world = World.DefaultGameObjectInjectionWorld;
             SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();
             ref SystemState state = ref world.Unmanaged.ResolveSystemStateRef(handle);
             ref UpdateDiceSystem system = ref world.Unmanaged.GetUnsafeSystemRef<UpdateDiceSystem>(handle);
-            system.StartRoll(ref state, direction);
+            system.StartRoll(ref state, direction, magnitude);
         }
 
         public static void QuitGame() { }

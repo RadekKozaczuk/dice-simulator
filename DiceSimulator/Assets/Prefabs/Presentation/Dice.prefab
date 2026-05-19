@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1298554220427969716}
   - component: {fileID: 8584996109062793230}
   - component: {fileID: 8517810345704466652}
-  m_Layer: 0
+  - component: {fileID: 7851128338954915171}
+  m_Layer: 6
   m_Name: Dice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,3 +106,25 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7851128338954915171
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855819752515096586}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 0ae2cb49cca2f7546b0088f66595134c, type: 3}

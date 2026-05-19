@@ -3,6 +3,7 @@ using Core;
 using GameLogic.ViewModels;
 using Presentation.Config;
 using Presentation.Popups;
+using Presentation.ViewModels;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,13 +13,12 @@ namespace Presentation.Services
     {
         const string Quit = "Quit";
         const string MousePosition = "MousePosition";
-        const string Shot = "Shot";
+        const string Roll = "Click";
 
         static readonly UIConfig _uiConfig;
 
-        static InputAction _movementAction;
+        static InputAction _clickAction;
         static InputAction _mousePositionAction;
-        static InputAction _rollAction;
 
         internal static void Initialize()
         {
@@ -47,22 +47,20 @@ namespace Presentation.Services
             gameplay.FindAction(Quit).performed += static _ => PopupService.ShowPopup(PopupType.QuitGame);
 
             _mousePositionAction = gameplay.FindAction(MousePosition);
-
-            _rollAction = gameplay.FindAction(Shot);
-            _rollAction.performed += static _ =>
+            _mousePositionAction.performed += static _ =>
             {
                 Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
-                GameLogicViewModel.MouseClickPosition = mousePosition;
-                Debug.LogError($"GameLogicViewModel.MouseClickPosition: {mousePosition}");
+                PresentationViewModel.SetMousePosition(mousePosition);
             };
 
-            _rollAction.canceled += static _ =>
+            _clickAction = gameplay.FindAction(Roll);
+            _clickAction.performed += static _ =>
             {
                 Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
-                GameLogicViewModel.MouseClickPosition = mousePosition;
-                Debug.LogError($"Roll released: {mousePosition}");
-                GameLogicViewModel.AutoRoll();
+                PresentationViewModel.TryGrabDice(mousePosition);
             };
+
+            _clickAction.canceled += static _ => PresentationViewModel.ReleaseDice();
 
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);

@@ -26,9 +26,6 @@ namespace Presentation.Controllers
         static readonly PresentationConfig _presentationConfig;
         static readonly UIConfig _uiConfig;
 
-        static int _canvasWidth;
-        static int _canvasHeight;
-
         static DiceView _dice;
 
         [Preserve]
