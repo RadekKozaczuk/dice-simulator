@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Core;
+using Core.Dtos;
 using JetBrains.Annotations;
 using Presentation.Config;
 using Presentation.Services;
@@ -41,10 +43,11 @@ namespace Presentation.Controllers
         }
 
         [React]
-        static void OnDiceSpawned(Vector3 position, Quaternion rotation)
+        static void OnDiceSpawned(Vector3 position, Quaternion rotation, List<DiceFace> faces)
         {
             _dice = Object.Instantiate(_presentationConfig.DicePrefab, position, rotation);
             _dice.gameObject.name = "Dice";
+            _dice.SpawnFaces(faces);
         }
 
         [React]

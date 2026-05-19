@@ -4,7 +4,6 @@ using Core.Views;
 using Sirenix.OdinInspector;
 using Unity.Entities;
 using UnityEngine;
-using System.Linq;
 using GameLogic.Components;
 
 namespace GameLogic.Authoring
@@ -33,7 +32,7 @@ namespace GameLogic.Authoring
         [SerializeField]
         internal List<DiceFace> DetectedFaces = new();
 
-        internal List<DiceFaceView> FaceViews = new();
+        List<DiceFaceView> _faceViews = new();
 
         [SerializeField]
         DiceFaceView _diceFacePrefab;
@@ -46,36 +45,13 @@ namespace GameLogic.Authoring
         {
             DetectedFaces.Clear();
 
-            List<Vector3> uniqueNormals = UniqueNormals(out float smallestDistance);
+            foreach (DiceFaceView face in _faceViews)
+                DestroyImmediate(face.gameObject);
 
-            for (int i = 0; i < uniqueNormals.Count; i++)
-            {
-                var face = new DiceFace
-                {
-                    Number = i + 1,
-                    Normal = uniqueNormals[i]
-                };
+            _faceViews.Clear();
 
-                DetectedFaces.Add(face);
-            }
+            int counter = 1;
 
-            // choose minimum
-            foreach (DiceFace face in DetectedFaces)
-            {
-                Vector3 position = transform.position + face.Normal * smallestDistance;
-                var rotation = Quaternion.LookRotation(face.Normal, Vector3.up);
-                DiceFaceView view = Instantiate(_diceFacePrefab, position, rotation, transform);
-
-                string number = face.Number.ToString();
-                view.name = number;
-                view.Label.text = number;
-                FaceViews.Add(view);
-            }
-        }
-
-        // todo: we need smallest distance in case mesh was not even
-        List<Vector3> UniqueNormals(out float smallestDistance)
-        {
             Vector3[] vertices = _collisionMesh.vertices;
             int[] triangles = _collisionMesh.triangles;
 
@@ -99,10 +75,7 @@ namespace GameLogic.Authoring
                 float distance = Vector3.Distance(centroid, Vector3.zero);
 
                 if (!distances.Contains(distance))
-                {
                     distances.Add(distance);
-                    Debug.LogError(distance);
-                }
 
                 bool isNewFace = true;
                 foreach (Vector3 existingNormal in uniqueNormals)
@@ -114,12 +87,32 @@ namespace GameLogic.Authoring
 
                 // save only unique normals for later
                 if (isNewFace)
+                {
                     uniqueNormals.Add(normal);
+
+                    var face = new DiceFace
+                    {
+                        Number = counter++,
+                        Normal = normal,
+                        Distance = distance
+                    };
+
+                    DetectedFaces.Add(face);
+                }
             }
 
-            smallestDistance = distances.Min();
+            // choose minimum
+            foreach (DiceFace face in DetectedFaces)
+            {
+                Vector3 position = transform.position + face.Normal * face.Distance;
+                var rotation = Quaternion.LookRotation(face.Normal, Vector3.up);
+                DiceFaceView view = Instantiate(_diceFacePrefab, position, rotation, transform);
 
-            return uniqueNormals;
+                string number = face.Number.ToString();
+                view.name = number;
+                view.Label.text = number;
+                _faceViews.Add(view);
+            }
         }
     }
 }
