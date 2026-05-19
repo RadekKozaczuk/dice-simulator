@@ -28,7 +28,7 @@ namespace Presentation.ViewModels
         const float MaxTargetOutput = 50f;
 
         [Inject]
-        static readonly PresentationMainController _presentationMainController;
+        static readonly PresentationMainController _mainController;
 
         [Preserve]
         PresentationViewModel() { }
@@ -79,10 +79,7 @@ namespace Presentation.ViewModels
 
         public static void PlaySound(Sound sound) => SoundService.Play(sound);
 
-        public static void SetMousePosition(Vector2 mousePosition)
-        {
-            UpdateDrag(mousePosition);
-        }
+        public static void SetMousePosition(Vector2 mousePosition) => UpdateDrag(mousePosition);
 
         public static void TryGrabDice(Vector2 mousePosition)
         {
