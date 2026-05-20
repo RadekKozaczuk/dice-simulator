@@ -9,13 +9,8 @@ namespace Core.Services
         protected readonly struct StateDto
         {
             public readonly Action OnEntry;
-            public readonly Action OnExit;
 
-            internal StateDto(Action onEntry, Action onExit)
-            {
-                OnEntry = onEntry;
-                OnExit = onExit;
-            }
+            internal StateDto(Action onEntry) => OnEntry = onEntry;
         }
 
         protected readonly struct TransitionDto
@@ -37,14 +32,14 @@ namespace Core.Services
         protected TState _currentState;
 
         protected GameStateMachineInternal(IReadOnlyList<(TState from, TState to, Func<(int[], int[])> scenesToLoadUnload)> transitions,
-            IReadOnlyList<(TState state, Action onEntry, Action onExit)> states)
+            IReadOnlyList<(TState state, Action onEntry)> states)
         {
             _transitions = new List<TransitionDto>(transitions.Count);
             foreach ((TState from, TState to, Func<(int[], int[])> scenesToLoadUnload) in transitions)
                 _transitions.Add(new TransitionDto(from, to, scenesToLoadUnload));
 
-            foreach ((TState state, Action onEntry, Action onExit) state in states)
-                _states.Add(state.state, new StateDto(state.onEntry, state.onExit));
+            foreach ((TState state, Action onEntry) state in states)
+                _states.Add(state.state, new StateDto(state.onEntry));
         }
 
         public TState GetCurrentState() => _currentState;

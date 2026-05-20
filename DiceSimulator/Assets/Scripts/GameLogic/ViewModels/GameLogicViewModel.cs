@@ -25,11 +25,7 @@ namespace GameLogic.ViewModels
             PersistentStorageService.Initialize();
         }
 
-        public static void MainMenuOnExit() { }
-
         public static void GameplayOnEntry() { }
-
-        public static void GameplayOnExit() { }
 
         public static void SaveVolumeSettings(int music, int sound) =>
             PersistentStorageService.SaveVolumeSettings(music, sound);

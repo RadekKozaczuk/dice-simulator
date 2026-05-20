@@ -21,7 +21,7 @@ namespace Core
         /// </summary>
         public GameStateMachine(
             IReadOnlyList<(TState from, TState to, Func<(int[], int[])> scenesToLoadUnload)> transitions,
-            IReadOnlyList<(TState state, Action onEntry, Action onExit)> states)
+            IReadOnlyList<(TState state, Action onEntry)> states)
             : base(transitions, states) { }
 
         /// <summary>
@@ -55,11 +55,6 @@ namespace Core
                     "GameStateMachine was asked to unload the same scene more than once.");
             }
 #endif
-
-            // execute state's on-exit code
-            // todo: temporary disabled
-            bool _ = _states.TryGetValue(transition.From, out StateDto _);
-            //fromState.OnExit?.Invoke();
 
             if (scenesToLoadUnload != null)
                 if (scenesToLoadUnload.Value.scenesToLoad is { Length: > 0 } || additionalScenesToLoad is { Length: > 0 })

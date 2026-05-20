@@ -100,11 +100,11 @@ namespace Boot
                      GameState.MainMenu,
                      static () => (new[] { (int)SceneId.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
                 },
-                new (GameState, Action, Action)[]
+                new (GameState, Action)[]
                 {
-                    (GameState.Boot, static () => { }, static () => { }),
-                    (GameState.MainMenu, MainMenuOnEntry, MainMenuOnExit),
-                    (GameState.Gameplay, GameplayOnEntry, GameplayOnExit)
+                    (GameState.Boot, static () => { }),
+                    (GameState.MainMenu, MainMenuOnEntry),
+                    (GameState.Gameplay, GameplayOnEntry)
                 }
             );
 
@@ -114,22 +114,10 @@ namespace Boot
             PresentationViewModel.MainMenuOnEntry();
         }
 
-        static void MainMenuOnExit()
-        {
-            GameLogicViewModel.MainMenuOnExit();
-            PresentationViewModel.MainMenuOnExit();
-        }
-
         static void GameplayOnEntry()
         {
             GameLogicViewModel.GameplayOnEntry();
             PresentationViewModel.GameplayOnEntry();
-        }
-
-        static void GameplayOnExit()
-        {
-            GameLogicViewModel.GameplayOnExit();
-            PresentationViewModel.GameplayOnExit();
         }
 
         /// <summary>

@@ -47,8 +47,6 @@ namespace Presentation.ViewModels
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
         }
 
-        public static void MainMenuOnExit() { }
-
         public static void GameplayOnEntry()
         {
             _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
@@ -60,12 +58,6 @@ namespace Presentation.ViewModels
             PanelView panel = UISceneReferenceHolder.Panel;
             panel.gameObject.SetActive(true);
             panel.RollEnded(0, 0);
-        }
-
-        public static void GameplayOnExit()
-        {
-            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
-            UISceneReferenceHolder.Panel.gameObject.SetActive(false);
         }
 
         public static void SetMusicVolume(int music)
@@ -123,23 +115,14 @@ namespace Presentation.ViewModels
 
             if (_isDragging)
             {
-                // 1. Create an invisible mathematical plane at the elevated target height
                 Ray ray = PresentationSceneReferenceHolder.GameplayCamera.ScreenPointToRay(mousePosition);
 
-                // 2. Find where the mouse ray hits that elevated plane
                 if (_movePlane.Raycast(ray, out float distance))
                 {
                     Vector3 hitPoint = ray.GetPoint(distance);
-                    Vector3 targetPosition = hitPoint; // + cursorOffset;
-                    targetPosition.y = 10f; // Lock the height
-
-                    // 3. Bound the position to your gameplay zone
-                    targetPosition.x = Mathf.Clamp(targetPosition.x, _minX, _maxX);
-                    targetPosition.z = Mathf.Clamp(targetPosition.z, _minZ, _maxZ);
-
-                    // 4. Smoothly interpolate to the target position
-                   // transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
-                    GameLogicViewModel.MoveDice(targetPosition.x, targetPosition.z);
+                    hitPoint.x = Mathf.Clamp(hitPoint.x, _minX, _maxX);
+                    hitPoint.z = Mathf.Clamp(hitPoint.z, _minZ, _maxZ);
+                    GameLogicViewModel.MoveDice(hitPoint.x, hitPoint.z);
                 }
             }
 
