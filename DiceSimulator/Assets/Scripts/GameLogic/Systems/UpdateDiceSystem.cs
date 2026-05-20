@@ -8,6 +8,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace GameLogic.Systems
 {
@@ -24,8 +25,14 @@ namespace GameLogic.Systems
 
         void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            // update position
+            foreach (RefRO<LocalTransform> transform in SystemAPI.Query<RefRO<LocalTransform>>()
+                                                                 .WithAll<DiceComponent>()
+                                                                 .WithChangeFilter<LocalTransform>())
+                Signals.DicePositionChanged(transform.ValueRO.Position, transform.ValueRO.Rotation);
 
+            // freeze if necessary
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach ((RefRO<LocalTransform> transform, RefRW<PhysicsVelocity> velocity, RefRO<DiceComponent> dice, Entity entity)
                      in SystemAPI.Query<RefRO<LocalTransform>, RefRW<PhysicsVelocity>, RefRO<DiceComponent>>()
                                  .WithChangeFilter<LocalTransform>()
@@ -39,15 +46,21 @@ namespace GameLogic.Systems
                     _total += result;
                     Signals.DiceStopped(result, _total);
 
-                    // freeze further movement
                     ecb.RemoveComponent<PhysicsVelocity>(entity);
                 }
-                else
-                    Signals.DicePositionChanged(transform.ValueRO.Position, transform.ValueRO.Rotation);
             }
 
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
+        }
+
+        internal void MoveDice(ref SystemState state, float x, float z)
+        {
+            Entity dice = SystemAPI.GetSingletonEntity<DiceComponent>();
+            RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
+
+            Debug.LogError($"MoveDice: x:{x}, z:{z}");
+            transform.ValueRW.Position = new float3(x, _config.DiceHeight, z);
         }
 
         /// <summary>

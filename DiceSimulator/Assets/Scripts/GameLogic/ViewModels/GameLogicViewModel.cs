@@ -20,9 +20,10 @@ namespace GameLogic.ViewModels
         [Preserve]
         GameLogicViewModel() { }
 
-        public static void BootingOnExit() => PersistentStorageService.Initialize();
-
-        public static void MainMenuOnEntry() { }
+        public static void MainMenuOnEntry()
+        {
+            PersistentStorageService.Initialize();
+        }
 
         public static void MainMenuOnExit() { }
 
@@ -35,6 +36,15 @@ namespace GameLogic.ViewModels
 
         public static (int music, int sound) LoadVolumeSettings() =>
             PersistentStorageService.LoadVolumeSettings();
+
+        public static void MoveDice(float x, float z)
+        {
+            World world = World.DefaultGameObjectInjectionWorld;
+            SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();
+            ref SystemState state = ref world.Unmanaged.ResolveSystemStateRef(handle);
+            ref UpdateDiceSystem system = ref world.Unmanaged.GetUnsafeSystemRef<UpdateDiceSystem>(handle);
+            system.MoveDice(ref state, x, z);
+        }
 
         /// <summary>
         /// Rolls the dice in a random direction with a predetermined (<see cref="PlayerConfig.AutoRollStrength"/>) strength.

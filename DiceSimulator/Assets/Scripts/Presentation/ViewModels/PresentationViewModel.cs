@@ -37,31 +37,34 @@ namespace Presentation.ViewModels
 
         public static void MainMenuOnEntry()
         {
+            Debug.LogError("MainMenuOnEntry");
             InputService.Initialize();
             MusicService.LoadAndPlayWhenReady(Music.MainMenu, false);
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(false);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(true);
             _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Enable();
+            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
         }
 
-        public static void MainMenuOnExit()
-        {
-            _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
-            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
-        }
+        public static void MainMenuOnExit() { }
 
         public static void GameplayOnEntry()
         {
+            _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
+            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
+
+            Debug.LogError("GameplayOnEntry");
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(true);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(false);
 
-            PanelView ballsLeft = UISceneReferenceHolder.Panel;
-            ballsLeft.gameObject.SetActive(true);
-            ballsLeft.RollEnded(0, 0);
+            PanelView panel = UISceneReferenceHolder.Panel;
+            panel.gameObject.SetActive(true);
+            panel.RollEnded(0, 0);
         }
 
         public static void GameplayOnExit()
         {
+            Debug.LogError("GameplayOnExit");
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
             UISceneReferenceHolder.Panel.gameObject.SetActive(false);
         }
@@ -111,6 +114,9 @@ namespace Presentation.ViewModels
 
         static void UpdateDrag(Vector2 mousePosition)
         {
+            if (_isDragging)
+                GameLogicViewModel.MoveDice(mousePosition.x / 100, mousePosition.y / 100);
+
             Vector2 delta = mousePosition - _lastMousePosition;
 
             // pixels per second

@@ -45,7 +45,6 @@ namespace Presentation.Services
             InputAction moveAction = gameplay.FindAction(Move);
             moveAction.performed += _ =>
             {
-                Debug.LogError("Move performed");
                 Vector2 mousePosition = moveAction.ReadValue<Vector2>();
                 PresentationViewModel.SetMousePosition(mousePosition);
             };
