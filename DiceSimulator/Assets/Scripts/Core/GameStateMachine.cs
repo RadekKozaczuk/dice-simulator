@@ -1,4 +1,3 @@
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace Core
     {
         // used to remember what state preload wanted to go
         // null otherwise
-        TransitionDto? _transition;
+        TransitionDto _transition;
 
         /// <summary>
         /// 'betweenLoadAndUnload' action is the best suitable for scenarios when we need to just when scenes stopped loading but right before they start to unload.
@@ -58,8 +57,9 @@ namespace Core
 #endif
 
             // execute state's on-exit code
-            _states.TryGetValue(transition.From, out StateDto fromState);
-            fromState.OnExit?.Invoke();
+            // todo: temporary disabled
+            bool _ = _states.TryGetValue(transition.From, out StateDto _);
+            //fromState.OnExit?.Invoke();
 
             if (scenesToLoadUnload != null)
                 if (scenesToLoadUnload.Value.scenesToLoad is { Length: > 0 } || additionalScenesToLoad is { Length: > 0 })

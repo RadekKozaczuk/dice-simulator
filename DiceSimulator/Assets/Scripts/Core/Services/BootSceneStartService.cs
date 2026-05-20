@@ -46,14 +46,14 @@ namespace Core.Services
             if (entryScene)
             {
                 EditorSceneManager.playModeStartScene = entryScene;
-                UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+                Scene scene = SceneManager.GetActiveScene();
                 ReloadConfigs(scene);
             }
         }
 
         static void OneTimeEditorStartup()
         {
-            UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+            Scene scene = SceneManager.GetActiveScene();
             if (scene.name.Contains("BootScene"))
                 ReloadConfigs(scene);
 
@@ -64,12 +64,12 @@ namespace Core.Services
         {
             if (state == PlayModeStateChange.EnteredPlayMode)
             {
-                UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+                Scene scene = SceneManager.GetActiveScene();
                 ReloadConfigs(scene);
             }
         }
 
-        static void ReloadConfigs(UnityEngine.SceneManagement.Scene scene)
+        static void ReloadConfigs(Scene scene)
         {
             GameObject[] objects = scene.GetRootGameObjects();
 

@@ -35,10 +35,9 @@ namespace Presentation.ViewModels
 
         public static void OnCoreSceneLoaded() => PresentationMainController.OnCoreSceneLoaded();
 
-        public static void BootingOnExit() => InputService.Initialize();
-
         public static void MainMenuOnEntry()
         {
+            InputService.Initialize();
             MusicService.LoadAndPlayWhenReady(Music.MainMenu, false);
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(false);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(true);

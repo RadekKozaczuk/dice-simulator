@@ -12,7 +12,7 @@ namespace Core
         ClickHit
     }
 
-    public enum Scene
+    public enum SceneId
     {
         BootScene = 0,
         CoreScene = 1,

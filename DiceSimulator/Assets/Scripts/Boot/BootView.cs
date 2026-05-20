@@ -8,7 +8,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using Scene = UnityEngine.SceneManagement.Scene;
 
 namespace Boot
 {
@@ -55,9 +54,9 @@ namespace Boot
         {
             SceneManager.sceneLoaded += static (scene, _) =>
             {
-                if (scene.buildIndex == (int)Core.Scene.CoreScene)
+                if (scene.buildIndex == (int)SceneId.CoreScene)
                 {
-                    SceneManager.UnloadSceneAsync((int)Core.Scene.BootScene);
+                    SceneManager.UnloadSceneAsync((int)SceneId.BootScene);
                     _isCoreSceneLoaded = true;
 
                     PresentationViewModel.OnCoreSceneLoaded();
@@ -87,38 +86,27 @@ namespace Boot
                 ArchitectureService.ExecuteSentSignals();
         }
 
-        static GameStateMachine<GameState> CreateStateMachine() =>
-            new(new List<(GameState from, GameState to, Func<(int[]?, int[]?)>? scenesToLoadUnload)>
+        GameStateMachine<GameState> CreateStateMachine() =>
+            new(new List<(GameState from, GameState to, Func<(int[], int[])> scenesToLoadUnload)>
                 {
                     (GameState.Boot,
                      GameState.MainMenu,
-                     static () => (new[] { (int)Core.Scene.MainMenuScene, (int)Core.Scene.CoreScene, (int)Core.Scene.UIScene }, null)),
+                     static () => (new[] { (int)SceneId.MainMenuScene, (int)SceneId.CoreScene, (int)SceneId.UIScene },
+                                   Array.Empty<int>())),
                     (GameState.MainMenu,
                      GameState.Gameplay,
-                     static () => (new[] { (int)Core.Scene.LevelScene }, new[] { (int)Core.Scene.MainMenuScene })),
+                     static () => (new[] { (int)SceneId.LevelScene }, new[] { (int)SceneId.MainMenuScene })),
                     (GameState.Gameplay,
                      GameState.MainMenu,
-                     static () => (new[] { (int)Core.Scene.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
+                     static () => (new[] { (int)SceneId.MainMenuScene }, ScenesToUnloadFromGameplayToMainMenu()))
                 },
-                new (GameState, Action?, Action?)[]
+                new (GameState, Action, Action)[]
                 {
-                    (GameState.Boot, null, BootingOnExit),
+                    (GameState.Boot, static () => { }, static () => { }),
                     (GameState.MainMenu, MainMenuOnEntry, MainMenuOnExit),
                     (GameState.Gameplay, GameplayOnEntry, GameplayOnExit)
                 }
             );
-
-        static void BootingOnExit()
-        {
-            Application.backgroundLoadingPriority = ThreadPriority.Normal;
-
-            (int music, int sound) = GameLogicViewModel.LoadVolumeSettings();
-            PresentationViewModel.SetMusicVolume(music);
-            PresentationViewModel.SetSoundVolume(sound);
-
-            GameLogicViewModel.BootingOnExit();
-            PresentationViewModel.BootingOnExit();
-        }
 
         static void MainMenuOnEntry()
         {
@@ -145,8 +133,8 @@ namespace Boot
         }
 
         /// <summary>
-        /// Returns ids of all currently open scenes except for <see cref="Core.Scene.CoreScene" />,
-        /// <see cref="Core.Scene.MainMenuScene" /> and <see cref="Core.Scene.UIScene" />
+        /// Returns ids of all currently open scenes except for <see cref="SceneId.CoreScene" />,
+        /// <see cref="SceneId.MainMenuScene" /> and <see cref="SceneId.UIScene" />
         /// </summary>
         static int[] ScenesToUnloadFromGameplayToMainMenu()
         {
@@ -156,7 +144,7 @@ namespace Boot
             for (int i = 0; i < countLoaded; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                if ((Core.Scene)scene.buildIndex is Core.Scene.CoreScene or Core.Scene.MainMenuScene or Core.Scene.UIScene)
+                if ((SceneId)scene.buildIndex is SceneId.CoreScene or SceneId.MainMenuScene or SceneId.UIScene)
                     continue;
 
                 scenesToUnload.Add(scene.buildIndex);
