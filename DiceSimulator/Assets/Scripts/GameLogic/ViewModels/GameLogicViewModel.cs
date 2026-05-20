@@ -20,10 +20,7 @@ namespace GameLogic.ViewModels
         [Preserve]
         GameLogicViewModel() { }
 
-        public static void MainMenuOnEntry()
-        {
-            PersistentStorageService.Initialize();
-        }
+        public static void MainMenuOnEntry() => PersistentStorageService.Initialize();
 
         public static void GameplayOnEntry() { }
 

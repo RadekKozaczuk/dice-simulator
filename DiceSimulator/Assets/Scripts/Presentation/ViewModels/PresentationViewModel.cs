@@ -142,8 +142,8 @@ namespace Presentation.ViewModels
             Vector2 averageVelocity = GetAverageVelocity();
             var normal = Vector2.Normalize(averageVelocity);
 
-            float currentMagnitude = averageVelocity.magnitude;
-            float percentage = Mathf.InverseLerp(0f, _maxPossibleInputMag, currentMagnitude);
+            float magnitude = averageVelocity.magnitude;
+            float percentage = Mathf.InverseLerp(0f, _maxPossibleInputMag, magnitude);
             float mappedValue = Mathf.Lerp(0f, MaxTargetOutput, percentage);
 
             GameLogicViewModel.StartRoll(normal, mappedValue);

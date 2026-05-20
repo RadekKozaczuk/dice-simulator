@@ -32,7 +32,7 @@ namespace GameLogic.Authoring
         [SerializeField]
         internal List<DiceFace> DetectedFaces = new();
 
-        List<DiceFaceView> _faceViews = new();
+        readonly List<DiceFaceView> _faceViews = new();
 
         [SerializeField]
         DiceFaceView _diceFacePrefab;
