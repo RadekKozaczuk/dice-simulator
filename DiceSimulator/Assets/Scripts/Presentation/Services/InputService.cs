@@ -52,16 +52,11 @@ namespace Presentation.Services
             InputAction clickAction = gameplay.FindAction(Click);
             clickAction.performed += _ =>
             {
-                Debug.LogError("Click performed");
                 Vector2 mousePosition = moveAction.ReadValue<Vector2>();
                 PresentationViewModel.TryGrabDice(mousePosition);
             };
 
-            clickAction.canceled += static _ =>
-            {
-                Debug.LogError("Click canceled");
-                PresentationViewModel.ReleaseDice();
-            };
+            clickAction.canceled += static _ => PresentationViewModel.ReleaseDice();
 
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);

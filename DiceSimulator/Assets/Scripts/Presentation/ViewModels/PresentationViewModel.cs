@@ -23,6 +23,8 @@ namespace Presentation.ViewModels
         static readonly Vector2[] _velocityBuffer = new Vector2[30];
         static int _velocityIndex;
 
+        static readonly Plane _movePlane = new(Vector3.up, new Vector3(0, 10, 0));
+
         // The maximum possible magnitude of a Vector2(1000, 1000)
         static readonly float _maxPossibleInputMag = Mathf.Sqrt(1000f * 1000f + 1000f * 1000f); // ~1414.21f
         const float MaxTargetOutput = 50f;
@@ -37,7 +39,6 @@ namespace Presentation.ViewModels
 
         public static void MainMenuOnEntry()
         {
-            Debug.LogError("MainMenuOnEntry");
             InputService.Initialize();
             MusicService.LoadAndPlayWhenReady(Music.MainMenu, false);
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(false);
@@ -53,7 +54,6 @@ namespace Presentation.ViewModels
             _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
 
-            Debug.LogError("GameplayOnEntry");
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(true);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(false);
 
@@ -64,7 +64,6 @@ namespace Presentation.ViewModels
 
         public static void GameplayOnExit()
         {
-            Debug.LogError("GameplayOnExit");
             _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
             UISceneReferenceHolder.Panel.gameObject.SetActive(false);
         }
@@ -112,12 +111,37 @@ namespace Presentation.ViewModels
             _velocityIndex = 0;
         }
 
+        // todo: should be taken from logic
+        static readonly float _minX = -10f;
+        static readonly float _maxX = 10f;
+        static readonly float _minZ = -10f;
+        static readonly float _maxZ = 10f;
+
         static void UpdateDrag(Vector2 mousePosition)
         {
-            if (_isDragging)
-                GameLogicViewModel.MoveDice(mousePosition.x / 100, mousePosition.y / 100);
-
             Vector2 delta = mousePosition - _lastMousePosition;
+
+            if (_isDragging)
+            {
+                // 1. Create an invisible mathematical plane at the elevated target height
+                Ray ray = PresentationSceneReferenceHolder.GameplayCamera.ScreenPointToRay(mousePosition);
+
+                // 2. Find where the mouse ray hits that elevated plane
+                if (_movePlane.Raycast(ray, out float distance))
+                {
+                    Vector3 hitPoint = ray.GetPoint(distance);
+                    Vector3 targetPosition = hitPoint; // + cursorOffset;
+                    targetPosition.y = 10f; // Lock the height
+
+                    // 3. Bound the position to your gameplay zone
+                    targetPosition.x = Mathf.Clamp(targetPosition.x, _minX, _maxX);
+                    targetPosition.z = Mathf.Clamp(targetPosition.z, _minZ, _maxZ);
+
+                    // 4. Smoothly interpolate to the target position
+                   // transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpeed);
+                    GameLogicViewModel.MoveDice(targetPosition.x, targetPosition.z);
+                }
+            }
 
             // pixels per second
             Vector2 velocity = delta / Time.deltaTime;
@@ -135,13 +159,9 @@ namespace Presentation.ViewModels
             Vector2 averageVelocity = GetAverageVelocity();
             var normal = Vector2.Normalize(averageVelocity);
 
-            Debug.LogError($"averageVelocity: {averageVelocity}");
-
             float currentMagnitude = averageVelocity.magnitude;
             float percentage = Mathf.InverseLerp(0f, _maxPossibleInputMag, currentMagnitude);
             float mappedValue = Mathf.Lerp(0f, MaxTargetOutput, percentage);
-
-            Debug.LogError($"avg: {mappedValue}");
 
             GameLogicViewModel.StartRoll(normal, mappedValue);
             PanelView panel = UISceneReferenceHolder.Panel;

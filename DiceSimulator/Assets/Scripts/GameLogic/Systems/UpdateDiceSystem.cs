@@ -8,7 +8,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace GameLogic.Systems
 {
@@ -18,7 +17,6 @@ namespace GameLogic.Systems
     partial struct UpdateDiceSystem : ISystem
     {
         static readonly PlayerConfig _config;
-
         int _total;
 
         void OnCreate(ref SystemState state) => state.RequireForUpdate<DiceComponent>();
@@ -54,13 +52,11 @@ namespace GameLogic.Systems
             ecb.Dispose();
         }
 
-        internal void MoveDice(ref SystemState state, float x, float z)
+        internal void MoveDice(ref SystemState state, float deltaX, float deltaZ)
         {
             Entity dice = SystemAPI.GetSingletonEntity<DiceComponent>();
             RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
-
-            Debug.LogError($"MoveDice: x:{x}, z:{z}");
-            transform.ValueRW.Position = new float3(x, _config.DiceHeight, z);
+            transform.ValueRW.Position = new float3(deltaX, _config.DiceHeight, deltaZ);
         }
 
         /// <summary>
