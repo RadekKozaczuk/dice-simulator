@@ -62,19 +62,22 @@ namespace GameLogic.Systems
         /// <summary>
         /// Moves the dice up and add a velocity component to it.
         /// </summary>
-        internal void StartRoll(ref SystemState state, float2 direction, float magnitude)
+        internal void StartRoll(ref SystemState state, float2 direction, float magnitude, bool resetPosition)
         {
             float3 linear = new float3(direction.x, 0, direction.y) * magnitude;
-            StartRoll(ref state, linear);
+            StartRoll(ref state, linear, resetPosition);
         }
 
-        void StartRoll(ref SystemState state, float3 linear)
+        void StartRoll(ref SystemState state, float3 linear, bool resetPosition)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-
             Entity dice = SystemAPI.GetSingletonEntity<DiceComponent>();
-            RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
-            transform.ValueRW.Position = new float3(0, _config.DiceHeight, 0);
+
+            if (resetPosition)
+            {
+                RefRW<LocalTransform> transform = SystemAPI.GetComponentRW<LocalTransform>(dice);
+                transform.ValueRW.Position = new float3(0, _config.DiceHeight, 0);
+            }
 
             var velocity = new PhysicsVelocity { Linear = linear };
             ecb.AddComponent(dice, velocity);

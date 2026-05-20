@@ -140,6 +140,11 @@ namespace Presentation.ViewModels
             _isDragging = false;
 
             Vector2 averageVelocity = GetAverageVelocity();
+
+            // roll too weak
+            if (Mathf.Abs(averageVelocity.x) + Mathf.Abs(averageVelocity.y) < 400)
+                return;
+
             var normal = Vector2.Normalize(averageVelocity);
 
             float magnitude = averageVelocity.magnitude;

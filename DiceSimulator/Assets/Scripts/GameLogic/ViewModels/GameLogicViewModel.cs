@@ -46,19 +46,19 @@ namespace GameLogic.ViewModels
         {
             // randomize direction and strength
             float2 direction = _random.NextFloat2Direction();
-            StartRoll_Internal(direction, _config.AutoRollStrength);
+            StartRoll_Internal(direction, _config.AutoRollStrength, true);
         }
 
         public static void StartRoll(Vector2 direction, float magnitude) =>
-            StartRoll_Internal(direction, magnitude);
+            StartRoll_Internal(direction, magnitude, false);
 
-        static void StartRoll_Internal(float2 direction, float magnitude)
+        static void StartRoll_Internal(float2 direction, float magnitude, bool resetPosition)
         {
             World world = World.DefaultGameObjectInjectionWorld;
             SystemHandle handle = world.GetExistingSystem<UpdateDiceSystem>();
             ref SystemState state = ref world.Unmanaged.ResolveSystemStateRef(handle);
             ref UpdateDiceSystem system = ref world.Unmanaged.GetUnsafeSystemRef<UpdateDiceSystem>(handle);
-            system.StartRoll(ref state, direction, magnitude);
+            system.StartRoll(ref state, direction, magnitude, resetPosition);
         }
 
         public static void QuitGame() { }
