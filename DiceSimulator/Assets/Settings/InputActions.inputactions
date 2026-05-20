@@ -44,7 +44,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MousePosition",
+                    "name": "Move",
                     "type": "Value",
                     "id": "26c5f8c6-c1e5-4256-8aff-0ff5519ef865",
                     "expectedControlType": "Vector2",
@@ -53,7 +53,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shot",
+                    "name": "Click",
                     "type": "Button",
                     "id": "aeb815ee-28d4-42ab-ad80-5edc45578d0b",
                     "expectedControlType": "",
@@ -81,7 +81,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MousePosition",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -92,7 +92,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shot",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
