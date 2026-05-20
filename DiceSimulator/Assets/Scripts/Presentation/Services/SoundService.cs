@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Core.Pooling;
 using Core;
 using Core.Config;
 using Core.Data;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
 namespace Presentation.Services
@@ -35,7 +35,9 @@ namespace Presentation.Services
         static int _volume = int.MinValue;
 #endif
 
-        static readonly ObjectPool<AudioSource> _pool = new(CustomAlloc, null, CustomReturn, 5);
+        static readonly ObjectPool<AudioSource> _pool = new(
+            createFunc: static () => Object.Instantiate(_config.AudioSourcePrefab, _position, Quaternion.identity, _audioContainer));
+
         static Vector3 _position;
         static Transform _audioContainer = null!;
         const string Sound = "soundVolume";
@@ -48,7 +50,6 @@ namespace Presentation.Services
         internal static void Initialize()
         {
             _audioContainer = PresentationSceneReferenceHolder.AudioContainer;
-            _pool.MaxSize = _config.SoundPoolSize;
         }
 
         /// <summary>
@@ -95,17 +96,6 @@ namespace Presentation.Services
             }
 
             return soundId;
-        }
-
-        static AudioSource CustomAlloc() =>
-            Object.Instantiate(_config.AudioSourcePrefab, _position, Quaternion.identity, _audioContainer);
-
-        static void CustomReturn(AudioSource source, bool poolMaxOut)
-        {
-            if (poolMaxOut)
-                Object.Destroy(source.gameObject);
-            else
-                source.gameObject.SetActive(false);
         }
     }
 }

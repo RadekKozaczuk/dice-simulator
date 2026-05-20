@@ -80,7 +80,7 @@ namespace Core.DependencyInjector
         /// </summary>
         static void BindSignals(Assembly[] assemblies)
         {
-            Assembly core = null!;
+            Assembly core = null;
 
             // find Core
             // ReSharper disable once LoopCanBeConvertedToQuery
@@ -92,7 +92,7 @@ namespace Core.DependencyInjector
                     break;
                 }
 
-            foreach (Type type in core.GetTypes())
+            foreach (Type type in core!.GetTypes())
             {
                 // ignore internal classes, enums
                 if (type.IsEnum || type.IsNested)
