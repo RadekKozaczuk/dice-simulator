@@ -11,13 +11,10 @@ namespace Presentation.Services
     static class InputService
     {
         const string Quit = "Quit";
-        const string MousePosition = "MousePosition";
-        const string Roll = "Click";
+        const string Move = "Move";
+        const string Click = "Click";
 
         static readonly UIConfig _uiConfig;
-
-        static InputAction _clickAction;
-        static InputAction _mousePositionAction;
 
         internal static void Initialize()
         {
@@ -45,21 +42,27 @@ namespace Presentation.Services
             InputActionMap gameplay = _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap);
             gameplay.FindAction(Quit).performed += static _ => PopupService.ShowPopup(PopupType.QuitGame);
 
-            _mousePositionAction = gameplay.FindAction(MousePosition);
-            _mousePositionAction.performed += static _ =>
+            InputAction moveAction = gameplay.FindAction(Move);
+            moveAction.performed += _ =>
             {
-                Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
+                Debug.LogError("Move performed");
+                Vector2 mousePosition = moveAction.ReadValue<Vector2>();
                 PresentationViewModel.SetMousePosition(mousePosition);
             };
 
-            _clickAction = gameplay.FindAction(Roll);
-            _clickAction.performed += static _ =>
+            InputAction clickAction = gameplay.FindAction(Click);
+            clickAction.performed += _ =>
             {
-                Vector2 mousePosition = _mousePositionAction.ReadValue<Vector2>();
+                Debug.LogError("Click performed");
+                Vector2 mousePosition = moveAction.ReadValue<Vector2>();
                 PresentationViewModel.TryGrabDice(mousePosition);
             };
 
-            _clickAction.canceled += static _ => PresentationViewModel.ReleaseDice();
+            clickAction.canceled += static _ =>
+            {
+                Debug.LogError("Click canceled");
+                PresentationViewModel.ReleaseDice();
+            };
 
             // Popups bindings
             InputActionMap popup = _uiConfig.InputActionAsset.FindActionMap(Constants.PopupActionMap);
@@ -70,8 +73,6 @@ namespace Presentation.Services
                 else
                     PopupService.ShowPopup(PopupType.QuitGame);
             };
-
-            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Disable();
         }
     }
 }

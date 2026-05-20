@@ -44,14 +44,16 @@ namespace Presentation.ViewModels
             _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Enable();
         }
 
-        public static void MainMenuOnExit() => _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
+        public static void MainMenuOnExit()
+        {
+            _uiConfig.InputActionAsset.FindActionMap(Constants.MainMenuActionMap).Disable();
+            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
+        }
 
         public static void GameplayOnEntry()
         {
             PresentationSceneReferenceHolder.GameplayCamera.gameObject.SetActive(true);
             PresentationSceneReferenceHolder.MainMenuCamera.gameObject.SetActive(false);
-
-            _uiConfig.InputActionAsset.FindActionMap(Constants.GameplayActionMap).Enable();
 
             PanelView ballsLeft = UISceneReferenceHolder.Panel;
             ballsLeft.gameObject.SetActive(true);
